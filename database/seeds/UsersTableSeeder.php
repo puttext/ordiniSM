@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 11,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             1 => 
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 12,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             2 => 
@@ -53,7 +53,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 10,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             3 => 
@@ -66,7 +66,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 9,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             4 => 
@@ -79,7 +79,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 7,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             5 => 
@@ -92,7 +92,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 8,
                 'remember_token' => 'I0UWnvwiqQgfKLguoXrwTKZfRol2cCtw7WVdOFGkbEE1AQ6GhuQ5hvkKqGun',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => '2017-02-25 01:59:32',
             ),
             6 => 
@@ -105,7 +105,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 6,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             7 => 
@@ -118,7 +118,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 6,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             8 => 
@@ -131,7 +131,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 13,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             9 => 
@@ -144,7 +144,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 13,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             10 => 
@@ -157,7 +157,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 13,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             11 => 
@@ -170,7 +170,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 13,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             12 => 
@@ -183,7 +183,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 14,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             13 => 
@@ -196,7 +196,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 1,
                 'gas_id' => 15,
                 'remember_token' => 'mEgzNHAacfO5y1xDREUki0uyIiH13rp35BElmITM0RwiPtoGWHAmemcd9S0B',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => '2017-03-15 17:52:00',
             ),
             14 => 
@@ -209,7 +209,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 16,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             15 => 
@@ -222,7 +222,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 17,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             16 => 
@@ -235,7 +235,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 17,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             17 => 
@@ -248,7 +248,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 18,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             18 => 
@@ -261,7 +261,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 18,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             19 => 
@@ -274,7 +274,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 4,
                 'gas_id' => 18,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             20 => 
@@ -287,7 +287,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 19,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             21 => 
@@ -300,7 +300,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 20,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             22 => 
@@ -313,7 +313,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 21,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             23 => 
@@ -326,7 +326,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 22,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             24 => 
@@ -339,7 +339,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 22,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             25 => 
@@ -352,7 +352,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 22,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             26 => 
@@ -365,7 +365,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 23,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             27 => 
@@ -378,7 +378,7 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 2,
                 'gas_id' => 24,
                 'remember_token' => '',
-                'created_at' => '2017-03-15 11:42:18',
+                'created_at' => new DateTime(),
                 'updated_at' => NULL,
             ),
             28 => 
