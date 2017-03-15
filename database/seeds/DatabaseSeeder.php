@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call('AttoriTableSeeder');
         $this->call('AssociazioneFornaiTableSeeder');
         $this->call('ProdottiTableSeeder');
+        $this->call(AttoriTableSeeder::class);
+        $this->call(AssociazioneFornaiTableSeeder::class);
+        $this->call(ProdottiTableSeeder::class);
     }
 }

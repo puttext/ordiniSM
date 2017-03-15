@@ -26,10 +26,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '1-tipo1',
                 'descrizione' => 'Tipo 1',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 3.68,
-                'contributo_des' => 0.07,
+                'prezzo_fornitore' => 3.6800000000000002,
+                'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.25,
-           		'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             1 => 
             array (
@@ -40,10 +41,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '2-integrale',
                 'descrizione' => 'Integrale',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 3.68,
-                'contributo_des' => 0.07,
+                'prezzo_fornitore' => 3.6800000000000002,
+                'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.25,
-           		'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             2 => 
             array (
@@ -54,11 +56,12 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '3-segale',
                 'descrizione' => 'Segale',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 3.68,
-                'contributo_des' => 0.07,
+                'prezzo_fornitore' => 3.6800000000000002,
+                'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.25,
-            	'created_at' => new DateTime(),
-           	),
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
+            ),
             3 => 
             array (
                 'id' => 15,
@@ -69,9 +72,10 @@ class ProdottiTableSeeder extends Seeder
                 'descrizione' => 'Segale',
                 'quantita' => 'pagnotta',
                 'prezzo_fornitore' => 3.5,
-                'contributo_des' => 0.08,
+                'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.12,
-           		'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             4 => 
             array (
@@ -83,9 +87,10 @@ class ProdottiTableSeeder extends Seeder
                 'descrizione' => 'Integrale',
                 'quantita' => 'pagnotta',
                 'prezzo_fornitore' => 3.5,
-                'contributo_des' => 0.08,
+                'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.12,
-           		'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             5 => 
             array (
@@ -97,9 +102,10 @@ class ProdottiTableSeeder extends Seeder
                 'descrizione' => 'Tipo 1',
                 'quantita' => 'pagnotta',
                 'prezzo_fornitore' => 3.5,
-                'contributo_des' => 0.08,
+                'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.12,
-           		'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             6 => 
             array (
@@ -110,10 +116,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '3-segale',
                 'descrizione' => 'Segale',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 3.80,
-                'contributo_des' => 0.07,
-                'contributo_sm' => 0.23,
-           		'created_at' => new DateTime(),
+                'prezzo_fornitore' => 3.7999999999999998,
+                'contributo_des' => 0.070000000000000007,
+                'contributo_sm' => 0.23000000000000001,
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             7 => 
             array (
@@ -124,10 +131,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '2-integrale',
                 'descrizione' => 'Integrale',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 3.80,
-                'contributo_des' => 0.07,
-                'contributo_sm' => 0.23,
-           		'created_at' => new DateTime(),
+                'prezzo_fornitore' => 3.7999999999999998,
+                'contributo_des' => 0.070000000000000007,
+                'contributo_sm' => 0.23000000000000001,
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             8 => 
             array (
@@ -138,10 +146,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '1-tipo1',
                 'descrizione' => 'Tipo 1',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 3.80,
-                'contributo_des' => 0.07,
-                'contributo_sm' => 0.23,
-           		'created_at' => new DateTime(),
+                'prezzo_fornitore' => 3.7999999999999998,
+                'contributo_des' => 0.070000000000000007,
+                'contributo_sm' => 0.23000000000000001,
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             9 => 
             array (
@@ -152,10 +161,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '3-segale',
                 'descrizione' => 'Segale',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 4.16,
-                'contributo_des' => 0.08,
+                'prezzo_fornitore' => 4.1600000000000001,
+                'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.16,
-            	'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             10 => 
             array (
@@ -166,10 +176,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '1-tipo1',
                 'descrizione' => 'Tipo 1',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 3.60,
-                'contributo_des' => 0.07,
-                'contributo_sm' => 0.33,
-            	'created_at' => new DateTime(),
+                'prezzo_fornitore' => 3.6000000000000001,
+                'contributo_des' => 0.070000000000000007,
+                'contributo_sm' => 0.33000000000000002,
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             11 => 
             array (
@@ -180,10 +191,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '2-integrale',
                 'descrizione' => 'Integrale',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 3.60,
-                'contributo_des' => 0.07,
-                'contributo_sm' => 0.33,
-            	'created_at' => new DateTime(),
+                'prezzo_fornitore' => 3.6000000000000001,
+                'contributo_des' => 0.070000000000000007,
+                'contributo_sm' => 0.33000000000000002,
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             12 => 
             array (
@@ -194,10 +206,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '3-segale',
                 'descrizione' => 'Segale',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 3.60,
-                'contributo_des' => 0.07,
-                'contributo_sm' => 0.33,
-            	'created_at' => new DateTime(),
+                'prezzo_fornitore' => 3.6000000000000001,
+                'contributo_des' => 0.070000000000000007,
+                'contributo_sm' => 0.33000000000000002,
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             13 => 
             array (
@@ -208,10 +221,11 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '1-tipo1',
                 'descrizione' => 'Tipo 1',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 4.16,
-                'contributo_des' => 0.08,
+                'prezzo_fornitore' => 4.1600000000000001,
+                'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.16,
-            	'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
             14 => 
             array (
@@ -222,11 +236,14 @@ class ProdottiTableSeeder extends Seeder
                 'sottotipo' => '2-integrale',
                 'descrizione' => 'Integrale',
                 'quantita' => 'pagnotta',
-                'prezzo_fornitore' => 4.16,
-                'contributo_des' => 0.08,
+                'prezzo_fornitore' => 4.1600000000000001,
+                'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.16,
-           		'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
+                'updated_at' => NULL,
             ),
         ));
+        
+        
     }
 }

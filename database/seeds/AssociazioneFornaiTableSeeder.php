@@ -26,7 +26,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             1 => 
@@ -38,7 +38,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             2 => 
@@ -50,7 +50,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             3 => 
@@ -62,7 +62,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             4 => 
@@ -74,7 +74,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             5 => 
@@ -86,7 +86,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             6 => 
@@ -98,7 +98,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             7 => 
@@ -110,7 +110,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             8 => 
@@ -122,7 +122,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             9 => 
@@ -134,7 +134,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             10 => 
@@ -146,7 +146,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             11 => 
@@ -158,7 +158,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             12 => 
@@ -170,7 +170,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             13 => 
@@ -182,7 +182,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             14 => 
@@ -194,7 +194,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             15 => 
@@ -206,7 +206,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             16 => 
@@ -218,7 +218,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             17 => 
@@ -230,7 +230,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
             18 => 
@@ -242,7 +242,7 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'giorno' => 3,
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
-                'created_at' => new DateTime(),
+                'created_at' => '2017-03-15 11:42:18',
                 'updated_at' => NULL,
             ),
         ));
