@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'norepy@desbri.org',
-        'name' => 'Ordini Spiga e Madia',
+        'address' => env ('MAIL_FROM','norepy@desbri.org'),
+        'name' => env ('MAIL_FROM_NAME','Ordini Spiga e Madia'),
     ],
 
     /*
