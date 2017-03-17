@@ -62,7 +62,7 @@ class User extends Authenticatable
 	public function getGasGestitiAttribute(){
 		$gas=null;
 		if ($this->livello==User::COORDINATORE){
-			$gas=Gas::whereIn("id",AssociazioneFornai::whereFornaioId(\Auth::user()->attore_id)->pluck("gas_id")->all())->all();
+			$gas=Gas::whereIn("id",AssociazioneFornai::whereFornaioId(\Auth::user()->attore_id)->pluck("gas_id")->all())->get();
 		}
 		else if (\Auth::user()->livello>User::COORDINATORE){
 			$gas=Gas::get();
