@@ -13,10 +13,10 @@
 	       			<tr>
 	       				<th class="col-md-3">Descrizione</th>
 	       				<th class="col-md-1">Fornitori</th>
-	       				<th class="col-md-4">Consegne</th>
+	       				<th class="col-md-3">Consegne</th>
 	       				<th class="col-md-1">Apertura</th>
 	       				<th class="col-md-1">Chiusura</th>
-	       				<th class="col-md-2">Operazioni</th>
+	       				<th class="col-md-3">Operazioni</th>
 	       			</tr>
 	       		</thead>
 	       		<tbody>
@@ -30,6 +30,9 @@
 	       				<td class="col-md2">
 	       					<a class="btn btn-xs btn-primary" href="{{ $gruppo['url_view'] }}">Riepilogo</a>
 	       					<a class="btn btn-xs btn-warning" href="{{ $gruppo['url_edit'] }}">Modifica</a>
+	       					@if ($gruppo["url_compila"])
+	       						<a class="btn btn-xs btn-success" href="{{ $gruppo['url_compila'] }}">Compila</a>
+	       					@endif
 	       				</td>
 	       			</tr>
 	        		@endforeach

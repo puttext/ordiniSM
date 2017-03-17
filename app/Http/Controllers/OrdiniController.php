@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Debug\Dumper;
 
+use App\Model\User;
+use App\Model\Gas;
+use App\Model\AssociazioneFornai;
 use App\Model\Fornaio;
 use App\Model\Ordine;
 use App\Model\OrdineDettaglio;
@@ -44,17 +47,24 @@ class OrdiniController extends Controller
     		$gruppo["consegne"]=implode($consegne,", ");
     		
     		if (substr($gruppo["codice_gruppo"],0,1)=="P")
-    			$gruppo["url_edit"]=url('/ordini/pane/'.$ordini[0]->consegna->format("Y/m").'/edit');
+    			$gruppo["url_edit"]=url('/ordini/pane/'.$ordini[0]->consegna->format("Y/m").'/edit/'.substr($gruppo["codice_gruppo"],2,1));
     		else
     			$gruppo["url_edit"]=url('/ordini/'.$gruppo['codice_gruppo'].'/edit');
     		$gruppo["url_view"]=url('/ordini/'.$gruppo['codice_gruppo']);
-    			 
+    		$gruppo["url_compila"]="";
+    		
     		if ($ordini[0]->apertura>$oggi){
-    			$this->dati["prossimi"][]=$gruppo;
+    			$gruppo["url_compila"]=url('/ordini/compila/'.$gruppo['codice_gruppo']);
     		}
     		else{
-    			$this->dati["prossimi"][]=$gruppo;
+				if ($ordini[0]->chiusura>$oggi || \Auth::user()->livello>=User::COORDINATORE)
+					$gruppo["url_compila"]=url('/ordini/compila/'.$gruppo['codice_gruppo']);
     		}
+    		if ($ordini[0]->chiusura>=$oggi)
+    			$this->dati["prossimi"][]=$gruppo;
+    		else
+    			$this->dati["prossimi"][]=$gruppo;
+    			 
     		//dd($ordini->pluck("consegna"));
     	}
     	//dd($this->dati);
@@ -103,8 +113,8 @@ class OrdiniController extends Controller
         	$dumper->dump($mese);
         	$dumper->dump($anno);*/
         	foreach ($fornai as $fornaio){
-        		/*$dumper->dump($fornaio);
-        		$dumper->dump($fornaio->giorni_gas);*/
+        		/*$dumper->dump($fornai);
+        		$dumper->dump($fornaio);*/
         		if ($fornaio->giorni_gas){
         			//$dumper->dump($fornaio);
 	        		$giorni=$fornaio->giorni_gas()
@@ -124,20 +134,26 @@ class OrdiniController extends Controller
 	        			$dumper->dump($data);*/
 	        			while ($data->month==$mese){
 	        				//$dumper->dump($data);
-	        				$ordine=Ordine::create([
-	        					"stagione"=>\Config::get("parametri.stagione"),
-	        					"codice_gruppo"=>"P-".$fornaio->id ."-". $giorno."-".$anno."-".$mese_f,
-	        					"consegna"=>$data,
-	        					"apertura"=>$apertura,
-	        					"chiusura"=>$chiusura,
-	        					"descrizione"=>"Ordine pane " . config("parametri.mesi_txt")[$mese] . " " . $anno,
-	        					"fornitore_id"=>$fornaio->id
-	        				]);
-	        				
-	        				foreach ($fornaio->pane as $pane){
-	        					$prodotto=$pane->replicate();
-	        					$prodotto->ordine_id=$ordine->id;
-	        					$prodotto->save();
+	        				$check=Ordine::where("stagione",\Config::get("parametri.stagione"))
+	        					->where("codice_gruppo","P-".$fornaio->id ."-". $giorno."-".$anno."-".$mese_f)
+	        					->where("consegna",$data)
+	        					->where("fornitore_id",$fornaio->id)->count();
+	        				if (!$check){
+		        				$ordine=Ordine::create([
+		        					"stagione"=>\Config::get("parametri.stagione"),
+		        					"codice_gruppo"=>"P-".$fornaio->id ."-". $giorno."-".$anno."-".$mese_f,
+		        					"consegna"=>$data,
+		        					"apertura"=>$apertura,
+		        					"chiusura"=>$chiusura,
+		        					"descrizione"=>"Ordine pane " . config("parametri.mesi_txt")[$mese] . " " . $anno,
+		        					"fornitore_id"=>$fornaio->id
+		        				]);
+		        				
+		        				foreach ($fornaio->pane as $pane){
+		        					$prodotto=$pane->replicate();
+		        					$prodotto->ordine_id=$ordine->id;
+		        					$prodotto->save();
+		        				}
 	        				}
 	        				//$ordine->save();
 	        				$data->next($giorno);
@@ -190,7 +206,7 @@ class OrdiniController extends Controller
     {
 		if ($id=="current" || !$id){
 			//compila tutti gli ordini aperti
-			if (\Auth::user()->gas_id && \Auth::user()->gas)
+			if ((\Auth::user()->gas_id && \Auth::user()->gas) || \Auth::user()->livello>=User::COORDINATORE)
 				return $this->compila(null);
 			else
 				return view("errors.generic")->with(["messaggio"=>"Nessun GAS di riferimento per cui compilare"]);
@@ -232,7 +248,7 @@ class OrdiniController extends Controller
     		//dd($prodotto,$dettaglio);
 			$dettaglio->save();
     	}
-		return redirect("ordini/current/edit/")->with("message","Ordine aggiornato");
+		return redirect("ordini/compila/$id")->with("message","Ordine aggiornato");
     }
 
     /**
@@ -247,21 +263,58 @@ class OrdiniController extends Controller
     }
 
     public function compila($id){
-		$oggi=new \Carbon\Carbon();    
-    	if ($id=="current" || !$id){
-    		$this->dati["gruppi"]=array();	
+    	$this->dati["id"]=$id;
+		$oggi=new \Carbon\Carbon();
+		$gas_id=\Input::get("gas");
+		if (\Auth::user()->livello>=User::COORDINATORE){
+			$this->dati["gas"]=\Auth::user()->gas_gestiti->pluck("full_name","id");
+			if ($gas_id)
+				$this->dati["gas_id"]=$gas_id;
+			elseif (\Auth::user()->gas_id)
+				$this->dati["gas_id"]=\Auth::user()->gas_id;
+			else 
+				$this->dati["gas_id"]=\Auth::user()->gas_gestiti->first()->id;
+		}
+		else{
+			$this->dati["gas_id"]=\Auth::user()->gas_id;
+			$this->dati["gas"]=\Auth::user()->gas()->pluck("full_name","id");
+		}
+		$gas=Gas::find($this->dati["gas_id"]);
 
-    		$fornai=\Auth::user()->gas->fornai;
-    	   	$gruppi=Ordine::where("apertura","<=",$oggi)
-	    		->where("chiusura",">=",$oggi)
-	    		->whereIn("fornitore_id",$fornai->pluck("id")->all())
-	    		->get()
-	    		->groupBy("codice_gruppo")->all();
-	    
-	    	$this->dati["gruppi"]=$gruppi;
-	    	$this->dati["gas_id"]=\Auth::user()->gas_id;
-	    	//dd($gruppi);
-    		return view("ordini.compila_current")->with($this->dati);
-    	}
+		$fornai=$gas->fornai;
+		$query=Ordine::where("apertura","<=",$oggi);
+		$query->where(function($q1) use ($fornai){
+			$q1->where(function($q2) use ($fornai){
+				$q2->where("codice_gruppo","like","P-%");
+				$q2->whereIn("fornitore_id",$fornai->pluck("id")->all());
+			});
+				$q1->orWhere("codice_gruppo","not like","P-%");
+		});
+					
+		if ($id && $id!="current"){
+			if (\Auth::user()->livello<User::COORDINATORE)
+				$query->where("chiusura",">=",$oggi);
+					
+			$query->where(function($q) use ($id){
+				$q->whereId($id);
+				$q->orWhere("codice_gruppo","=",$id);
+			});
+			$ordine=Ordine::where(function($q) use ($id){
+				$q->whereId($id);
+				$q->orWhere("codice_gruppo","=",$id);
+			})->first();
+			$this->dati["intestazione_ordine"]=$ordine;
+			$this->dati["chiuso"]=($ordine->chiusura<$oggi)?true:false;
+			$gruppi=$query->get()->groupBy("codice_gruppo")->all();
+		    $this->dati["gruppi"]=$gruppi;
+		    //(new Dumper())->dump($query,$gruppi);
+	   		return view("ordini.compila")->with($this->dati);
+		}
+		else{
+			$query->where("chiusura",">=",$oggi);
+			$gruppi=$query->get()->groupBy("codice_gruppo")->all();
+			$this->dati["gruppi"]=$gruppi;
+			return view("ordini.compila_current")->with($this->dati);
+		}
     }
 }

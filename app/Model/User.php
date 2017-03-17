@@ -42,9 +42,9 @@ class User extends Authenticatable
 
 	public function getFornaiAttribute(){
 	    if ($this->livello==User::COORDINATORE){
-    		return Fornaio::find(\Auth::user()->referenza->id);
+    		return [Fornaio::find($this->referenza->id)];
     	}
-    	elseif (\Auth::user()->livello>=User::GESTORE){
+    	elseif ($this->livello>=User::GESTORE){
     		return Fornaio::all();
     	}
     	else return [];
@@ -57,5 +57,19 @@ class User extends Authenticatable
 			case "admin": return self::ADMIN; break;
 			default: return 10; 
 		}
+	}
+	
+	public function getGasGestitiAttribute(){
+		$gas=null;
+		if ($this->livello==User::COORDINATORE){
+			$gas=Gas::whereIn("id",AssociazioneFornai::whereFornaioId(\Auth::user()->attore_id)->pluck("gas_id")->all())->all();
+		}
+		else if (\Auth::user()->livello>User::COORDINATORE){
+			$gas=Gas::all();
+		}
+		else{
+			$gas=$this->gas();
+		}
+		return $gas;
 	}
 }

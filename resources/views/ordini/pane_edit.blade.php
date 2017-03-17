@@ -11,7 +11,7 @@
 	<div class="panel panel-default">
         <div class="panel-heading">
 			<h3 class="panel-title text-center col-md11">Ordini Pane {{ $mese_txt }} {{ $anno }}</h3>
-	    	{!! Form::submit("Salva", ['class'=>'col-md1 btn btn-success pull-right']) !!}
+	    	{!! Form::submit("Salva", ['name'=>'salva','class'=>'col-md1 btn btn-success pull-right']) !!}
 	    	<div class="clearfix"></div>
 	    </div>
 		<div class="panel-body">

@@ -12,12 +12,14 @@ use App\Model\User;
 class PaneController extends Controller
 {
 
-    public function edit($anno,$mese){
+    public function edit($anno,$mese,$fornaio=null){
     	//dd(\App::getLocale());
     	//dd(setlocale(LC_ALL, 0));
     	$mese=(int)$mese;
     	$mese_f=sprintf('%02d',$mese);
     	$fornai=\Auth::user()->fornai;
+    	if ($fornaio)
+    		$fornai=[Fornaio::find($fornaio)];
     	/*if (\Auth::user()->livello==User::COORDINATORE){
     		$fornai[]=Fornaio::find(\Auth::user()->referenza->id);
     	}

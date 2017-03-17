@@ -4,12 +4,19 @@
 <div class="container">
 	{!! Form::open([
 		'method' => 'PATCH', 
-		'url' => URL::to('ordini/current/'),
+		'url' => URL::to('ordini/'.$id),
 		'class' => 'form-horizontal',
 	]) !!}
     <div class="title text-center">
-		<h3>Ordini attivi - GAS {!! Form::select("gas",$gas,$gas_id, ['id'=>'gas','class'=>'selectpicker']) !!} 
-		{!! Form::submit("Salva", ['class'=>'col-md1 btn btn-success']) !!}</h3>
+		<h3>Ordine {{$intestazione_ordine->descrizione}} ({{$intestazione_ordine->fornitore->nome}})</h3>
+		<p>
+			{!! Form::select("gas",$gas,$gas_id, ['id'=>'gas','class'=>'selectpicker']) !!} 
+			@if ($chiuso)
+			<span class="alert alert-danger"><strong>ATTENZIONE!</strong> Ordine chiuso</span>
+			@endif
+			{!! Form::submit("Salva", ['name'=>'compila','class'=>'col-md1 btn btn-success']) !!}
+		</p>
+		
 	</div>
     
 	@foreach ($gruppi as $gruppo=>$ordini)
