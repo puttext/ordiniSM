@@ -65,7 +65,7 @@ class User extends Authenticatable
 			$gas=Gas::whereIn("id",AssociazioneFornai::whereFornaioId(\Auth::user()->attore_id)->pluck("gas_id")->all())->all();
 		}
 		else if (\Auth::user()->livello>User::COORDINATORE){
-			$gas=Gas::all();
+			$gas=Gas::get();
 		}
 		else{
 			$gas=$this->gas();
