@@ -27,4 +27,12 @@ class Prodotto extends Model
 		else
 			return 0;
 	}
+
+	public function getQuantitaTotaleAttribute(){
+		return $this->ordine_gas()->sum("quantita");
+	}
+
+	public function getImportoFornitoreAttribute(){
+		return $this->ordine_gas()->sum("quantita")*$this->prezzo_fornitore;
+	}
 }

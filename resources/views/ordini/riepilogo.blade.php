@@ -10,7 +10,7 @@
         <div class="panel-heading">
 			<h3 class="panel-title text-center col-md11">
 				{{$ordini[0]->fornitore->nome}}<br/>
-				Ordini del {{$ordini[0]->consegna->format("l")}} {{$ordini[0]->consegna->formatLocalized("%A")}}
+				Ordini del {{$ordini[0]->consegna->format("l")}}
 			</h3>
 	    </div>
 		<div class="panel-body">
@@ -43,6 +43,22 @@
 	       			</tr>
 	       			@endforeach
 	       		</tbody>
+	       		<tfoot>
+	       			<tr>
+	       				<td class="col-md-4"><strong>Totali per tipo</strong></td>
+	       				@foreach ($ordini as $ordine)
+	       					@foreach ($ordine->prodotti as $prodotto)
+	       						<td class="text-center">{{ $prodotto->quantita_totale }}</td>
+	       					@endforeach
+       					@endforeach
+	       			</tr>
+	       			<tr>
+	       				<td class="col-md-4"><strong>Totali</strong></td>
+	       				@foreach ($ordini as $ordine)
+       						<td colspan="{{$ordine->num_prodotti}}" class="text-center">{{ $ordine->quantita_totale }} ( {{ $ordine->totale_fornitore }} )</td>
+       					@endforeach
+	       			</tr>
+	       		</tfoot>
 	       	</table>
 		</div>
 	</div>

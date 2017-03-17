@@ -31,4 +31,20 @@ class Ordine extends BaseModel
 	public function getNumProdottiAttribute(){
 		return $this->prodotti()->count();
 	}
+
+	public function getQuantitaTotaleAttribute(){
+		$totale=0;
+		foreach ($this->prodotti as $prodotto){
+			$totale+=$prodotto->quantita_totale;
+		}
+		return $totale;
+	}
+
+	public function getTotaleFornitoreAttribute(){
+		$totale=0;
+		foreach ($this->prodotti as $prodotto){
+			$totale+=$prodotto->importo_fornitore;
+		}
+		return $totale;
+	}
 }
