@@ -7,9 +7,10 @@ use Illuminate\Support\Debug\Dumper;
 
 use App\Model\User;
 use App\Model\Gas;
-use App\Model\AssociazioneFornai;
+//use App\Model\AssociazioneFornai;
 use App\Model\Fornaio;
 use App\Model\Ordine;
+use App\Model\Prodotto;
 use App\Model\OrdineDettaglio;
 
 class OrdiniController extends Controller
@@ -38,8 +39,8 @@ class OrdiniController extends Controller
     		 
     		if (\Auth::user()->livello <= User::COORDINATORE){
     			$qGruppi->where(function($q){
-					$q->whereIn("id", Prodotti::whereFornitoreId(\Auth::user()->fornai));
-					$q->orWhereIn("id",Prodotti::whereNotTipo("pane"));
+					$q->whereIn("id", Prodotto::whereFornitoreId(\Auth::user()->fornai));
+					$q->orWhereIn("id",Prodotto::whereNotTipo("pane"));
     			});
     		}
     	}
