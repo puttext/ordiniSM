@@ -37,7 +37,7 @@ class OrdiniController extends Controller
     		$this->dati["storico"]=array();
     		 
     		if (\Auth::user()->livello <= User::COORDINATORE){
-    			$gruppi->where(function($q){
+    			$qGruppi->where(function($q){
 					$q->whereIn("id", Prodotti::whereFornitoreId(\Auth::user()->fornai));
 					$q->orWhereIn("id",Prodotti::whereNotTipo("pane"));
     			});
