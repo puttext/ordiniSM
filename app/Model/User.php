@@ -42,13 +42,15 @@ class User extends Authenticatable
 
 	public function getFornaiAttribute(){
 	    if ($this->livello==User::COORDINATORE){
-    		return [Fornaio::find($this->referenza->id)];
+	    	$coll=new Collection();
+	    	$coll->put(Fornaio::find($this->referenza->id));
+    		return $coll;
     	}
     	elseif ($this->livello>=User::GESTORE){
     		return Fornaio::all();
     	}
     	else {
-    		return Fornaio::whereIn("id",AssociazioneFornai::whereGasId($this->gas_id)->get()->pluck("id"))->get();
+    		return Fornaio::whereIn("id",AssociazioneFornai::whereGasId($this->gas_id)->get()->get("id"))->get();
     	}
 	}
 	
