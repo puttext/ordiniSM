@@ -36,7 +36,7 @@ class OrdiniController extends Controller
     		$this->dati["in_corso"]=array();
     		$this->dati["prossimi"]=array();
     		$this->dati["storico"]=array();
-    		 
+    		var_dump(\Auth::user()->fornai);
     		if (\Auth::user()->livello <= User::COORDINATORE){
     			$qGruppi->where(function($q){
 					$q->whereIn("id", Prodotto::whereFornitoreId(\Auth::user()->fornai->get("id")));
