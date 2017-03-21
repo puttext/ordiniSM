@@ -30,7 +30,7 @@ class OrdiniController extends Controller
     	$this->dati["storico"]=array();
     	
     	if (\Auth::user()->livello < User::COORDINATORE){
-    		$gruppi=Ordine::all()->groupBy("codice_gruppo");
+    		//$gruppi=Ordine::all()->groupBy("codice_gruppo");
     		
     		$oggi=new \Carbon\Carbon();
     		$this->dati["in_corso"]=array();
@@ -46,6 +46,7 @@ class OrdiniController extends Controller
     	}
 
     	$gruppi=$qGruppi->get()->groupBy("codice_gruppo");
+    	var_dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
     		foreach ($ordini[0]->toArray() as $key=>$value){
