@@ -28,7 +28,7 @@ class OrdiniController extends Controller
     	$this->dati["prossimi"]=array();
     	$this->dati["storico"]=array();
     	
-    	if (\Auth::user()->livello < User::COORDINATORE)
+    	//if (\Auth::user()->livello < User::COORDINATORE)
     	 
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
