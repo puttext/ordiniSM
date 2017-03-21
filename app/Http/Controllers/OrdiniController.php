@@ -39,7 +39,7 @@ class OrdiniController extends Controller
     		var_dump(\Auth::user()->fornai);
     		if (\Auth::user()->livello <= User::COORDINATORE){
     			$qGruppi->where(function($q){
-					$q->whereIn("id", Prodotto::whereFornitoreId(\Auth::user()->fornai->pluck("id")->all());
+					$q->whereIn("id", Prodotto::whereFornitoreId(\Auth::user()->fornai->pluck("id")->all()));
 					$q->orWhereIn("id",Prodotto::where("tipo","<>","pane")->pluck("id")->all());
     			});
     		}
