@@ -50,7 +50,7 @@
 							<li><a href="{{ url('/ordini/') }}">Storico ordini</a></li>
 						@elseif (Auth::user() && \Auth::user()->ruolo!='referente')
 							<li><a href="{{ url('/ordini/create') }}">Crea nuovo ordine</a></li>
-							<li><a href="{{ url('/ordini/') }}">Modifica Ordini</a></li>
+							<li><a href="{{ url('/ordini/') }}">Gestione Ordini</a></li>
 						@endif
 						@if (Auth::user() && Auth::user()->gas_id)
 							<li><a href="{{ url('/ordini/current/edit') }}">Compila Ordine</a></li>

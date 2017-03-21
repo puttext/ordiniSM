@@ -27,6 +27,8 @@ class OrdiniController extends Controller
     	$this->dati["in_corso"]=array();
     	$this->dati["prossimi"]=array();
     	$this->dati["storico"]=array();
+    	
+    	if (\Auth::user()->livello < User::COORDINATORE)
     	 
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
@@ -277,7 +279,7 @@ class OrdiniController extends Controller
 		}
 		else{
 			$this->dati["gas_id"]=\Auth::user()->gas_id;
-			$this->dati["gas"]=\Auth::user()->gas()->pluck("full_name","id");
+			$this->dati["gas"]=\Auth::user()->gas()->get()->pluck("full_name","id");
 		}
 		$gas=Gas::find($this->dati["gas_id"]);
 
