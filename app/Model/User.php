@@ -47,7 +47,9 @@ class User extends Authenticatable
     	elseif ($this->livello>=User::GESTORE){
     		return Fornaio::all();
     	}
-    	else return [];
+    	else {
+    		return Fornaio::where("id",AssociazioneFornai::whereGasId($this->gas_id))->get();
+    	}
 	}
 	
 	public function getLivelloAttribute(){
@@ -68,7 +70,7 @@ class User extends Authenticatable
 			$gas=Gas::get();
 		}
 		else{
-			$gas=$this->gas();
+			$gas=[$this->gas];
 		}
 		return $gas;
 	}

@@ -28,7 +28,21 @@ class OrdiniController extends Controller
     	$this->dati["prossimi"]=array();
     	$this->dati["storico"]=array();
     	
-    	//if (\Auth::user()->livello < User::COORDINATORE)
+    	if (\Auth::user()->livello < User::COORDINATORE){
+    		$gruppi=Ordine::all()->groupBy("codice_gruppo");
+    		
+    		$oggi=new \Carbon\Carbon();
+    		$this->dati["in_corso"]=array();
+    		$this->dati["prossimi"]=array();
+    		$this->dati["storico"]=array();
+    		 
+    		if (\Auth::user()->livello <= User::COORDINATORE){
+    			$gruppi->where(function($q){
+					$q->whereIn("id", Prodotti::whereFornitoreId(\Auth::user()->fornai));
+					$q->orWhereIn("id",Prodotti::whereNotTipo("pane"));
+    			});
+    		}
+    	}
     	 
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();

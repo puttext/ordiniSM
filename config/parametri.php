@@ -1,7 +1,7 @@
 <?php
 
 return [
-	"stagione" => "2016-2017",
+	"stagione" => env("STAGIONE","2016-2017"),
 		
 	"mesi_txt" => [
 		0=>"",
