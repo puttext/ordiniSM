@@ -51,8 +51,8 @@ class User extends Authenticatable
     	}
     	else {
     		$ass=AssociazioneFornai::whereGasId($this->gas_id)->get();
-    		var_dump($ass,$ass->pluck("fornaio_id"));
-    		return Fornaio::whereIn("id",$ass->pluck("fornaio_id"))->get();
+    		var_dump($ass->pluck("fornaio_id")->all());
+    		return Fornaio::whereIn("id",$ass->pluck("fornaio_id")->all())->get();
     	}
 	}
 	
