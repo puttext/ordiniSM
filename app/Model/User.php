@@ -48,7 +48,7 @@ class User extends Authenticatable
     		return Fornaio::all();
     	}
     	else {
-    		return Fornaio::where("id",AssociazioneFornai::whereGasId($this->gas_id))->get();
+    		return Fornaio::whereIn("id",AssociazioneFornai::whereGasId($this->gas_id)->get()->pluck("id"))->get();
     	}
 	}
 	
