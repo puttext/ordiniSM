@@ -21,7 +21,7 @@ class OrdiniController extends Controller
      */
     public function index()
     {
-    	$gruppi=Ordine::all()->groupBy("codice_gruppo");
+    	$qGruppi=Ordine::select();
 
     	$oggi=new \Carbon\Carbon();
     	$this->dati["in_corso"]=array();
@@ -43,7 +43,8 @@ class OrdiniController extends Controller
     			});
     		}
     	}
-    	 
+
+    	$gruppi=$qGruppi->get()->groupBy("codice_gruppo");
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
     		foreach ($ordini[0]->toArray() as $key=>$value){
