@@ -42,7 +42,7 @@ class User extends Authenticatable
 
 	public function getFornaiAttribute(){
 	    if ($this->livello==User::COORDINATORE){
-    		return collect(Fornaio::find($this->referenza->id));
+    		return collect([Fornaio::find($this->referenza->id)]);
     	}
     	elseif ($this->livello>=User::GESTORE){
     		return Fornaio::all();
