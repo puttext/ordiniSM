@@ -79,10 +79,10 @@ class OrdiniController extends Controller
 				if ($ordini[0]->chiusura>$oggi || \Auth::user()->livello>=User::COORDINATORE)
 					$gruppo["url_compila"]=url('/ordini/compila/'.$gruppo['codice_gruppo']);
     		}
-    		if ($ordini[0]->chiusura>=$oggi)
+    		if ($ordini->max("consegna")>=$oggi)
     			$this->dati["prossimi"][]=$gruppo;
     		else
-    			$this->dati["prossimi"][]=$gruppo;
+    			$this->dati["storico"][]=$gruppo;
     			 
     		//dd($ordini->pluck("consegna"));
     	}
