@@ -29,7 +29,9 @@
 	       				<td class="col-md1">{{ $gruppo["chiusura"] }}</td>
 	       				<td class="col-md2">
 	       					<a class="btn btn-xs btn-primary" href="{{ $gruppo['url_view'] }}">Riepilogo</a>
+	       					@if (\Auth::user()->livello>=User::COORDINATORE)
 	       					<a class="btn btn-xs btn-warning" href="{{ $gruppo['url_edit'] }}">Modifica</a>
+	       					@endif
 	       					@if ($gruppo["url_compila"])
 	       						<a class="btn btn-xs btn-success" href="{{ $gruppo['url_compila'] }}">Compila</a>
 	       					@endif
