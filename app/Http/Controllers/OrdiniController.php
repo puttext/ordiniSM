@@ -29,24 +29,19 @@ class OrdiniController extends Controller
     	$this->dati["prossimi"]=array();
     	$this->dati["storico"]=array();
     	
-    	if (\Auth::user()->livello < User::COORDINATORE){
-    		//$gruppi=Ordine::all()->groupBy("codice_gruppo");
-    		
-    		$oggi=new \Carbon\Carbon();
-    		$this->dati["in_corso"]=array();
-    		$this->dati["prossimi"]=array();
-    		$this->dati["storico"]=array();
-    		var_dump(\Auth::user()->fornai);
-    		if (\Auth::user()->livello <= User::COORDINATORE){
-    			$qGruppi->where(function($q){
-					$q->whereIn("id", Prodotto::whereFornitoreId(\Auth::user()->fornai->pluck("id")->all()));
-					$q->orWhereIn("id",Prodotto::where("tipo","<>","pane")->pluck("id")->all());
-    			});
-    		}
+    	var_dump(\Auth::user()->fornai);
+    	if (\Auth::user()->livello <= User::COORDINATORE){
+    		$qGruppi=Ordine::where(function($q){
+    			$id_fornai=\Auth::user()->fornai->pluck("id")->all();
+    			$id1=Prodotto::whereIn("fornitore_id",$id_fornai)->pluck("ordine_id")->unique();
+    			$id2=Prodotto::where("tipo","<>","pane")->pluck("ordine_id")->unique();
+    			$q->whereIn("id", $id1);
+				$q->orWhereIn("id",$id2);
+    		});
     	}
-
+   	
     	$gruppi=$qGruppi->get()->groupBy("codice_gruppo");
-    	var_dump($gruppi);
+    	//var_dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
     		foreach ($ordini[0]->toArray() as $key=>$value){
