@@ -41,7 +41,7 @@ class OrdiniController extends Controller
     		});
     	}
    	
-    	$gruppi=$qGruppi->get()->groupBy("codice_gruppo");
+    	$gruppi=$qGruppi->get()->groupBy("codice_gruppo")->sortByDesc("chiusura");
     	//var_dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
