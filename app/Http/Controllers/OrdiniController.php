@@ -61,10 +61,12 @@ class OrdiniController extends Controller
     		
     		$gruppo["consegne"]=implode($consegne,", ");
     		
-    		if (substr($gruppo["codice_gruppo"],0,1)=="P")
-    			$gruppo["url_edit"]=url('/ordini/pane/'.$ordini[0]->consegna->format("Y/m").'/edit/'.substr($gruppo["codice_gruppo"],2,1));
-    		else
-    			$gruppo["url_edit"]=url('/ordini/'.$gruppo['codice_gruppo'].'/edit');
+    		if (\Auth::user()->livello>=User::COORDINATORE){
+	    		if (substr($gruppo["codice_gruppo"],0,1)=="P")
+	    			$gruppo["url_edit"]=url('/ordini/pane/'.$ordini[0]->consegna->format("Y/m").'/edit/'.substr($gruppo["codice_gruppo"],2,1));
+	    		else
+	    			$gruppo["url_edit"]=url('/ordini/'.$gruppo['codice_gruppo'].'/edit');
+    		}
     		$gruppo["url_view"]=url('/ordini/'.$gruppo['codice_gruppo']);
     		$gruppo["url_compila"]="";
     		
