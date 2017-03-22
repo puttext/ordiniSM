@@ -29,12 +29,13 @@ class OrdiniController extends Controller
     	$this->dati["prossimi"]=array();
     	$this->dati["storico"]=array();
     	
-    	var_dump(\Auth::user()->fornai);
+    	//var_dump(\Auth::user()->fornai);
     	if (\Auth::user()->livello <= User::COORDINATORE){
     		$qGruppi=Ordine::where(function($q){
     			$id_fornai=\Auth::user()->fornai->pluck("id")->all();
     			$id1=Prodotto::whereIn("fornitore_id",$id_fornai)->pluck("ordine_id")->unique();
     			$id2=Prodotto::where("tipo","<>","pane")->pluck("ordine_id")->unique();
+    			//var_dump($id_fornai,$id1,$id2);
     			$q->whereIn("id", $id1);
 				$q->orWhereIn("id",$id2);
     		});
