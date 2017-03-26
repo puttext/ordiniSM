@@ -284,7 +284,7 @@ class OrdiniController extends Controller
     public function compila($id){
     	$this->dati["id"]=$id;
 		$oggi=new \Carbon\Carbon();
-		$oggi=$oggi->format(SQL_DATE);
+		$oggi=$oggi->format("y-m-d");
 		$gas_id=\Input::get("gas");
 		if (\Auth::user()->livello>=User::COORDINATORE){
 			$this->dati["gas"]=\Auth::user()->gas_gestiti->pluck("full_name","id");
