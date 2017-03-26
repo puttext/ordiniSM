@@ -4,16 +4,13 @@
 <div class="container">
     <div class="title text-center">
 		<h3>Ordine {{$ordini[0]->descrizione}}</h3>
-	</div>
-    
-	<div class="panel panel-default">
-        <div class="panel-heading">
-			<h3 class="panel-title text-center col-md11">
+		<h3 class="panel-title text-center col-md11">
 				{{$ordini[0]->fornitore->nome}}<br/>
 				Ordini del {{$ordini[0]->consegna->format("l")}}
-			</h3>
-	    </div>
-		<div class="panel-body table-responsive">
+		</h3>
+	</div>
+    
+		<div class="container table-responsive">
 	       	<table class="table table-striped table-bordered table-condensed">
 	       		<thead class="text-center">
 	       			<tr rowspan=2>
@@ -61,7 +58,6 @@
 	       		</tfoot>
 	       	</table>
 		</div>
-	</div>
 </div>
 @endsection
 @section('page-scripts')
