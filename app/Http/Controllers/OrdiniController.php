@@ -72,11 +72,11 @@ class OrdiniController extends Controller
     		}
     		$gruppo["url_view"]=url('/ordini/'.$gruppo['codice_gruppo']);
     		
-    		if ($ordini[0]->apertura>$oggi){
+    		if ($ordini[0]->apertura>=$oggi){
     			$gruppo["url_compila"]=url('/ordini/compila/'.$gruppo['codice_gruppo']);
     		}
     		else{
-				if ($ordini[0]->chiusura>$oggi || \Auth::user()->livello>=User::COORDINATORE)
+				if ($ordini[0]->chiusura>=$oggi || \Auth::user()->livello>=User::COORDINATORE)
 					$gruppo["url_compila"]=url('/ordini/compila/'.$gruppo['codice_gruppo']);
     		}
     		if ($ordini->max("consegna")>=$oggi)
@@ -312,7 +312,7 @@ class OrdiniController extends Controller
 					
 		if ($id && $id!="current"){
 			if (\Auth::user()->livello<User::COORDINATORE)
-				$query->where("chiusura",">=",$oggi);
+				$query->where("chiusura",">",$oggi);
 					
 			$query->where(function($q) use ($id){
 				$q->whereId($id);
