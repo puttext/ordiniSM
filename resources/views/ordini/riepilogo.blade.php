@@ -25,7 +25,7 @@
 	       			<tr>
 	       				<th>&nbsp;</th>
 	       				@foreach ($ordini as $ordine)
-		       				@foreach ($ordine->prodotti()->get() as $prodotto)
+		       				@foreach ($ordine->prodotti_sort as $prodotto)
 		       					<th class="col-md-1">{{ $prodotto->descrizione }}</th>
 		       				@endforeach
 	       				@endforeach
@@ -36,7 +36,7 @@
 	       			<tr>
 	       				<td class="col-md-4">{{  $gas->nome }}<br/>({{$gas->comune}})</td>
 	       				@foreach ($ordini as $ordine)
-	       					@foreach ($ordine->prodotti as $prodotto)
+	       					@foreach ($ordine->prodotti_sort as $prodotto)
 	       						<td class="text-center">{{ $prodotto->getQuantitaGas($gas->id) }}</td>
 	       					@endforeach
        					@endforeach

@@ -26,7 +26,7 @@
 						</div>
 		
 		                <div class="panel-body">
-		                	@foreach ($ordine->prodotti as $prodotto)
+		                	@foreach ($ordine->prodotti_sort as $prodotto)
 			                	{!! Form::label("prodotto[]",$prodotto->descrizione,["class"=>"col-md-6 control-label"]) !!}
 								<div class="col-md-6">
 			                   		{!! Form::hidden("prodotto[".$prodotto->id."][prodotto_id]",$prodotto->id) !!}
