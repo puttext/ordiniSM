@@ -18,7 +18,7 @@ class Ordine extends BaseModel
 	}
 	
 	public function prodotti(){
-		return $this->hasMany('App\Model\Prodotto');
+		return $this->hasMany('App\Model\Prodotto')->orderBy("tipo")->orderBy("sottotipo");
 	}
 
 	public function fornaio(){

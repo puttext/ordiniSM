@@ -25,7 +25,7 @@
 	       			<tr>
 	       				<th>&nbsp;</th>
 	       				@foreach ($ordini as $ordine)
-		       				@foreach ($ordine->prodotti()->orderBy("tipo")->orderBy("sottotipo")->get() as $prodotto)
+		       				@foreach ($ordine->prodotti()->get() as $prodotto)
 		       					<th class="col-md-1">{{ $prodotto->descrizione }}</th>
 		       				@endforeach
 	       				@endforeach
