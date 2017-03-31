@@ -62,8 +62,6 @@
 	       				<td class="col-md3">{{ $gruppo["descrizione"] }}</td>
 	       				<td class="col-md1">{{ $gruppo["fornitori"] }}</td>
 	       				<td class="col-md4">{{ $gruppo["consegne"] }}</td>
-	       				<td class="col-md1">{{ $gruppo["apertura"] }}</td>
-	       				<td class="col-md1">{{ $gruppo["chiusura"] }}</td>
 	       				<td class="col-md2">
 	       					<a class="btn btn-xs btn-primary" href="{{ $gruppo['url_view'] }}">Riepilogo</a>
 	       					@if ($gruppo['url_edit'])
