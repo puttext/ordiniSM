@@ -44,7 +44,7 @@
 	       			<tr>
 	       				<td class="col-md-4"><strong>Totali per tipo</strong></td>
 	       				@foreach ($ordini as $ordine)
-	       					@foreach ($ordine->prodotti as $prodotto)
+	       					@foreach ($ordine->prodotti_sort as $prodotto)
 	       						<td class="text-center">{{ $prodotto->quantita_totale }}</td>
 	       					@endforeach
        					@endforeach
