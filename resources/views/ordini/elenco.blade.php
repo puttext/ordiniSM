@@ -5,7 +5,7 @@
     <div class="col-md-10 col-md-offset-1">
 		<div class="panel panel-warning">
 	        <div class="panel-heading">
-				<h3 class="panel-title text-center">Prossimi Ordini</h3>
+				<h3 class="panel-title text-center">Ordini in corso / prossimi</h3>
 		    </div>
 			<div class="panel-body">
 	       	<table class="table table-striped table-bordered table-condensed">
