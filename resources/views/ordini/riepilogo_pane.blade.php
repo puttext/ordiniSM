@@ -11,13 +11,14 @@
 	</div>
     
 		<div class="container table-responsive">
-	       	<table class="table table-striped table-bordered table-condensed">
+	       	<table class="table table-striped table-bordered table-condensed ">
 	       		<thead class="text-center">
 	       			<tr rowspan=2>
 	       				<th>G.A.S.</th>
 	       				@foreach ($ordini as $ordine)
 		       				<th class="text-center" colspan="{{$ordine->num_prodotti}}">{{$ordine->consegna->format("d/m/Y")}}</th>
 	       				@endforeach
+	       				<th class="text-center" colspan="4">Totali</th>
 	       			</tr>
 	       			<tr>
 	       				<th>&nbsp;</th>
@@ -26,6 +27,11 @@
 		       					<th class="text-center">{{ $prodotto->descrizione_breve }}</th>
 		       				@endforeach
 	       				@endforeach
+       					<th class="text-center">N.</th>
+       					<th class="text-center">{{$ordini[0]->fornitore->nome}}</th>
+       					<th class="text-center">Contr.</th>
+       					<th class="text-center">Tot.</th>
+	       			</tr>
 	       			</tr>
 	       		</thead>
 	       		<tbody>
@@ -37,6 +43,10 @@
 	       						<td class="text-center">{{ $prodotto->getQuantitaGas($gas->id) }}</td>
 	       					@endforeach
        					@endforeach
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
 	       			</tr>
 	       			@endforeach
 	       		</tbody>
@@ -48,12 +58,20 @@
 	       						<td class="text-center">{{ $prodotto->quantita_totale }}</td>
 	       					@endforeach
        					@endforeach
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
 	       			</tr>
 	       			<tr>
 	       				<td class="col-md-4"><strong>Totali</strong></td>
 	       				@foreach ($ordini as $ordine)
        						<td colspan="{{$ordine->num_prodotti}}" class="text-center">{{ $ordine->quantita_totale }} ( {{ $ordine->totale_fornitore }} )</td>
        					@endforeach
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
 	       			</tr>
 	       		</tfoot>
 	       	</table>

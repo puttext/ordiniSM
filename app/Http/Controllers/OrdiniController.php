@@ -212,7 +212,11 @@ class OrdiniController extends Controller
 		}
 		
 		$this->dati["ordini"]=$ordini;
-		return view("ordini.riepilogo")->with($this->dati);
+		if (substr($id,0,1)=="P")
+			return view("ordini.riepilogo_pane")->with($this->dati);
+		else 
+			return view("ordini.riepilogo")->with($this->dati);
+				
     }
 
     /**
