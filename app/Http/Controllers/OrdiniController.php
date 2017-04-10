@@ -35,12 +35,15 @@ class OrdiniController extends Controller
     			$id_fornai=\Auth::user()->fornai->pluck("id")->all();
     			$id1=Prodotto::whereIn("fornitore_id",$id_fornai)->pluck("ordine_id")->unique();
     			$id2=Prodotto::where("tipo","<>","pane")->pluck("ordine_id")->unique();
+    			$id3=Prodotto::whereHas("ordine_gas",function($q) {
+    				$q->whereGasId("gas_id",\Auth::user()->gas_id);
+    			})->pluck("ordine_id")->unique();
     			//var_dump($id_fornai,$id1,$id2);
     			$q->whereIn("id", $id1);
 				$q->orWhereIn("id",$id2);
+				$q->orWhereIn("id",$id3);
     		});
     	}
-   	
     	$gruppi=$qGruppi->get()->groupBy("codice_gruppo")->sortByDesc("chiusura");
     	//var_dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
