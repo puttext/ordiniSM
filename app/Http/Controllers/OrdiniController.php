@@ -44,7 +44,7 @@ class OrdiniController extends Controller
 				$q->orWhereIn("id",$id3);
     		});
     	}
-    	$gruppi=$qGruppi->get()->sortByDesc("chiusura")->sortBy("codice_gruppo")->groupBy("codice_gruppo");
+    	$gruppi=$qGruppi->get()->sortByDesc("chiusura")->groupBy("codice_gruppo");
     	//$this->dumper->dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
