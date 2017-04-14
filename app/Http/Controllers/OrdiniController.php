@@ -44,7 +44,7 @@ class OrdiniController extends Controller
 				$q->orWhereIn("id",$id3);
     		});
     	}
-    	$gruppi=$qGruppi->get()->sortByDesc("chiusura")->groupBy("codice_gruppo")->sortBy("codice_gruppo");
+    	$gruppi=$qGruppi->get()->sortByDesc("chiusura")->sortBy("codice_gruppo")->groupBy("codice_gruppo");
     	//$this->dumper->dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
@@ -137,7 +137,7 @@ class OrdiniController extends Controller
         		//$this->dumper->dump($fornai);
         		//$this->dumper->dump($fornaio);
         		if ($fornaio->giorni_gas){
-        			$this->dumper->dump($fornaio);
+        			//$this->dumper->dump($fornaio);
 	        		$giorni=$fornaio->giorni_gas()
 	        			->whereStagione(\Config::get("parametri.stagione"))
 	        			->where("valido_dal","<=",$anno."-".$mese_f."-01")
@@ -182,7 +182,6 @@ class OrdiniController extends Controller
 	        		}
         		}
         	}
-        	die();
         	return redirect("ordini/pane/$anno/$mese/edit/");
         }
     }
