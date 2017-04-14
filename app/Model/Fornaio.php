@@ -21,7 +21,7 @@ class Fornaio extends Attore
 	
 	public function gas(){
 		return $this->belongsToMany('App\Model\Gas','associazione_fornai','fornaio_id','gas_id')
-			->withPivot("giorno","stagione");
+			->withPivot("giorno","stagione","valido_dal","valido_al");
 	}
 	
 	public function pane(){

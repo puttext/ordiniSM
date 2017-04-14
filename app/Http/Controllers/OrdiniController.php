@@ -44,8 +44,8 @@ class OrdiniController extends Controller
 				$q->orWhereIn("id",$id3);
     		});
     	}
-    	$gruppi=$qGruppi->get()->groupBy("codice_gruppo")->sortByDesc("chiusura");
-    	//var_dump($gruppi);
+    	$gruppi=$qGruppi->get()->sortByDesc("chiusura")->groupBy("codice_gruppo")->sortBy("codice_gruppo");
+    	//$this->dumper->dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
     		foreach ($ordini[0]->toArray() as $key=>$value){
@@ -61,7 +61,7 @@ class OrdiniController extends Controller
     			$fornitori[$ordine->fornitore_id]=$ordine->fornitore->nome;
     		}
     		$gruppo["fornitori"]=implode($fornitori,", ");
-    		
+    		sort($consegne);
     		$gruppo["consegne"]=implode($consegne,", ");
     		
     		$gruppo["url_edit"]="";
@@ -118,7 +118,6 @@ class OrdiniController extends Controller
      */
     public function store(Request $request)
     {
-        $dumper=(new Dumper);
         if ($request->has("pane")){
         	$mese=$request->input("mese");
         	$mese_f=sprintf('%02d',$mese);
@@ -135,16 +134,16 @@ class OrdiniController extends Controller
         	$dumper->dump($mese);
         	$dumper->dump($anno);*/
         	foreach ($fornai as $fornaio){
-        		/*$dumper->dump($fornai);
-        		$dumper->dump($fornaio);*/
+        		//$this->dumper->dump($fornai);
+        		//$this->dumper->dump($fornaio);
         		if ($fornaio->giorni_gas){
-        			//$dumper->dump($fornaio);
+        			$this->dumper->dump($fornaio);
 	        		$giorni=$fornaio->giorni_gas()
 	        			->whereStagione(\Config::get("parametri.stagione"))
-	        			->where("valido_dal","<=",$anno."-".$mese_f)
-	        			->where("valido_al",">=",$anno."-".$mese_f)->get()
+	        			->where("valido_dal","<=",$anno."-".$mese_f."-01")
+	        			->where("valido_al",">=",$anno."-".$mese_f."-31")->get()
 	        			->pluck("giorno")->unique();
-	        		//$dumper->dump($giorni);
+	        		//$this->dumper->dump($giorni);
 	        		foreach ($giorni as $giorno){
 	        			$refDate=\Carbon\Carbon::createFromDate($anno, $mese, 1)->subDay();
 	        			$data=clone $refDate;
@@ -183,6 +182,7 @@ class OrdiniController extends Controller
 	        		}
         		}
         	}
+        	die();
         	return redirect("ordini/pane/$anno/$mese/edit/");
         }
     }
@@ -207,8 +207,13 @@ class OrdiniController extends Controller
 		}
 		if (count($ordini)>0){
 			if ($ordini[0]->tipo="pane"){
+				$giorno=$ordini[0]->consegna->dayOfWeek;
 				$fornaio=Fornaio::find($ordini[0]->fornitore_id);
-				$this->dati["elenco_gas"]=$ordini[0]->fornaio->gas()->whereGiorno(substr($id,4,1))->get();
+				$this->dati["elenco_gas"]=$ordini[0]->fornaio->gas()
+					->whereGiorno($giorno)
+					->where("valido_dal","<=",$ordini[0]->consegna)
+					->where("valido_al",">=",$ordini[0]->consegna)
+					->get();
 			}
 			else 
 				$this->dati["elenco_gas"]=Gas::all();

@@ -13,9 +13,9 @@ class AssociazioneFornai extends Model
     	$oggi=new \Carbon\Carbon();
     			
 		return parent::newQuery($excludeDeleted = true)
-			->whereStagione(\Config::get("parametri.stagione"))
-			->where("valido_dal","<=",$oggi)
-			->where("valido_al",">=",$oggi);
+			->whereStagione(\Config::get("parametri.stagione"));
+			//->where("valido_dal","<=",$oggi)
+			//->where("valido_al",">=",$oggi);
 	}
 	
 }
