@@ -32,18 +32,43 @@ class Ordine extends BaseModel
 			return null;
 	}
 	
+	public function ordine_gas(){
+		return $this->HasManyThrough('App\Model\OrdineDettaglio','App\Model\Prodotto','ordine_id','prodotto_id');
+	}
+	
 	public function getNumProdottiAttribute(){
 		return $this->prodotti()->count();
 	}
 
 	public function getQuantitaTotaleAttribute(){
-		$totale=0;
+		/*$totale=0;
 		foreach ($this->prodotti as $prodotto){
 			$totale+=$prodotto->quantita_totale;
 		}
-		return $totale;
+		return $totale;*/
+		return $this->ordine_gas->sum("quantita");
+	}
+	
+	public function getImportoFornitoreAttribute(){
+		return $this->ordine_gas->sum("importo_fornitore");
 	}
 
+	public function getImportoAttribute(){
+		return $this->ordine_gas->sum("importo");
+	}
+	
+	public function getContributoDesAttribute(){
+		return $this->ordine_gas->sum("contributo_des");
+	}
+	
+	public function getContributoSmAttribute(){
+		return $this->ordine_gas->sum("contributo_sm");
+	}
+
+	public function getContributiAttribute(){
+		return $this->contributo_des+$this->contributo_sm;
+	}
+	
 	public function getTotaleFornitoreAttribute(){
 		$totale=0;
 		foreach ($this->prodotti as $prodotto){

@@ -28,11 +28,27 @@ class Prodotto extends Model
 			return 0;
 	}
 
+	public function getContributiAttribute(){
+		return $this->contributo_des+$this->contributo_sm;		
+	}
+	
+	public function getPrezzoFinaleAttribute(){
+		return $this->prezzo_fornitore+$this->contributi;		
+	}
+	
 	public function getQuantitaTotaleAttribute(){
 		return $this->ordine_gas()->sum("quantita");
 	}
 
 	public function getImportoFornitoreAttribute(){
 		return $this->ordine_gas()->sum("quantita")*$this->prezzo_fornitore;
+	}
+	
+	public function getTotaliAttribute(){
+		$totali=array();
+		foreach ($this->ordine_gas as $det){
+			$totali[$det->gas_id]["quantita"]=$det->quantita;
+			
+		}
 	}
 }

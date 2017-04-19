@@ -219,6 +219,19 @@ class OrdiniController extends Controller
 		}
 		
 		$this->dati["ordini"]=$ordini;
+		
+		$totali_gas=array();
+		$campi=["quantita","importo","importo_fornitore","contributo_des","contributo_sm","contributi"];
+		foreach ($this->dati["elenco_gas"] as $gas){
+			foreach ($campi as $campo){
+				$totali_gas[$gas->id][$campo]=$ordini->sum(function ($ordine) use ($gas,$campo) {
+					$ordine_gas=$ordine->ordine_gas()->whereGasId($gas->id)->get();
+					return $ordine_gas->sum($campo);
+				});
+			};
+		}
+		$this->dati["totali_gas"]=$totali_gas;
+		
 		if (substr($id,0,1)=="P")
 			return view("ordini.riepilogo_pane")->with($this->dati);
 		else 

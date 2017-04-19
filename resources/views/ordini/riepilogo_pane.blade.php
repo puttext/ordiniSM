@@ -43,10 +43,10 @@
 	       						<td class="text-center">{{ $prodotto->getQuantitaGas($gas->id) }}</td>
 	       					@endforeach
        					@endforeach
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $totali_gas[$gas->id]["quantita"] }}</td>
+						<td class="text-center">{{ $totali_gas[$gas->id]["importo_fornitore"] }}</td>
+						<td class="text-center">{{ $totali_gas[$gas->id]["contributi"] }}</td>
+						<td class="text-center">{{ $totali_gas[$gas->id]["importo"] }}</td>
 	       			</tr>
 	       			@endforeach
 	       		</tbody>
@@ -58,20 +58,17 @@
 	       						<td class="text-center">{{ $prodotto->quantita_totale }}</td>
 	       					@endforeach
        					@endforeach
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center" colspan="4" >&nbsp;</td>
 	       			</tr>
 	       			<tr>
 	       				<td class="col-md-4"><strong>Totali</strong></td>
 	       				@foreach ($ordini as $ordine)
-       						<td colspan="{{$ordine->num_prodotti}}" class="text-center">{{ $ordine->quantita_totale }} ( {{ $ordine->totale_fornitore }} )</td>
+       						<td colspan="{{$ordine->num_prodotti}}" class="text-center">{{ $ordine->quantita_totale }}</td>
        					@endforeach
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
-						<td class="text-center">{{ $ordini->sum("prodotti_sort.quantita") }}</td>
+						<td class="text-center">{{ $ordini->sum("quantita_totale") }}</td>
+						<td class="text-center">{{ $ordini->sum("importo_fornitore") }}</td>
+						<td class="text-center">{{ $ordini->sum("contributi") }}</td>
+						<td class="text-center">{{ $ordini->sum("importo") }}</td>
 	       			</tr>
 	       		</tfoot>
 	       	</table>
