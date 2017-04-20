@@ -35,11 +35,15 @@
                 <div class="panel-heading">Ordine Farine</div>
 
                 <div class="panel-body">
-                	{!! Form::label("data","Data",["class"=>"col-md-2 control-label"]) !!}
+                	{!! Form::label("data","Data consegna",["class"=>"col-md-2 control-label"]) !!}
 					<div class="col-md-3">
                    		{!! Form::text("data",null,["class"=>"form-control"]) !!}
                    	</div>
-                   	{!! Form::hidden("farina",true) !!}
+                	{!! Form::label("chiusura","Data chiusura",["class"=>"col-md-2 control-label"]) !!}
+					<div class="col-md-3">
+                   		{!! Form::text("chiusura",null,["class"=>"form-control"]) !!}
+                   	</div>
+                    {!! Form::hidden("farina",true) !!}
                 	{!! Form::submit("Crea", ['class'=>'btn btn-primary']) !!}
                 </div>
             </div>
