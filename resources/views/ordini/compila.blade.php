@@ -25,7 +25,7 @@
 			<h3 class="panel-title text-center col-md11">{{$ordini[0]->descrizione}} </h3>
 	    </div>
 		<div class="panel-body">
-			@foreach ($ordini as $ordine)
+			@foreach ($ordini->sortBy("consegna") as $ordine)
 		        <div class="col-md-3">
 		            <div class="panel panel-info">
 		                <div class="panel-heading text-center">
