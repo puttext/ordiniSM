@@ -155,7 +155,7 @@ class OrdiniController extends Controller
 	        			$apertura=new \DateTime();
 	        			$data->next($giorno);
 	        			$chiusura=(clone $data);
-	        			$chiusura->subDay(2);
+	        			$chiusura->subDay($fornaio->anticipo_chiusura);
 	        			/*$dumper->dump($giorno);
 	        			$dumper->dump($data);*/
 	        			while ($data->month==$mese){

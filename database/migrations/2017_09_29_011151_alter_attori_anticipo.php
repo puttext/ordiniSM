@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterProdotti extends Migration
+class AlterAttoriAnticipo extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AlterProdotti extends Migration
      */
     public function up()
     {
-    	Schema::table('prodotti', function (Blueprint $table) {
-    		$table->string('descrizione_breve1',5);
+    	Schema::table('attori', function (Blueprint $table) {
+    		$table->integer('anticipo_chiusura')->default(2);
     	});
     }
 

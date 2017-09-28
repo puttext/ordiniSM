@@ -18,4 +18,7 @@ class AssociazioneFornai extends Model
 			//->where("valido_al",">=",$oggi);
 	}
 	
+	public function fornaio(){
+		return $this->belongsTo("App\Model\Fornaio","fornaio_id","id");
+	}
 }
