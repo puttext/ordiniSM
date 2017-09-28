@@ -33,7 +33,7 @@ class OrdiniController extends Controller
     	$this->dati["stagione"]=$request->has("stagione")?$request->input("stagione"):\Config::get("stagione");
     	//$stagione=$request->input("stagione")?$request->input("stagione"):\Config::get("stagione");
 
-    	$this->dumper($this->dati);
+    	$this->dumper->dump($this->dati);
     	$qGruppi->whereStagione($this->dati["stagione"]);
     	if (\Auth::user()->livello <= User::COORDINATORE){
     		$qGruppi->where(function($q){
