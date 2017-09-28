@@ -20,7 +20,7 @@ class OrdiniController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
     	$qGruppi=Ordine::select();
 
@@ -29,9 +29,13 @@ class OrdiniController extends Controller
     	$this->dati["prossimi"]=array();
     	$this->dati["storico"]=array();
     	
-    	//var_dump(\Auth::user()->fornai);
+    	$this->dati["stagioni"]=Ordine::all()->pluck("stagione","stagione")->unique();
+    	$this->dati["stagione"]=$request->input("stagione")?$request->input("stagione"):\Config::get("stagione");
+    	//$stagione=$request->input("stagione")?$request->input("stagione"):\Config::get("stagione");
+
+    	$qGruppi->whereStagione($this->dati["stagione"]);
     	if (\Auth::user()->livello <= User::COORDINATORE){
-    		$qGruppi=Ordine::where(function($q){
+    		$qGruppi->where(function($q){
     			$id_fornai=\Auth::user()->fornai->pluck("id")->all();
     			$id1=Prodotto::whereIn("fornitore_id",$id_fornai)->pluck("ordine_id")->unique();
     			$id2=Prodotto::where("tipo","<>","pane")->pluck("ordine_id")->unique();

@@ -44,7 +44,10 @@
 	    </div>
 		<div class="panel panel-warning">
 	        <div class="panel-heading">
-				<h3 class="panel-title text-center">Archivio Ordini</h3>
+				<h3 class="panel-title text-center">
+				Archivio Ordini
+				{!! Form::select("stagione",$stagioni,$stagione,['id'=>'sel_stagione','class'=>'selectpicker']) !!}
+				</h3>
 		    </div>
 			<div class="panel-body">
 	       	<table class="table table-striped table-bordered table-condensed">
@@ -84,6 +87,14 @@
 <script>
 	$(document).ready(function(){
 		$(".selectpicker").selectpicker();
+
+		 $('#sel_stagione').on('change', function () {
+	          var url = '?stagione=' + $(this).val(); // get selected value
+	          if (url) { // require a URL
+	              window.location = url; // redirect
+	          }
+	          return false;
+	     });
 	});
 </script>
 @endsection

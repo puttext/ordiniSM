@@ -111,29 +111,22 @@ class PaneController extends Controller
     		}
     	}
     	
-    	if ($request->input("salva_e_email")){
+    	if ($request->has("salva_e_email")){
     		$data=[];
     		$data["url"]=env('APP_URL');
     		Mail::send(["text"=>"notifica"],$data,(function($message) use ($fornitori){
     			$indirizzi=[];
     			$fornai=Fornaio::whereIn("id",$fornitori)->get();
     			foreach($fornai as $f){
-    				//dd($f->gas_attivi);
     				foreach($f->gas_attivi as $gas){
-    					//dd($gas->referenti->pluck("email"));
     					foreach($gas->referenti as $ref){
     						$message->bcc($ref->email);
-    						//$message->bcc("stradael@livecom.it");
     					}
     				}
     			}
-    			//dd($indirizzi);
-    			//$message->bcc($indirizzi);
     			$message->subject("[Ordini Spiga e Madia] Nuovo ordine inserito");
     		}));
-    		//dd($result);
     	}
-    	dd(\Config::get("mail.driver"));
     	return redirect("ordini/");
     }
 }
