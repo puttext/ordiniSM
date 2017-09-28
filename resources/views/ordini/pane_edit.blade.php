@@ -11,6 +11,7 @@
 	<div class="panel panel-default">
         <div class="panel-heading">
 			<h3 class="panel-title text-center col-md11">Ordini Pane {{ $mese_txt }} {{ $anno }}</h3>
+	    	{!! Form::submit("Salva e invia e-mail", ['name'=>'salva_e_email','class'=>'col-md1 btn btn-default pull-right']) !!}
 	    	{!! Form::submit("Salva", ['name'=>'salva','class'=>'col-md1 btn btn-success pull-right']) !!}
 	    	<div class="clearfix"></div>
 	    </div>
