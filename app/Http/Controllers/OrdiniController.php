@@ -30,9 +30,10 @@ class OrdiniController extends Controller
     	$this->dati["storico"]=array();
     	
     	$this->dati["stagioni"]=Ordine::all()->pluck("stagione","stagione")->unique();
-    	$this->dati["stagione"]=$request->input("stagione")?$request->input("stagione"):\Config::get("stagione");
+    	$this->dati["stagione"]=$request->has("stagione")?$request->input("stagione"):\Config::get("stagione");
     	//$stagione=$request->input("stagione")?$request->input("stagione"):\Config::get("stagione");
 
+    	$this->dumper($this->dati);
     	$qGruppi->whereStagione($this->dati["stagione"]);
     	if (\Auth::user()->livello <= User::COORDINATORE){
     		$qGruppi->where(function($q){
