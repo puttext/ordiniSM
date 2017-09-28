@@ -24,6 +24,14 @@ class Fornaio extends Attore
 			->withPivot("giorno","stagione","valido_dal","valido_al");
 	}
 	
+	public function gas_attivi(){
+		$oggi=new \Carbon\Carbon();
+		return $this->gas()
+			->whereStagione(\Config::get("parametri.stagione"))
+			->where("valido_dal","<=",$oggi)
+			->where("valido_al",">=",$oggi);
+	}
+	
 	public function pane(){
 		return $this->hasMany('App\Model\Prodotto','fornitore_id')
 			->whereOrdineId(0);

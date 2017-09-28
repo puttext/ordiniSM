@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mail;
 
 use App\Http\Requests;
 use App\Model\Fornaio;
 use App\Model\Ordine;
 use App\Model\User;
+use App\Model\AssociazioneFornai;
 
 class PaneController extends Controller
 {
@@ -32,8 +34,8 @@ class PaneController extends Controller
     		if ($fornaio->giorni_gas){
     			$giorni=$fornaio->giorni_gas()
     				->whereStagione(\Config::get("parametri.stagione"))
-    				->where("valido_dal","<=",$anno."-".$mese_f)
-    				->where("valido_al",">=",$anno."-".$mese_f)->get()
+    				->where("valido_dal","<=",$anno."-".$mese_f."-01")
+    				->where("valido_al",">=",$anno."-".$mese_f."-31")->get()
     				->pluck("giorno")->unique();
     			foreach ($giorni as $giorno){
     				$riga=array();
@@ -108,6 +110,30 @@ class PaneController extends Controller
 	        	]);
     		}
     	}
-		return redirect("ordini/");
+    	
+    	if ($request->input("salva_e_email")){
+    		$data=[];
+    		$data["url"]=env('APP_URL');
+    		Mail::send(["text"=>"notifica"],$data,(function($message) use ($fornitori){
+    			$indirizzi=[];
+    			$fornai=Fornaio::whereIn("id",$fornitori)->get();
+    			foreach($fornai as $f){
+    				//dd($f->gas_attivi);
+    				foreach($f->gas_attivi as $gas){
+    					//dd($gas->referenti->pluck("email"));
+    					foreach($gas->referenti as $ref){
+    						$message->bcc($ref->email);
+    						//$message->bcc("stradael@livecom.it");
+    					}
+    				}
+    			}
+    			//dd($indirizzi);
+    			//$message->bcc($indirizzi);
+    			$message->subject("[Ordini Spiga e Madia] Nuovo ordine inserito");
+    		}));
+    		//dd($result);
+    	}
+    	dd(\Config::get("mail.driver"));
+    	return redirect("ordini/");
     }
 }

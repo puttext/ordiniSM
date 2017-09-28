@@ -23,4 +23,9 @@ class Gas extends Attore
 	public function getFullNameAttribute(){
 		return $this->nome . " (" . $this->comune . ")";
 	}
+	
+	public function referenti(){
+		return $this->HasMany("App\Model\User","gas_id","id");
+	}
+		
 }
