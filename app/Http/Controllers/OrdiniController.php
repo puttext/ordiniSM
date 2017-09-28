@@ -29,11 +29,11 @@ class OrdiniController extends Controller
     	$this->dati["prossimi"]=array();
     	$this->dati["storico"]=array();
     	
-    	$this->dati["stagioni"]=[\Config::get("parametri.stagione")=>"--corrente--"]+Ordine::all()->pluck("stagione","stagione")->unique();
+    	$this->dati["stagioni"]=Ordine::all()->pluck("stagione","stagione")->prepend(\Config::get("parametri.stagione"),\Config::get("parametri.stagione"))->unique();
     	$this->dati["stagione"]=$request->has("stagione")?$request->input("stagione"):\Config::get("parametri.stagione");
     	//$stagione=$request->input("stagione")?$request->input("stagione"):\Config::get("stagione");
 
-    	var_dump($this->dati);
+    	//var_dump($this->dati);
     	$qGruppi->whereStagione($this->dati["stagione"]);
     	if (\Auth::user()->livello <= User::COORDINATORE){
     		$qGruppi->where(function($q){
