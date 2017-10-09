@@ -314,9 +314,17 @@ class OrdiniController extends Controller
     	$this->dati["id"]=$id;
 		$oggi=\Carbon\Carbon::today();
 		//$oggi=$oggi->format("Y-m-d");
-		$gas_id=\Input::get("gas");
+		$lista_gas=\Db::select(
+			"SELECT distinct o.codice_gruppo,af.gas_id 
+				FROM prodotti p
+				inner join ordini o on o.id=p.ordine_id
+				inner join associazione_fornai af on af.fornaio_id=p.fornitore_id
+				where o.consegna >= af.valido_dal
+				and o.consegna<=af.valido_al")
+			->get("gas_id");
+		
 		if (\Auth::user()->livello>=User::COORDINATORE){
-			$this->dati["gas"]=\Auth::user()->gas_gestiti->sortBy("comune")->pluck("full_name","id");
+			$this->dati["gas"]=\Auth::user()->gas_gestiti->whereIn("gas_id",$lista_gas)->sortBy("comune")->pluck("full_name","id");
 			if ($gas_id)
 				$this->dati["gas_id"]=$gas_id;
 			elseif (\Auth::user()->gas_id)
