@@ -315,13 +315,14 @@ class OrdiniController extends Controller
 		$oggi=\Carbon\Carbon::today();
 		//$oggi=$oggi->format("Y-m-d");
 		$lista_gas=\Db::select(
-			"SELECT distinct o.codice_gruppo,af.gas_id 
+			"SELECT distinct af.gas_id 
 				FROM prodotti p
 				inner join ordini o on o.id=p.ordine_id
 				inner join associazione_fornai af on af.fornaio_id=p.fornitore_id
 				where o.consegna >= af.valido_dal
-				and o.consegna<=af.valido_al")
-			->get("gas_id");
+				and o.consegna<=af.valido_al
+				and (o.id='" . $id ."' or o.codice_gruppo='" . $id ."'"
+			);
 		
 		if (\Auth::user()->livello>=User::COORDINATORE){
 			$this->dati["gas"]=\Auth::user()->gas_gestiti->whereIn("gas_id",$lista_gas)->sortBy("comune")->pluck("full_name","id");
