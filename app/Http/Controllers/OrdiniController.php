@@ -330,7 +330,7 @@ class OrdiniController extends Controller
 		}
 		$gas=Gas::find($this->dati["gas_id"]);
 
-		$fornai=$gas->fornai;
+		$fornai=$gas->fornai_attivi;
 		$query=Ordine::where("apertura","<=",$oggi);
 		$query->where(function($q1) use ($fornai){
 			$q1->where(function($q2) use ($fornai){
