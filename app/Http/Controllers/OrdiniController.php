@@ -314,7 +314,7 @@ class OrdiniController extends Controller
     	$this->dati["id"]=$id;
 		$oggi=\Carbon\Carbon::today();
 		//$oggi=$oggi->format("Y-m-d");
-		$lista_gas=\Db::select(
+		$lista_gas=collect(\Db::select(
 			"SELECT distinct af.gas_id 
 				FROM prodotti p
 				inner join ordini o on o.id=p.ordine_id
@@ -322,7 +322,7 @@ class OrdiniController extends Controller
 				where o.consegna >= af.valido_dal
 				and o.consegna<=af.valido_al
 				and (o.id='" . $id ."' or o.codice_gruppo='" . $id ."')"
-			);
+			))->pluck("gas_id");
 		$gas_id=\Input::get("gas");
 		$this->dumper->dump($lista_gas);
 		if (\Auth::user()->livello>=User::COORDINATORE){
