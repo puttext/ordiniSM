@@ -316,7 +316,7 @@ class OrdiniController extends Controller
 		//$oggi=$oggi->format("Y-m-d");
 		$gas_id=\Input::get("gas");
 		if (\Auth::user()->livello>=User::COORDINATORE){
-			$this->dati["gas"]=\Auth::user()->gas_gestiti->pluck("full_name","id");
+			$this->dati["gas"]=\Auth::user()->gas_gestiti->sortBy("comune")->pluck("full_name","id");
 			if ($gas_id)
 				$this->dati["gas_id"]=$gas_id;
 			elseif (\Auth::user()->gas_id)
