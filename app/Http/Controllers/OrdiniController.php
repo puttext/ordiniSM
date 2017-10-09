@@ -322,18 +322,16 @@ class OrdiniController extends Controller
 				where o.consegna >= af.valido_dal
 				and o.consegna<=af.valido_al
 				and (o.id='" . $id ."' or o.codice_gruppo='" . $id ."')"
-			));
+			))->map(function($x){ return $x->gas_id; })->toArray();
 		$gas_id=\Input::get("gas");
-		$this->dumper->dump($lista_gas);
-		$this->dumper->dump(\Auth::user()->gas_gestiti);
 		if (\Auth::user()->livello>=User::COORDINATORE){
 			$this->dati["gas"]=\Auth::user()->gas_gestiti->whereIn("id",$lista_gas)->sortBy("comune")->pluck("full_name","id");
 			if ($gas_id)
 				$this->dati["gas_id"]=$gas_id;
-			elseif (\Auth::user()->gas_id)
+			elseif (\Auth::user()->gas_id && in_array(\Auth::user()->gas_id,$lista_gas))
 				$this->dati["gas_id"]=\Auth::user()->gas_id;
 			else 
-				$this->dati["gas_id"]=\Auth::user()->gas_gestiti->first()->id;
+				$this->dati["gas_id"]=$lista_gas[0];
 		}
 		else{
 			$this->dati["gas_id"]=\Auth::user()->gas_id;
