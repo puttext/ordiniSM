@@ -325,6 +325,7 @@ class OrdiniController extends Controller
 			))->map(function($x){ return $x->gas_id; })->toArray();
 		$gas_id=\Input::get("gas");
 		$this->dumper->dump($lista_gas);
+		$this->dumper->dump(\Auth::user()->gas_gestiti);
 		if (\Auth::user()->livello>=User::COORDINATORE){
 			$this->dati["gas"]=\Auth::user()->gas_gestiti->whereIn("attore_id",$lista_gas)->sortBy("comune")->pluck("full_name","id");
 			if ($gas_id)
