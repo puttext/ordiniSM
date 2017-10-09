@@ -325,7 +325,7 @@ class OrdiniController extends Controller
 			);
 		$gas_id=\Input::get("gas");
 		if (\Auth::user()->livello>=User::COORDINATORE){
-			$this->dati["gas"]=\Auth::user()->gas_gestiti->whereIn("gas_id",$lista_gas)->sortBy("comune")->pluck("full_name","id");
+			$this->dati["gas"]=\Auth::user()->gas_gestiti->whereIn("attore_id",$lista_gas)->sortBy("comune")->pluck("full_name","id");
 			if ($gas_id)
 				$this->dati["gas_id"]=$gas_id;
 			elseif (\Auth::user()->gas_id)
