@@ -322,7 +322,7 @@ class OrdiniController extends Controller
 				where o.consegna >= af.valido_dal
 				and o.consegna<=af.valido_al
 				and (o.id='" . $id ."' or o.codice_gruppo='" . $id ."')"
-			))->get("gas_id");
+			))->map(function($x){ return (array) $x; })->get("gas_id");
 		$gas_id=\Input::get("gas");
 		$this->dumper->dump($lista_gas);
 		if (\Auth::user()->livello>=User::COORDINATORE){
