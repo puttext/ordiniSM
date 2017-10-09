@@ -321,7 +321,7 @@ class OrdiniController extends Controller
 				inner join associazione_fornai af on af.fornaio_id=p.fornitore_id
 				where o.consegna >= af.valido_dal
 				and o.consegna<=af.valido_al
-				and (o.id='" . $id ."' or o.codice_gruppo='" . $id ."'"
+				and (o.id='" . $id ."' or o.codice_gruppo='" . $id ."')"
 			);
 		
 		if (\Auth::user()->livello>=User::COORDINATORE){
