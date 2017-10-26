@@ -86,7 +86,7 @@ class PaneController extends Controller
     		$ch=$request->input("chiusura")[$index];
     		$des=$request->input("descrizione")[$index];
     		for ($i=1;$i<=5;$i++){
-	    		if ($request->input("data".$i."_id")[$index]){
+	    		if (isset($request->input("data".$i."_id")[$index]) && $request->input("data".$i."_id")[$index]){
 	    			$ordine=Ordine::find($request->input("data".$i."_id")[$index]);
 	    			if (!$request->input("data".$i."_consegna")[$index])
 	    				$ordine->delete();
