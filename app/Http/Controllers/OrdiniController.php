@@ -214,7 +214,7 @@ class OrdiniController extends Controller
 				$giorno=$ordini[0]->consegna->dayOfWeek;
 				$fornaio=Fornaio::find($ordini[0]->fornitore_id);
 				$this->dati["elenco_gas"]=$ordini[0]->fornaio->gas()
-					->whereGiorno($giorno)
+					//->whereGiorno($giorno)
 					->where("valido_dal","<=",$ordini[0]->consegna)
 					->where("valido_al",">=",$ordini[0]->consegna)
 					->get();
