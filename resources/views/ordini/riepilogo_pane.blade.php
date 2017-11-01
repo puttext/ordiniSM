@@ -6,7 +6,7 @@
 		<h3>{{$ordini[0]->descrizione}}</h3>
 		<h3 class="panel-title text-center col-md11">
 				{{$ordini[0]->fornitore->nome}}<br/>
-				Ordini del {{ trans("datetime.giorni.".$ordini[0]->consegna->format("l")) }}
+				Ordini del {{ trans("datetime.giorni.".$ordini[1]->consegna->format("l")) }}
 		</h3>
 	</div>
     

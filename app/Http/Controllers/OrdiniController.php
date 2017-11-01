@@ -211,7 +211,7 @@ class OrdiniController extends Controller
 		}
 		if (count($ordini)>0){
 			if ($ordini[0]->tipo="pane"){
-				$giorno=$ordini[1]->consegna->dayOfWeek;
+				$giorno=$ordini[0]->consegna->dayOfWeek;
 				$fornaio=Fornaio::find($ordini[0]->fornitore_id);
 				$this->dati["elenco_gas"]=$ordini[0]->fornaio->gas()
 					//->whereGiorno($giorno)
