@@ -76,4 +76,19 @@ class Ordine extends BaseModel
 		}
 		return $totale;
 	}
+	
+	public function getGiornoAttribute(){
+		if (substr($this->codice_gruppo,0,1)=="P"){
+			$parts=explode("-",$this->codice_gruppo);
+			return $parts[2];
+		}
+		else
+			return $this->consegna->dayOfWeek;
+	}
+	
+	public function getGiornoTxtAttribute(){
+		$date=\Carbon\Carbon::today();
+		$date->next($this->giorno);
+		return trans("datetime.giorni.".$date->format("l"));
+	}
 }

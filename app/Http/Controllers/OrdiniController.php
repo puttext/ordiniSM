@@ -74,7 +74,7 @@ class OrdiniController extends Controller
     		
     		if (\Auth::user()->livello>=User::COORDINATORE){
 	    		if (substr($gruppo["codice_gruppo"],0,1)=="P")
-	    			$gruppo["url_edit"]=url('/ordini/pane/'.$ordini[0]->consegna->format("Y/m").'/edit/'.substr($gruppo["codice_gruppo"],2,1));
+	    			$gruppo["url_edit"]=url('/ordini/pane/'.$ordini[0]->consegna->format("Y/m").'/edit/'.explode("-",$gruppo["codice_gruppo"])[1]);
 	    		else
 	    			$gruppo["url_edit"]=url('/ordini/'.$gruppo['codice_gruppo'].'/edit');
     		}
@@ -211,7 +211,10 @@ class OrdiniController extends Controller
 		}
 		if (count($ordini)>0){
 			if ($ordini[0]->tipo="pane"){
-				$giorno=$ordini[0]->consegna->dayOfWeek;
+				if (is_numeric($id))
+					$giorno=$ordini[0]->consegna->dayOfWeek;
+				else 
+					
 				$fornaio=Fornaio::find($ordini[0]->fornitore_id);
 				$this->dati["elenco_gas"]=$ordini[0]->fornaio->gas()
 					//->whereGiorno($giorno)
