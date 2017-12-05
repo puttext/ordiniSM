@@ -26,10 +26,14 @@ class Fornaio extends Attore
 	
 	public function gas_attivi(){
 		$oggi=new \Carbon\Carbon();
+		return $this->gas_attivi_al($oggi);
+	}
+
+	public function gas_attivi_al($data){
 		return $this->gas()
-			->whereStagione(\Config::get("parametri.stagione"))
-			->where("valido_dal","<=",$oggi)
-			->where("valido_al",">=",$oggi);
+		->whereStagione(\Config::get("parametri.stagione"))
+		->where("valido_dal","<=",$data)
+		->where("valido_al",">=",$data);
 	}
 	
 	public function pane(){
