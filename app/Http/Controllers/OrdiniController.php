@@ -348,10 +348,10 @@ class OrdiniController extends Controller
 			$ordine=Ordine::where(function($q) use ($id){
 				$q->whereId($id);
 				$q->orWhere("codice_gruppo","=",$id);
-			})->orderBy("data")->first();
+			})->orderBy("consegna")->first();
 		}
 		if ($ordine)
-			$fornai=$gas->fornai_attivi_al($ordine->data);
+			$fornai=$gas->fornai_attivi_al($ordine->consegna);
 		else
 			$fornai=$gas->fornai_attivi;
 		
