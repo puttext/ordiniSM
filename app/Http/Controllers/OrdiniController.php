@@ -342,7 +342,7 @@ class OrdiniController extends Controller
 		}
 		$gas=Gas::find($this->dati["gas_id"]);
 
-		$fornai=$gas->fornai_attivi;
+		$fornai=null;
 		$ordine=null;
 		if ($id && $id!="current"){
 			$ordine=Ordine::where(function($q) use ($id){
@@ -359,7 +359,7 @@ class OrdiniController extends Controller
 		$query->where(function($q1) use ($fornai){
 			$q1->where(function($q2) use ($fornai){
 				$q2->where("codice_gruppo","like","P-%");
-				$q2->whereIn("fornitore_id",$fornai->pluck("id")->all());
+				$q2->whereIn("fornitore_id",$fornai->pluck("attori.id")->all());
 			});
 				$q1->orWhere("codice_gruppo","not like","P-%");
 		});
