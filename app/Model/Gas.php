@@ -17,9 +17,13 @@ class Gas extends Attore
 	
 	public function fornai_attivi(){
 		$oggi=\Carbon\Carbon::today();
+		return $this->fornai_attivi_al($oggi);
+	}
+
+	public function fornai_attivi_al($data){
 		return $this->fornai()
-			->where("valido_dal","<=",$oggi)
-			->where("valido_al",">=",$oggi);
+			->where("valido_dal","<=",$data)
+			->where("valido_al",">=",$data);
 	}
 	
 	public function newQuery($excludeDeleted = true) {

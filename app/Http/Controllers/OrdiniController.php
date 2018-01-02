@@ -344,12 +344,24 @@ class OrdiniController extends Controller
 		}
 		$gas=Gas::find($this->dati["gas_id"]);
 
-		$fornai=$gas->fornai_attivi;
+		$fornai=null;
+		$ordine=null;
+		if ($id && $id!="current"){
+			$ordine=Ordine::where(function($q) use ($id){
+				$q->whereId($id);
+				$q->orWhere("codice_gruppo","=",$id);
+			})->orderBy("consegna")->first();
+		}
+		if ($ordine)
+			$fornai=$gas->fornai_attivi_al($ordine->consegna);
+		else
+			$fornai=$gas->fornai_attivi;
+		
 		$query=Ordine::where("apertura","<=",$oggi);
 		$query->where(function($q1) use ($fornai){
 			$q1->where(function($q2) use ($fornai){
 				$q2->where("codice_gruppo","like","P-%");
-				$q2->whereIn("fornitore_id",$fornai->pluck("id")->all());
+				$q2->whereIn("fornitore_id",$fornai->pluck("attori.id")->all());
 			});
 				$q1->orWhere("codice_gruppo","not like","P-%");
 		});
@@ -362,10 +374,6 @@ class OrdiniController extends Controller
 				$q->whereId($id);
 				$q->orWhere("codice_gruppo","=",$id);
 			});
-			$ordine=Ordine::where(function($q) use ($id){
-				$q->whereId($id);
-				$q->orWhere("codice_gruppo","=",$id);
-			})->first();
 			$this->dati["intestazione_ordine"]=$ordine;
 			$this->dati["chiuso"]=($ordine->chiusura<$oggi)?true:false;
 			$gruppi=$query->get()->groupBy("codice_gruppo")->all();
