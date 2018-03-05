@@ -368,7 +368,7 @@ class OrdiniController extends Controller
 					
 		if ($id && $id!="current"){
 			if (\Auth::user()->livello<User::COORDINATORE)
-				$query->where("chiusura",">",$oggi);
+				$query->where("chiusura",">=",$oggi);
 					
 			$query->where(function($q) use ($id){
 				$q->whereId($id);
