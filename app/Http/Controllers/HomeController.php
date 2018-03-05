@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-    	$oggi=new \Carbon\Carbon();
+    	$oggi=\Carbon\Carbon::today();
     	if (\Auth::user()->gas_id){
     		$fornai=\Auth::user()->gas->fornai;
     		$check=Ordine::where("apertura","<=",$oggi)
