@@ -24,7 +24,7 @@ class OrdiniController extends Controller
     {
     	$qGruppi=Ordine::select();
 
-    	$oggi=new \Carbon\Carbon();
+    	$oggi=\Carbon\Carbon::today();
     	$this->dati["in_corso"]=array();
     	$this->dati["prossimi"]=array();
     	$this->dati["storico"]=array();
