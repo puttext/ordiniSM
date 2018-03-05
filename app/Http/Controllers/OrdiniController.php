@@ -107,7 +107,7 @@ class OrdiniController extends Controller
     public function create()
     {
     	$this->dati["mesi"]=\Config::get("parametri.mesi_txt");
-    	$data=new \Carbon\carbon();
+    	$data=\Carbon\carbon::today();
     	if ($data->month=="12")
     		$this->dati["anno"]=$data->year+1;
     	else 
@@ -265,7 +265,7 @@ class OrdiniController extends Controller
 		elseif (is_numeric($id)) {
 			//id numerico: ordine singolo
 			$ordine=Ordine::find($id);
-			$oggi=new \Carbon\Carbon();
+			$oggi=\Carbon\Carbon::today();
 			if ($ordine->apertura <= $oggi && $ordine->chiusura>=$oggi){
 				//compila singolo ordine
 				return $this->compila($id);
