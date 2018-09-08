@@ -29,7 +29,7 @@ class OrdiniController extends Controller
     	$this->dati["prossimi"]=array();
     	$this->dati["storico"]=array();
     	
-    	$this->dati["stagioni"]=Ordine::all()->pluck("stagione","stagione")->prepend(\Config::get("parametri.stagione"),\Config::get("parametri.stagione"))->unique();
+    	$this->dati["stagioni"]=Ordine::groupBy("stagione")->orderBy("stagione","DESC")->pluck("stagione","stagione")->prepend(\Config::get("parametri.stagione"),\Config::get("parametri.stagione"))->unique();
     	$this->dati["stagione"]=$request->has("stagione")?$request->input("stagione"):\Config::get("parametri.stagione");
     	//$stagione=$request->input("stagione")?$request->input("stagione"):\Config::get("stagione");
 
