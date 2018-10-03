@@ -36,7 +36,7 @@ class OrdiniController extends Controller
     	//var_dump($this->dati);
     	$qGruppi->whereStagione($this->dati["stagione"]);
     	if (\Auth::user()->ruolo=="fornitore") {
-    	    $id1=Prodotto::whereIn("fornitore_id",\Auth::user()->attore_id)->pluck("ordine_id")->unique();
+    	    $id1=Prodotto::whereFornitoreId(\Auth::user()->attore_id)->pluck("ordine_id")->unique();
     	    $qGruppi->whereIn("id", $id1);
     	}
     	elseif (\Auth::user()->livello <= User::COORDINATORE){
