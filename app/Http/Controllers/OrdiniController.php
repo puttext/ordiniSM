@@ -49,6 +49,10 @@ class OrdiniController extends Controller
 				$q->orWhereIn("id",$id3);
     		});
     	}
+    	else if (\Auth::user()->ruolo=="fornitore") {
+    	    $id1=Prodotto::whereIn("fornitore_id",\Auth::user()->attore_id)->pluck("ordine_id")->unique();
+    	    $qGruppi->whereIn("id", $id1);
+    	}
     	$gruppi=$qGruppi->get()->sortByDesc("chiusura")->groupBy("codice_gruppo");
     	//$this->dumper->dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
