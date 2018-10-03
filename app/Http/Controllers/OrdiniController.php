@@ -35,7 +35,11 @@ class OrdiniController extends Controller
 
     	//var_dump($this->dati);
     	$qGruppi->whereStagione($this->dati["stagione"]);
-    	if (\Auth::user()->livello <= User::COORDINATORE){
+    	if (\Auth::user()->ruolo=="fornitore") {
+    	    $id1=Prodotto::whereIn("fornitore_id",\Auth::user()->attore_id)->pluck("ordine_id")->unique();
+    	    $qGruppi->whereIn("id", $id1);
+    	}
+    	elseif (\Auth::user()->livello <= User::COORDINATORE){
     		$qGruppi->where(function($q){
     			$id_fornai=\Auth::user()->fornai->pluck("id")->all();
     			$id1=Prodotto::whereIn("fornitore_id",$id_fornai)->pluck("ordine_id")->unique();
@@ -48,10 +52,6 @@ class OrdiniController extends Controller
 				$q->orWhereIn("id",$id2);
 				$q->orWhereIn("id",$id3);
     		});
-    	}
-    	else if (\Auth::user()->ruolo=="fornitore") {
-    	    $id1=Prodotto::whereIn("fornitore_id",\Auth::user()->attore_id)->pluck("ordine_id")->unique();
-    	    $qGruppi->whereIn("id", $id1);
     	}
     	$gruppi=$qGruppi->get()->sortByDesc("chiusura")->groupBy("codice_gruppo");
     	//$this->dumper->dump($gruppi);
