@@ -365,7 +365,7 @@ class OrdiniController extends Controller
 		$query->where(function($q1) use ($fornai){
 			$q1->where(function($q2) use ($fornai){
 				$q2->where("codice_gruppo","like","P-%");
-				$q2->whereIn("fornitore_id",$fornai->pluck("id")->all());
+				$q2->whereIn("fornitore_id",$fornai->pluck("attori.id")->all());
 			});
 				$q1->orWhere("codice_gruppo","not like","P-%");
 		});
