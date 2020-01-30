@@ -56,6 +56,10 @@ class Ordine extends BaseModel
 	public function getImportoAttribute(){
 		return $this->ordine_gas->sum("importo");
 	}
+
+	public function getKgFarinaAttribute(){
+		return $this->ordine_gas->sum("kg_farina");
+	}
 	
 	public function getContributoDesAttribute(){
 		return $this->ordine_gas->sum("contributo_des");

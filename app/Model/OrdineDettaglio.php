@@ -18,6 +18,10 @@ class OrdineDettaglio extends Model
 		return $this->quantita * $this->prodotto->prezzo_finale;
 	}
 
+	public function getKgFarinaAttribute(){
+		return $this->quantita * $this->prodotto->qta_farina/1000;
+	}
+	
 	public function getImportoFornitoreAttribute(){
 		return $this->quantita * $this->prodotto->prezzo_fornitore;
 	}

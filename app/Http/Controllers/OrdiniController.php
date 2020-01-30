@@ -233,7 +233,7 @@ class OrdiniController extends Controller
 		$this->dati["ordini"]=$ordini;
 		
 		$totali_gas=array();
-		$campi=["quantita","importo","importo_fornitore","contributo_des","contributo_sm","contributi"];
+		$campi=["quantita","importo","importo_fornitore","contributo_des","contributo_sm","contributi","kg_farina"];
 		foreach ($this->dati["elenco_gas"] as $gas){
 			foreach ($campi as $campo){
 				$totali_gas[$gas->id][$campo]=$ordini->sum(function ($ordine) use ($gas,$campo) {
@@ -244,6 +244,7 @@ class OrdiniController extends Controller
 		}
 		$this->dati["totali_gas"]=$totali_gas;
 		
+		setlocale(LC_MONETARY, 'it_IT.utf8');
 		if (substr($id,0,1)=="P")
 			return view("ordini.riepilogo_pane")->with($this->dati);
 		else 
