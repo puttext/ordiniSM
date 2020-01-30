@@ -244,7 +244,7 @@ class OrdiniController extends Controller
 		}
 		$this->dati["totali_gas"]=$totali_gas;
 		
-		setlocale(LC_MONETARY, 'it_IT.utf8');
+		setlocale(LC_MONETARY, 'it_IT.UTF-8');
 		if (substr($id,0,1)=="P")
 			return view("ordini.riepilogo_pane")->with($this->dati);
 		else 
