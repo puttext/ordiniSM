@@ -48,7 +48,8 @@ class User extends Authenticatable
     		return Fornaio::all();
     	}
     	else {
-    		$ass=AssociazioneFornai::whereGasId($this->gas_id)->get();
+   			$oggi=\Carbon\Carbon::today();
+   			$ass=AssociazioneFornai::whereGasId($this->gas_id)->whereDate("valido_dal","<=",$oggi)->whereDate("valido_al",">=",$oggi)->get();
     		//var_dump($ass->pluck("fornaio_id")->all());
     		return Fornaio::whereIn("id",$ass->pluck("fornaio_id")->all())->get();
     	}
