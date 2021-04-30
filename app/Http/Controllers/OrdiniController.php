@@ -44,9 +44,10 @@ class OrdiniController extends Controller
     			$id_fornai=\Auth::user()->fornai->pluck("id")->all();
     			$id1=Prodotto::whereIn("fornitore_id",$id_fornai)->pluck("ordine_id")->unique();
     			$id2=Prodotto::where("tipo","<>","pane")->pluck("ordine_id")->unique();
-    			$id3=Prodotto::whereHas("ordine_gas",function($q) {
+    			/*$id3=Prodotto::whereHas("ordine_gas",function($q) {
     				$q->whereGasId("gas_id",\Auth::user()->gas_id);
-    			})->pluck("ordine_id")->unique();
+    			})->pluck("ordine_id")->unique();*/
+    			 $id3=OrdineDettaglio::whereGasId(\Auth::user()->gas_id)->get()->pluck("prodotto.ordine_id")->unique();
     			//var_dump($id_fornai,$id1,$id2);
     			$q->whereIn("id", $id1);
 				$q->orWhereIn("id",$id2);
