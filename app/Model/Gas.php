@@ -28,7 +28,7 @@ class Gas extends Attore
 	
 	public function newQuery($excludeDeleted = true) {
 		return parent::newQuery($excludeDeleted = true)
-			->where('tipo', '=', 'gas');
+			->whereIn('tipo', ['gas','rivendita']);
 	}
 	
 	public function getFullNameAttribute(){
