@@ -330,8 +330,9 @@ class OrdiniController extends Controller
 				inner join associazione_fornai af on af.fornaio_id=p.fornitore_id
 				where o.consegna >= af.valido_dal
 				and o.consegna<=af.valido_al";
-		if ($id && $id!="current")
+		if ($id && $id!="current") {
 			$query.=" and (o.id='" . $id ."' or o.codice_gruppo='" . $id ."')";
+			$query.=" and (o.codice_gruppo like concat('P-',af.fornaio_id,'-',af.giorno,'%'))";
 		
 		$lista_gas=collect(\Db::select($query))->map(function($x){ return $x->gas_id; })->toArray();
 		$gas_id=\Input::get("gas");
