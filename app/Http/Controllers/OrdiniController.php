@@ -333,7 +333,7 @@ class OrdiniController extends Controller
 		if ($id && $id!="current") {
 			$query.=" and (o.id='" . $id ."' or o.codice_gruppo='" . $id ."')";
 			$query.=" and (o.codice_gruppo like concat('P-',af.fornaio_id,'-',af.giorno,'%'))";
-		
+		}
 		$lista_gas=collect(\Db::select($query))->map(function($x){ return $x->gas_id; })->toArray();
 		$gas_id=\Input::get("gas");
 		if (\Auth::user()->livello>=User::COORDINATORE){
