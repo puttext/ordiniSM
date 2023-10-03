@@ -37,6 +37,7 @@
 	       		</thead>
 	       		<tbody>
 					@foreach ($elenco_gas as $gas)
+					@if ($totali_gas[$gas->id]["quantita"])
 	       			<tr>
 	       				<td class="col-md-4">{{  $gas->nome }}<br/>({{$gas->comune}})</td>
 	       				@foreach ($ordini as $ordine)
@@ -50,6 +51,7 @@
 						<td class="text-center">{{ money_format("%.2n",$totali_gas[$gas->id]["importo"]) }}</td>
 						<td class="text-center">{{ number_format($totali_gas[$gas->id]["kg_farina"],1,',','.') }}</td>
 	       			</tr>
+	       			@endif
 	       			@endforeach
 	       		</tbody>
 	       		<tfoot>

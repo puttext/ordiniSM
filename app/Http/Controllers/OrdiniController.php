@@ -212,15 +212,14 @@ class OrdiniController extends Controller
 		else {
 			//id alfanumerico: ordine gruppo
 			$ordini=Ordine::whereCodiceGruppo($id)->orderBy("consegna")->get();
-				
 		}
 		if (count($ordini)>0){
 			if ($ordini[0]->tipo="pane"){
 				$giorno=$ordini[0]->consegna->dayOfWeek;
-					
+
 				$fornaio=Fornaio::find($ordini[0]->fornitore_id);
 				$this->dati["elenco_gas"]=$ordini[0]->fornaio->gas()
-					->whereGiorno($giorno)
+					//->whereGiorno($giorno)
 					->where("valido_dal","<=",$ordini[0]->consegna)
 					->where("valido_al",">=",$ordini[0]->consegna)
 					->get();
@@ -228,9 +227,9 @@ class OrdiniController extends Controller
 			else 
 				$this->dati["elenco_gas"]=Gas::all();
 		}
-		
+
 		$this->dati["ordini"]=$ordini;
-		
+
 		$totali_gas=array();
 		$campi=["quantita","importo","importo_fornitore","contributo_des","contributo_sm","contributi","kg_farina"];
 		foreach ($this->dati["elenco_gas"] as $gas){
@@ -242,13 +241,13 @@ class OrdiniController extends Controller
 			};
 		}
 		$this->dati["totali_gas"]=$totali_gas;
-		
+
 		setlocale(LC_MONETARY, 'it_IT.UTF-8');
 		if (substr($id,0,1)=="P")
 			return view("ordini.riepilogo_pane")->with($this->dati);
 		else 
 			return view("ordini.riepilogo")->with($this->dati);
-				
+
     }
 
     /**
