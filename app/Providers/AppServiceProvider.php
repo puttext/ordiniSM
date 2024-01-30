@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
 	public function boot()
     {
-    	if (env('APP_ENV') === 'production') {
+    	if (env('APP_ENV') === 'prod') {
     		\URL::forceSchema('https'); // for Laravel 5.3
     		//\URL::forceScheme('https'); // for Laravel 5.4
     	}
