@@ -14,8 +14,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+	public function boot(UrlGenerator $url)
     {
+    	if (env('APP_ENV') === 'production') {
+    		$url->forceScheme('https');
+    	}
     	$monolog=\Log::getMonolog();
     	
     	$prefisso=str_replace("handler","",php_sapi_name());
