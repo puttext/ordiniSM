@@ -14,10 +14,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-	public function boot(UrlGenerator $url)
+	public function boot()
     {
     	if (env('APP_ENV') === 'production') {
-    		$url->forceScheme('https');
+    		\URL::forceSchema('https'); // for Laravel 5.3
+    		//\URL::forceScheme('https'); // for Laravel 5.4
     	}
     	$monolog=\Log::getMonolog();
     	
