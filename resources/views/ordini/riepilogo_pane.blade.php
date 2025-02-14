@@ -46,9 +46,9 @@
 	       					@endforeach
        					@endforeach
 						<td class="text-center">{{ $totali_gas[$gas->id]["quantita"] }}</td>
-						<td class="text-center">{{ money_format("%.2n",$totali_gas[$gas->id]["importo_fornitore"]) }}</td>
-						<td class="text-center">{{ money_format("%.2n",$totali_gas[$gas->id]["contributi"]) }}</td>
-						<td class="text-center">{{ money_format("%.2n",$totali_gas[$gas->id]["importo"]) }}</td>
+						<td class="text-center">{{ number_format($totali_gas[$gas->id]["importo_fornitore"],2,",",".") }} €</td>
+						<td class="text-center">{{ number_format($totali_gas[$gas->id]["contributi"],2,",",".") }} €</td>
+						<td class="text-center">{{ number_format($totali_gas[$gas->id]["importo"],2,",",".") }} €</td>
 						<td class="text-center">{{ number_format($totali_gas[$gas->id]["kg_farina"],1,',','.') }}</td>
 	       			</tr>
 	       			@endif
@@ -70,9 +70,10 @@
        						<td colspan="{{$ordine->num_prodotti}}" class="text-center">{{ $ordine->quantita_totale }}</td>
        					@endforeach
 						<td class="text-center">{{ $ordini->sum("quantita_totale") }}</td>
-						<td class="text-center">{{ money_format("%.2n",$ordini->sum("importo_fornitore")) }}</td>
-						<td class="text-center">{{ money_format("%.2n",$ordini->sum("contributi")) }}</td>
-						<td class="text-center">{{ money_format("%.2n",$ordini->sum("importo")) }}</td>
+						
+						<td class="text-center">{{ number_format($ordini->sum("importo_fornitore"),2,",",".") }} €</td>
+						<td class="text-center">{{ number_format($ordini->sum("contributi"),2,",",".") }} €</td>
+						<td class="text-center">{{ number_format($ordini->sum("importo"),2,",",".") }} €</td>
 						<td class="text-center">{{ number_format($ordini->sum("kg_farina"),1,',','.') }}</td>
 	       			</tr>
 	       		</tfoot>

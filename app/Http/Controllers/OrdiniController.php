@@ -70,9 +70,9 @@ class OrdiniController extends Controller
     			$consegne[]=$ordine->consegna->format("d/m");
     			$fornitori[$ordine->fornitore_id]=$ordine->fornitore->nome;
     		}
-    		$gruppo["fornitori"]=implode($fornitori,", ");
+    		$gruppo["fornitori"]=implode(", ",$fornitori);
     		sort($consegne);
-    		$gruppo["consegne"]=implode($consegne,", ");
+    		$gruppo["consegne"]=implode(", ",$consegne);
     		
     		$gruppo["url_edit"]="";
     		$gruppo["url_compila"]="";

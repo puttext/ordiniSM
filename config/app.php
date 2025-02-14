@@ -162,14 +162,14 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+    	Laravel\Tinker\TinkerServiceProvider::class,
 
-        /*
+    		/*
          * Package Service Providers...
          */
     	// GENERATORS
    		Way\Generators\GeneratorsServiceProvider::class,
    		Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
-		Orangehill\Iseed\IseedServiceProvider::class,
 
     	Collective\Html\HtmlServiceProvider::class,
     	
