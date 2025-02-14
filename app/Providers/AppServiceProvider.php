@@ -3,9 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-use Monolog\Handler\RotatingFileHandler;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,6 +40,8 @@ class AppServiceProvider extends ServiceProvider
     			}
     		});
     	}
+    	
+    	Paginator::useBootstrap();
     	
 		//\Carbon\Carbon::setLocale("it.utf8");
 		setlocale(LC_TIME, "it_IT.utf8");
