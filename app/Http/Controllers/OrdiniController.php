@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Debug\Dumper;
 
 use App\Model\User;
 use App\Model\Gas;
@@ -55,7 +54,7 @@ class OrdiniController extends Controller
     		});
     	}
     	$gruppi=$qGruppi->get()->sortByDesc("chiusura")->groupBy("codice_gruppo");
-    	//$this->dumper->dump($gruppi);
+    	//dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
     		$gruppo=array();
     		foreach ($ordini[0]->toArray() as $key=>$value){
@@ -139,21 +138,21 @@ class OrdiniController extends Controller
 	    	elseif (\Auth::user()->livello>=User::GESTORE){
 	    		$fornai=Fornaio::all();
 	    	}*/
-        	//(new Dumper)->dump($appuntamento);
-        	/*$dumper->dump($fornai);
-        	$dumper->dump($mese);
-        	$dumper->dump($anno);*/
+        	//dump($appuntamento);
+        	/*dump($fornai);
+        	dump($mese);
+        	dump($anno);*/
         	foreach ($fornai as $fornaio){
-        		//$this->dumper->dump($fornai);
-        		//$this->dumper->dump($fornaio);
+        		//dump($fornai);
+        		//dump($fornaio);
         		if ($fornaio->giorni_gas){
-        			//$this->dumper->dump($fornaio);
+        			//dump($fornaio);
 	        		$giorni=$fornaio->giorni_gas()
 	        			->whereStagione(\Config::get("parametri.stagione"))
 	        			->where("valido_dal","<=",$anno."-".$mese_f."-01")
 	        			->where("valido_al",">=",$anno."-".$mese_f."-31")->get()
 	        			->pluck("giorno")->unique();
-	        		//$this->dumper->dump($giorni);
+	        		//dump($giorni);
 	        		foreach ($giorni as $giorno){
 	        			$refDate=\Carbon\Carbon::createFromDate($anno, $mese, 1)->subDay();
 	        			$data=clone $refDate;
@@ -161,10 +160,10 @@ class OrdiniController extends Controller
 	        			$data->next($giorno);
 	        			$chiusura=(clone $data);
 	        			$chiusura->subDay($fornaio->anticipo_chiusura);
-	        			/*$dumper->dump($giorno);
-	        			$dumper->dump($data);*/
+	        			/*dump($giorno);
+	        			dump($data);*/
 	        			while ($data->month==$mese){
-	        				//$dumper->dump($data);
+	        				//dump($data);
 	        				$check=Ordine::where("stagione",\Config::get("parametri.stagione"))
 	        					->where("codice_gruppo","P-".$fornaio->id ."-". $giorno."-".$anno."-".$mese_f)
 	        					->where("consegna",$data)
@@ -382,7 +381,7 @@ class OrdiniController extends Controller
 			$this->dati["chiuso"]=($ordine->chiusura<$oggi)?true:false;
 			$gruppi=$query->get()->groupBy("codice_gruppo")->all();
 		    $this->dati["gruppi"]=$gruppi;
-		    //(new Dumper())->dump($query,$gruppi);
+		    //dump($query,$gruppi);
 	   		return view("ordini.compila")->with($this->dati);
 		}
 		else{
