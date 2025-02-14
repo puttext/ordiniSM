@@ -20,34 +20,29 @@ class AppServiceProvider extends ServiceProvider
     		//\URL::forceSchema('https'); // for Laravel 5.3
     		\URL::forceScheme('https'); // for Laravel 5.4
     	}
-    	$monolog=\Log::getMonolog();
+ 
+    	if (config('logging.db_log')){
+    		\DB::listen(function($query) {
+    			//$sql, $bindings, $time
+    			if (!str_contains($query->sql, '"payload" = ?') || config('logging.db_log_full')) {
+    				//se non esplicitamente richiesto ignora le query con payload (tabella sessions) per evitare dati eccessivi
+    				if (config("logging.db_log_trace")){
+    					try {
+    						throw new \Exception("db logging");
+    					}
+    					catch (\Exception $e) {
+    						//$trace_dump=array_slice($e->getTrace(), 4, 10);
+    						$trace=Utilita::getTraceString($e);
+    						\Log::channel('db')->debug($query->sql,["parametri"=> $query->bindings, "time" => $query->time, "trace" => $trace]);
+    					}
+    				}
+    				else {
+    					\Log::channel('db')->debug($query->sql,["parametri"=> $query->bindings, "time" => $query->time, "trace" => "DISABLED"]);
+    				}
+    			}
+    		});
+    	}
     	
-    	$prefisso=str_replace("handler","",php_sapi_name());
-    	$handlerDebug = new RotatingFileHandler(storage_path().'/logs/'.$prefisso.'-debug.log',0,Logger::DEBUG,false,0664);
-    	$handlerError = new RotatingFileHandler(storage_path().'/logs/'.$prefisso.'-error.log',0,Logger::ERROR,false,0664);
-    	$handlerInfo = new RotatingFileHandler(storage_path().'/logs/'.$prefisso.'-info.log',0,Logger::INFO,false,0664);
-    	$handlerAll = new RotatingFileHandler(storage_path().'/logs/'.$prefisso.'-all.log',0,\Config::get('app.log_level'),true,0664);
-    	
-    	$monolog->pushHandler($handlerDebug);
-    	$monolog->pushHandler($handlerInfo);
-    	$monolog->pushHandler($handlerError);
-    	$monolog->pushHandler($handlerAll);
-    	
-    	/*$monolog->pushProcessor(function ($record) {
-    		//$record['extra']['user'] = Auth::user() ? Auth::user()->username : 'anonymous';
-    		$record['extra']['ip'] = Request::getClientIp();
-    		$record['extra']['method'] = Request::method();
-    		$record['extra']['path'] = Request::path();
-    		 return $record;
-    	});*/
-    	
-    		 
-    	if (env("DB_LOG",true)){
-			\DB::listen(function($query) {
-				\Log::debug($query->sql,["parametri"=> $query->bindings, "time" => $query->time]);
-			});
-		}
-		
 		//\Carbon\Carbon::setLocale("it.utf8");
 		setlocale(LC_TIME, "it_IT.utf8");
     	//
