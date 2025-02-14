@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     	if (config('logging.db_log')){
     		\DB::listen(function($query) {
     			//$sql, $bindings, $time
-    			if (!\Str::contains($query->sql, '"payload" = ?') || config('logging.db_log_full')) {
+    			if (!str_contains($query->sql, '"payload" = ?') || config('logging.db_log_full')) {
     				//se non esplicitamente richiesto ignora le query con payload (tabella sessions) per evitare dati eccessivi
     				if (config("logging.db_log_trace")){
     					try {

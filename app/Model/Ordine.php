@@ -84,7 +84,7 @@ class Ordine extends BaseModel
 	public function getGiornoAttribute(){
 		if (substr($this->codice_gruppo,0,1)=="P"){
 			$parts=explode("-",$this->codice_gruppo);
-			return $parts[2];
+			return (int) $parts[2];
 		}
 		else
 			return $this->consegna->dayOfWeek;
