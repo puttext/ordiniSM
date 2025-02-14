@@ -81,7 +81,7 @@ class BaseModel extends Model{
 		foreach( explode(',', $matches[1]) as $value )
 		{
 			$v = trim( $value, "'" );
-			$enum = array_add($enum, $v, $v);
+			$enum = \Ar::add($enum, $v, $v);
 		}
 		return $enum;
 	}	
