@@ -331,7 +331,7 @@ class OrdiniController extends Controller
 			$query.=" and (o.codice_gruppo like concat('P-',af.fornaio_id,'-',af.giorno,'%'))";
 		}
 		$lista_gas=collect(\Db::select($query))->map(function($x){ return $x->gas_id; })->toArray();
-		$gas_id=\Input::get("gas");
+		$gas_id=request()->gas;
 		if (\Auth::user()->livello>=User::COORDINATORE){
 			$this->dati["gas"]=\Auth::user()->gas_gestiti->whereIn("id",$lista_gas)->sortBy("comune")->pluck("full_name","id");
 			if ($gas_id)
