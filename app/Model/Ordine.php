@@ -11,7 +11,11 @@ class Ordine extends BaseModel
 	//protected $primaryKey = 'id_pratica';
 	protected $guarded = [];
 	
-	protected $dates = [self::CREATED_AT,self::UPDATED_AT,"consegna","apertura","chiusura"];
+	protected $casts = [
+		"consegna"=>"datetime",
+		"apertura"=>"datetime",
+		"chiusura"=>"datetime"
+	];
 	
 	public function fornitore(){
 		return $this->belongsTo('App\Model\Attore','fornitore_id');
