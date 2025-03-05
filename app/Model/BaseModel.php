@@ -24,15 +24,15 @@ class BaseModel extends Model{
 	protected $guarded=[];
 	
 	public function __construct($attributes = [])  {
-		
+
 		\Carbon\Carbon::setToStringFormat(self::DATE_FORMAT);
-	
+
 		parent::__construct($attributes); // Eloquent
 	}
 	
 	protected function asDateTime($value)
 	{
-		if ($value && is_object($value) && (get_class($value)=="DateTime" || is_subclass_of($value,"DateTime")))
+		if ($value && is_object($value) && ($value::class=="DateTime" || is_subclass_of($value,"DateTime")))
 			return \Carbon\Carbon::instance($value);
 		else {
 			try {
@@ -63,7 +63,7 @@ class BaseModel extends Model{
 			}
 		}
 		else if (in_array($property,$this->getDates())){
-			if (is_object($value) && (get_class($value)=="DateTime" || is_subclass_of($value,"DateTime")))
+			if (is_object($value) && ($value::class=="DateTime" || is_subclass_of($value,"DateTime")))
 				$this->attributes[$property]=$value;
 			else
 				$this->attributes[$property]=\Carbon\Carbon::createFromFormat(self::DATE_FORMAT,$value);

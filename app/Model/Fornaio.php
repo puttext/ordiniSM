@@ -16,11 +16,11 @@ class Fornaio extends Attore
 	}
 
 	public function giorni_gas(){
-		return $this->hasMany('App\Model\AssociazioneFornai','fornaio_id');
+		return $this->hasMany(\App\Model\AssociazioneFornai::class,'fornaio_id');
 	}
 	
 	public function gas(){
-		return $this->belongsToMany('App\Model\Gas','associazione_fornai','fornaio_id','gas_id')
+		return $this->belongsToMany(\App\Model\Gas::class,'associazione_fornai','fornaio_id','gas_id')
 			->withPivot("giorno","stagione","valido_dal","valido_al");
 	}
 	
@@ -37,7 +37,7 @@ class Fornaio extends Attore
 	}
 	
 	public function pane(){
-		return $this->hasMany('App\Model\Prodotto','fornitore_id')
+		return $this->hasMany(\App\Model\Prodotto::class,'fornitore_id')
 			->whereOrdineId(0);
 	}
 }

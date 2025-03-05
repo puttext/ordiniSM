@@ -18,11 +18,11 @@ class Ordine extends BaseModel
 	];
 	
 	public function fornitore(){
-		return $this->belongsTo('App\Model\Attore','fornitore_id');
+		return $this->belongsTo(\App\Model\Attore::class,'fornitore_id');
 	}
 	
 	public function prodotti(){
-		return $this->hasMany('App\Model\Prodotto');
+		return $this->hasMany(\App\Model\Prodotto::class);
 	}
 	
 	public function prodotti_sort(){
@@ -31,13 +31,13 @@ class Ordine extends BaseModel
 
 	public function fornaio(){
 		if ($this->tipo="pane")
-			return $this->belongsTo('App\Model\Fornaio','fornitore_id');
+			return $this->belongsTo(\App\Model\Fornaio::class,'fornitore_id');
 		else 
 			return null;
 	}
 	
 	public function ordine_gas(){
-		return $this->HasManyThrough('App\Model\OrdineDettaglio','App\Model\Prodotto','ordine_id','prodotto_id');
+		return $this->HasManyThrough(\App\Model\OrdineDettaglio::class,\App\Model\Prodotto::class,'ordine_id','prodotto_id');
 	}
 	
 	public function getNumProdottiAttribute(){

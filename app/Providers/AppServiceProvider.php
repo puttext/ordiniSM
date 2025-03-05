@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     		//\URL::forceSchema('https'); // for Laravel 5.3
     		\URL::forceScheme('https'); // for Laravel 5.4
     	}
- 
+
     	if (config('logging.db_log')){
     		\DB::listen(function($query) {
     			//$sql, $bindings, $time
@@ -40,9 +40,9 @@ class AppServiceProvider extends ServiceProvider
     			}
     		});
     	}
-    	
+
     	Paginator::useBootstrap();
-    	
+
 		//\Carbon\Carbon::setLocale("it.utf8");
 		setlocale(LC_TIME, "it_IT.utf8");
     	//

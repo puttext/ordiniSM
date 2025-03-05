@@ -33,11 +33,11 @@ class User extends Authenticatable
 	];
 	
 	public function referenza(){
-		return $this->belongsTo('App\Model\Attore','attore_id');
+		return $this->belongsTo(\App\Model\Attore::class,'attore_id');
 	}
 	
 	public function gas(){
-		return $this->belongsTo('App\Model\Gas');
+		return $this->belongsTo(\App\Model\Gas::class);
 	}
 
 	public function getFornaiAttribute(){

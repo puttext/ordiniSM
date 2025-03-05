@@ -11,7 +11,7 @@ class Gas extends Attore
 	];
 
 	public function fornai(){
-		return $this->belongsToMany('App\Model\Fornaio','associazione_fornai','gas_id','fornaio_id')
+		return $this->belongsToMany(\App\Model\Fornaio::class,'associazione_fornai','gas_id','fornaio_id')
 			->withPivot("giorno","stagione","valido_dal","valido_al");
 	}
 	
@@ -36,7 +36,7 @@ class Gas extends Attore
 	}
 	
 	public function referenti(){
-		return $this->HasMany("App\Model\User","gas_id","id");
+		return $this->HasMany(\App\Model\User::class,"gas_id","id");
 	}
 		
 }

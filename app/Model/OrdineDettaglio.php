@@ -11,7 +11,7 @@ class OrdineDettaglio extends Model
 	protected $guarded = [];
 	
 	public function prodotto(){
-		return $this->BelongsTo('App\Model\Prodotto','prodotto_id');
+		return $this->BelongsTo(\App\Model\Prodotto::class,'prodotto_id');
 	}
 	
 	public function getImportoAttribute(){

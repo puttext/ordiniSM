@@ -11,7 +11,7 @@ class AssociazioneFornai extends Model
 	
 	public function newQuery($excludeDeleted = true) {
     	$oggi=new \Carbon\Carbon();
-    			
+
 		return parent::newQuery($excludeDeleted = true)
 			->whereStagione(\Config::get("parametri.stagione"));
 			//->where("valido_dal","<=",$oggi)
@@ -19,6 +19,6 @@ class AssociazioneFornai extends Model
 	}
 	
 	public function fornaio(){
-		return $this->belongsTo("App\Model\Fornaio","fornaio_id","id");
+		return $this->belongsTo(\App\Model\Fornaio::class,"fornaio_id","id");
 	}
 }

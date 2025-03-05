@@ -11,11 +11,11 @@ class Prodotto extends Model
 	protected $guarded = [];
 
 	public function ordine_gas(){
-		return $this->HasMany('App\Model\OrdineDettaglio','prodotto_id','id');
+		return $this->HasMany(\App\Model\OrdineDettaglio::class,'prodotto_id','id');
 	}
 	
 	public function ordine_mio_gas(){
-		return $this->belongsTo('App\Model\OrdineDettaglio','prodotto_id','id')
+		return $this->belongsTo(\App\Model\OrdineDettaglio::class,'prodotto_id','id')
 			->whereGasId(\Auth::user()->gas_id);
 	}
 	

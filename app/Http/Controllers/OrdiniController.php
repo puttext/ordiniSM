@@ -62,7 +62,7 @@ class OrdiniController extends Controller
     		}
     		$gruppo["apertura"]=$ordini[0]->apertura;
     		$gruppo["chiusura"]=$ordini[0]->chiusura;
-    		
+
     		$fornitori=[];
     		$consegne=[];
     		foreach ($ordini as $ordine){
@@ -72,10 +72,10 @@ class OrdiniController extends Controller
     		$gruppo["fornitori"]=implode(", ",$fornitori);
     		sort($consegne);
     		$gruppo["consegne"]=implode(", ",$consegne);
-    		
+
     		$gruppo["url_edit"]="";
     		$gruppo["url_compila"]="";
-    		
+
     		if (\Auth::user()->livello>=User::COORDINATORE){
 	    		if (substr($gruppo["codice_gruppo"],0,1)=="P")
 	    			$gruppo["url_edit"]=url('/ordini/pane/'.$ordini[0]->consegna->format("Y/m").'/edit/'.explode("-",$gruppo["codice_gruppo"])[1]);
@@ -83,7 +83,7 @@ class OrdiniController extends Controller
 	    			$gruppo["url_edit"]=url('/ordini/'.$gruppo['codice_gruppo'].'/edit');
     		}
     		$gruppo["url_view"]=url('/ordini/'.$gruppo['codice_gruppo']);
-    		
+
     		if ($ordini[0]->apertura>=$oggi){
     			$gruppo["url_compila"]=url('/ordini/compila/'.$gruppo['codice_gruppo']);
     		}
@@ -95,7 +95,7 @@ class OrdiniController extends Controller
     			$this->dati["prossimi"][]=$gruppo;
     		else
     			$this->dati["storico"][]=$gruppo;
-    			 
+
     		//dd($ordini->pluck("consegna"));
     	}
     	//dd($this->dati);
