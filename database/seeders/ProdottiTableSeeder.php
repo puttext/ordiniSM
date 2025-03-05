@@ -1,11 +1,11 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
 class ProdottiTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -13,13 +13,11 @@ class ProdottiTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
         \DB::table('prodotti')->delete();
-        
-        \DB::table('prodotti')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('prodotti')->insert([
+            0 => [
                 'id' => 1,
                 'ordine_id' => 0,
                 'fornitore_id' => 1,
@@ -31,10 +29,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.25,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            1 => 
-            array (
+                'updated_at' => null,
+            ],
+            1 => [
                 'id' => 2,
                 'ordine_id' => 0,
                 'fornitore_id' => 1,
@@ -46,10 +43,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.25,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            2 => 
-            array (
+                'updated_at' => null,
+            ],
+            2 => [
                 'id' => 3,
                 'ordine_id' => 0,
                 'fornitore_id' => 1,
@@ -61,10 +57,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.25,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            3 => 
-            array (
+                'updated_at' => null,
+            ],
+            3 => [
                 'id' => 15,
                 'ordine_id' => 0,
                 'fornitore_id' => 5,
@@ -76,10 +71,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.12,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            4 => 
-            array (
+                'updated_at' => null,
+            ],
+            4 => [
                 'id' => 14,
                 'ordine_id' => 0,
                 'fornitore_id' => 5,
@@ -91,10 +85,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.12,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            5 => 
-            array (
+                'updated_at' => null,
+            ],
+            5 => [
                 'id' => 13,
                 'ordine_id' => 0,
                 'fornitore_id' => 5,
@@ -106,10 +99,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.12,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            6 => 
-            array (
+                'updated_at' => null,
+            ],
+            6 => [
                 'id' => 12,
                 'ordine_id' => 0,
                 'fornitore_id' => 4,
@@ -121,10 +113,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.23000000000000001,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            7 => 
-            array (
+                'updated_at' => null,
+            ],
+            7 => [
                 'id' => 11,
                 'ordine_id' => 0,
                 'fornitore_id' => 4,
@@ -136,10 +127,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.23000000000000001,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            8 => 
-            array (
+                'updated_at' => null,
+            ],
+            8 => [
                 'id' => 10,
                 'ordine_id' => 0,
                 'fornitore_id' => 4,
@@ -151,10 +141,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.23000000000000001,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            9 => 
-            array (
+                'updated_at' => null,
+            ],
+            9 => [
                 'id' => 9,
                 'ordine_id' => 0,
                 'fornitore_id' => 3,
@@ -166,10 +155,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.16,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            10 => 
-            array (
+                'updated_at' => null,
+            ],
+            10 => [
                 'id' => 4,
                 'ordine_id' => 0,
                 'fornitore_id' => 2,
@@ -181,10 +169,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.33000000000000002,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            11 => 
-            array (
+                'updated_at' => null,
+            ],
+            11 => [
                 'id' => 5,
                 'ordine_id' => 0,
                 'fornitore_id' => 2,
@@ -196,10 +183,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.33000000000000002,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            12 => 
-            array (
+                'updated_at' => null,
+            ],
+            12 => [
                 'id' => 6,
                 'ordine_id' => 0,
                 'fornitore_id' => 2,
@@ -211,10 +197,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.070000000000000007,
                 'contributo_sm' => 0.33000000000000002,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            13 => 
-            array (
+                'updated_at' => null,
+            ],
+            13 => [
                 'id' => 7,
                 'ordine_id' => 0,
                 'fornitore_id' => 3,
@@ -226,10 +211,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.16,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            14 => 
-            array (
+                'updated_at' => null,
+            ],
+            14 => [
                 'id' => 8,
                 'ordine_id' => 0,
                 'fornitore_id' => 3,
@@ -241,10 +225,9 @@ class ProdottiTableSeeder extends Seeder
                 'contributo_des' => 0.080000000000000002,
                 'contributo_sm' => 0.16,
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-        ));
-        
-        
+                'updated_at' => null,
+            ],
+        ]);
+
     }
 }

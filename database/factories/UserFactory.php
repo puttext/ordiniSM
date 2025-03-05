@@ -7,8 +7,8 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
-	static $password;
-	
+    public static $password;
+
     /**
      * Define the model's default state.
      *
@@ -16,11 +16,11 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-    	return [
-    			'name' => $this->faker->name,
-    			'email' => $this->faker->unique()->safeEmail,
-    			'password' => $password ?: $password = bcrypt('secret'),
-    			'remember_token' => Str::random(10),
-    	];
+        return [
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => $password ?: $password = bcrypt('secret'),
+            'remember_token' => Str::random(10),
+        ];
     }
 }

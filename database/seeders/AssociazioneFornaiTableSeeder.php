@@ -1,11 +1,11 @@
-<?php 
+<?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
 class AssociazioneFornaiTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -13,13 +13,11 @@ class AssociazioneFornaiTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
         \DB::table('associazione_fornai')->delete();
-        
-        \DB::table('associazione_fornai')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('associazione_fornai')->insert([
+            0 => [
                 'id' => 2,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 1,
@@ -28,10 +26,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            1 => 
-            array (
+                'updated_at' => null,
+            ],
+            1 => [
                 'id' => 1,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 3,
@@ -40,10 +37,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            2 => 
-            array (
+                'updated_at' => null,
+            ],
+            2 => [
                 'id' => 3,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 2,
@@ -52,10 +48,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            3 => 
-            array (
+                'updated_at' => null,
+            ],
+            3 => [
                 'id' => 4,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 3,
@@ -64,10 +59,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            4 => 
-            array (
+                'updated_at' => null,
+            ],
+            4 => [
                 'id' => 5,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 3,
@@ -76,10 +70,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            5 => 
-            array (
+                'updated_at' => null,
+            ],
+            5 => [
                 'id' => 6,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 3,
@@ -88,10 +81,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            6 => 
-            array (
+                'updated_at' => null,
+            ],
+            6 => [
                 'id' => 7,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 3,
@@ -100,10 +92,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            7 => 
-            array (
+                'updated_at' => null,
+            ],
+            7 => [
                 'id' => 8,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 2,
@@ -112,10 +103,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            8 => 
-            array (
+                'updated_at' => null,
+            ],
+            8 => [
                 'id' => 9,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 2,
@@ -124,10 +114,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            9 => 
-            array (
+                'updated_at' => null,
+            ],
+            9 => [
                 'id' => 10,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 1,
@@ -136,10 +125,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            10 => 
-            array (
+                'updated_at' => null,
+            ],
+            10 => [
                 'id' => 11,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 4,
@@ -148,10 +136,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            11 => 
-            array (
+                'updated_at' => null,
+            ],
+            11 => [
                 'id' => 12,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 1,
@@ -160,10 +147,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            12 => 
-            array (
+                'updated_at' => null,
+            ],
+            12 => [
                 'id' => 13,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 2,
@@ -172,10 +158,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            13 => 
-            array (
+                'updated_at' => null,
+            ],
+            13 => [
                 'id' => 14,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 4,
@@ -184,10 +169,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            14 => 
-            array (
+                'updated_at' => null,
+            ],
+            14 => [
                 'id' => 15,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 3,
@@ -196,10 +180,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            15 => 
-            array (
+                'updated_at' => null,
+            ],
+            15 => [
                 'id' => 16,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 1,
@@ -208,10 +191,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            16 => 
-            array (
+                'updated_at' => null,
+            ],
+            16 => [
                 'id' => 17,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 3,
@@ -220,10 +202,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            17 => 
-            array (
+                'updated_at' => null,
+            ],
+            17 => [
                 'id' => 18,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 4,
@@ -232,10 +213,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            18 => 
-            array (
+                'updated_at' => null,
+            ],
+            18 => [
                 'id' => 19,
                 'stagione' => '2016-2017',
                 'fornaio_id' => 2,
@@ -244,10 +224,9 @@ class AssociazioneFornaiTableSeeder extends Seeder
                 'valido_dal' => '2016-09-01',
                 'valido_al' => '2017-07-31',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-        ));
-        
-        
+                'updated_at' => null,
+            ],
+        ]);
+
     }
 }
