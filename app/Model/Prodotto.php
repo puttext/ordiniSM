@@ -45,7 +45,7 @@ class Prodotto extends Model
 	}
 	
 	public function getTotaliAttribute(){
-		$totali=array();
+		$totali=[];
 		foreach ($this->ordine_gas as $det){
 			$totali[$det->gas_id]["quantita"]=$det->quantita;
 			

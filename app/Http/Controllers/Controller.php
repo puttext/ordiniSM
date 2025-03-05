@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
-	protected $dati=array();
+	protected $dati=[];
     /**
      * Create a new controller instance.
      *

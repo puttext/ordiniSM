@@ -17,7 +17,7 @@ class CreateProdottiTable extends Migration {
 			$table->increments('id');
 			$table->integer('ordine_id');
 			$table->integer('fornitore_id');
-			$table->enum('tipo', array('pane','farina','granella','altro'));
+			$table->enum('tipo', ['pane','farina','granella','altro']);
 			$table->string('sottotipo');
 			$table->string('descrizione');
 			$table->string('quantita');

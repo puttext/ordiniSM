@@ -28,7 +28,7 @@ class PaneController extends Controller
     	elseif (\Auth::user()->livello>=User::GESTORE){
     		$fornai=Fornaio::all();
     	}*/
-    	$date=array();
+    	$date=[];
     	$index=0;
     	foreach ($fornai as $fornaio){
     		if ($fornaio->giorni_gas){
@@ -38,7 +38,7 @@ class PaneController extends Controller
     				->where("valido_al",">=",$anno."-".$mese_f."-31")->get()
     				->pluck("giorno")->unique();
     			foreach ($giorni as $giorno){
-    				$riga=array();
+    				$riga=[];
     				$riga["fornaio"]=$fornaio;
     				$refDate=\Carbon\Carbon::createFromDate($anno, $mese, 1)->subDay();
     				$data=clone $refDate;

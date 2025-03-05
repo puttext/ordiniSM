@@ -21,9 +21,9 @@ class BaseModel extends Model{
 		);*/
 	//protected $defaults=array();
 	//protected $calculated=array();
-	protected $guarded=array();
+	protected $guarded=[];
 	
-	public function __construct($attributes = array())  {
+	public function __construct($attributes = [])  {
 		
 		\Carbon\Carbon::setToStringFormat(self::DATE_FORMAT);
 	
@@ -77,7 +77,7 @@ class BaseModel extends Model{
 	{
 		$type = \DB::select( \DB::raw("SHOW COLUMNS FROM $table WHERE Field = '$column'") )[0]->Type;
 		preg_match('/^enum\((.*)\)$/', $type, $matches);
-		$enum = array();
+		$enum = [];
 		foreach( explode(',', $matches[1]) as $value )
 		{
 			$v = trim( $value, "'" );

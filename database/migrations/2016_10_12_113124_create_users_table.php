@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration {
 			$table->string('name', 20);
 			$table->string('email')->unique();
 			$table->string('password');
-			$table->enum('ruolo', array('referente','fornitore','coordinatore','gestore','admin'));
+			$table->enum('ruolo', ['referente','fornitore','coordinatore','gestore','admin']);
 			$table->integer('attore_id')->nullable();
 			$table->integer('gas_id')->nullable();
 			$table->rememberToken();

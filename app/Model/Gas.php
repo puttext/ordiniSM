@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gas extends Attore
 {
-	protected $attributes = array(
+	protected $attributes = [
 		'tipo' => 'gas',
-	);
+	];
 
 	public function fornai(){
 		return $this->belongsToMany('App\Model\Fornaio','associazione_fornai','gas_id','fornaio_id')

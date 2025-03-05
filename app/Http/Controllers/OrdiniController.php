@@ -24,9 +24,9 @@ class OrdiniController extends Controller
     	$qGruppi=Ordine::select();
 
     	$oggi=\Carbon\Carbon::today();
-    	$this->dati["in_corso"]=array();
-    	$this->dati["prossimi"]=array();
-    	$this->dati["storico"]=array();
+    	$this->dati["in_corso"]=[];
+    	$this->dati["prossimi"]=[];
+    	$this->dati["storico"]=[];
     	
     	$this->dati["stagioni"]=Ordine::groupBy("stagione")->orderBy("stagione","DESC")->pluck("stagione","stagione")->prepend(\Config::get("parametri.stagione"),\Config::get("parametri.stagione"))->unique();
     	$this->dati["stagione"]=$request->has("stagione")?$request->input("stagione"):\Config::get("parametri.stagione");
@@ -56,15 +56,15 @@ class OrdiniController extends Controller
     	$gruppi=$qGruppi->get()->sortByDesc("chiusura")->groupBy("codice_gruppo");
     	//dump($gruppi);
     	foreach ($gruppi as $codice_gruppo=>$ordini){
-    		$gruppo=array();
+    		$gruppo=[];
     		foreach ($ordini[0]->toArray() as $key=>$value){
     			$gruppo[$key]=$value;
     		}
     		$gruppo["apertura"]=$ordini[0]->apertura;
     		$gruppo["chiusura"]=$ordini[0]->chiusura;
     		
-    		$fornitori=array();
-    		$consegne=array();
+    		$fornitori=[];
+    		$consegne=[];
     		foreach ($ordini as $ordine){
     			$consegne[]=$ordine->consegna->format("d/m");
     			$fornitori[$ordine->fornitore_id]=$ordine->fornitore->nome;
@@ -203,7 +203,7 @@ class OrdiniController extends Controller
      */
     public function show($id)
     {
-    	$ordini=array();
+    	$ordini=[];
     	if (is_numeric($id)) {
 			//id numerico: ordine singolo
 			$ordini[]=Ordine::find($id);
@@ -229,7 +229,7 @@ class OrdiniController extends Controller
 
 		$this->dati["ordini"]=$ordini;
 
-		$totali_gas=array();
+		$totali_gas=[];
 		$campi=["quantita","importo","importo_fornitore","contributo_des","contributo_sm","contributi","kg_farina"];
 		foreach ($this->dati["elenco_gas"] as $gas){
 			foreach ($campi as $campo){

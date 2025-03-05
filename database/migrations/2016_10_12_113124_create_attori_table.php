@@ -16,7 +16,7 @@ class CreateAttoriTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('referente_id')->nullable();
-			$table->enum('tipo', array('gas','fornaio','mugnaio','contadino'));
+			$table->enum('tipo', ['gas','fornaio','mugnaio','contadino']);
 			$table->string('nome', 20);
 			$table->string('comune', 30);
 			$table->string('ragione_sociale');

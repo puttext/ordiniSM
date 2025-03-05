@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fornaio extends Attore
 {
-	protected $attributes = array(
+	protected $attributes = [
 		'tipo' => 'fornaio',
-	);
+	];
 
 	public function newQuery($excludeDeleted = true) {
 		return parent::newQuery($excludeDeleted = true)
