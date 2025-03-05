@@ -1,11 +1,11 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
 class AttoriTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -13,73 +13,66 @@ class AttoriTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
         \DB::table('attori')->delete();
-        
-        \DB::table('attori')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('attori')->insert([
+            0 => [
                 'id' => 1,
-                'referente_id' => NULL,
+                'referente_id' => null,
                 'tipo' => 'fornaio',
                 'nome' => 'Massimo',
                 'comune' => 'Cesano Maderno',
                 'ragione_sociale' => 'Il Piccolo Forno',
                 'indirizzo' => 'via Monte Rosa',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            1 => 
-            array (
+                'updated_at' => null,
+            ],
+            1 => [
                 'id' => 2,
-                'referente_id' => NULL,
+                'referente_id' => null,
                 'tipo' => 'fornaio',
                 'nome' => 'Colombo',
                 'comune' => 'Bellinzago Lombardo',
                 'ragione_sociale' => 'F.lli Colombo',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            2 => 
-            array (
+                'updated_at' => null,
+            ],
+            2 => [
                 'id' => 3,
-                'referente_id' => NULL,
+                'referente_id' => null,
                 'tipo' => 'fornaio',
                 'nome' => 'Franca',
                 'comune' => 'Seregno',
                 'ragione_sociale' => 'Il Pane di Franca',
                 'indirizzo' => 'via Tenca',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            3 => 
-            array (
+                'updated_at' => null,
+            ],
+            3 => [
                 'id' => 4,
-                'referente_id' => NULL,
+                'referente_id' => null,
                 'tipo' => 'fornaio',
                 'nome' => 'Emilio',
                 'comune' => '',
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            4 => 
-            array (
+                'updated_at' => null,
+            ],
+            4 => [
                 'id' => 5,
-                'referente_id' => NULL,
+                'referente_id' => null,
                 'tipo' => 'fornaio',
                 'nome' => 'Giona',
                 'comune' => 'Rovagnate',
                 'ragione_sociale' => 'C.na Bagaggera',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            5 => 
-            array (
+                'updated_at' => null,
+            ],
+            5 => [
                 'id' => 14,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -88,10 +81,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            6 => 
-            array (
+                'updated_at' => null,
+            ],
+            6 => [
                 'id' => 13,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -100,10 +92,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            7 => 
-            array (
+                'updated_at' => null,
+            ],
+            7 => [
                 'id' => 12,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -112,10 +103,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            8 => 
-            array (
+                'updated_at' => null,
+            ],
+            8 => [
                 'id' => 11,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -124,10 +114,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            9 => 
-            array (
+                'updated_at' => null,
+            ],
+            9 => [
                 'id' => 10,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -136,10 +125,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            10 => 
-            array (
+                'updated_at' => null,
+            ],
+            10 => [
                 'id' => 9,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -148,10 +136,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            11 => 
-            array (
+                'updated_at' => null,
+            ],
+            11 => [
                 'id' => 8,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -160,10 +147,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            12 => 
-            array (
+                'updated_at' => null,
+            ],
+            12 => [
                 'id' => 7,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -172,10 +158,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            13 => 
-            array (
+                'updated_at' => null,
+            ],
+            13 => [
                 'id' => 6,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -184,10 +169,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            14 => 
-            array (
+                'updated_at' => null,
+            ],
+            14 => [
                 'id' => 15,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -196,10 +180,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            15 => 
-            array (
+                'updated_at' => null,
+            ],
+            15 => [
                 'id' => 16,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -208,10 +191,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            16 => 
-            array (
+                'updated_at' => null,
+            ],
+            16 => [
                 'id' => 17,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -220,10 +202,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            17 => 
-            array (
+                'updated_at' => null,
+            ],
+            17 => [
                 'id' => 18,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -232,10 +213,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            18 => 
-            array (
+                'updated_at' => null,
+            ],
+            18 => [
                 'id' => 19,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -244,10 +224,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            19 => 
-            array (
+                'updated_at' => null,
+            ],
+            19 => [
                 'id' => 20,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -256,10 +235,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            20 => 
-            array (
+                'updated_at' => null,
+            ],
+            20 => [
                 'id' => 21,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -268,10 +246,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            21 => 
-            array (
+                'updated_at' => null,
+            ],
+            21 => [
                 'id' => 22,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -280,10 +257,9 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            22 => 
-            array (
+                'updated_at' => null,
+            ],
+            22 => [
                 'id' => 23,
                 'referente_id' => 0,
                 'tipo' => 'gas',
@@ -292,22 +268,20 @@ class AttoriTableSeeder extends Seeder
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-            23 => 
-            array (
+                'updated_at' => null,
+            ],
+            23 => [
                 'id' => 24,
-                'referente_id' => NULL,
+                'referente_id' => null,
                 'tipo' => 'gas',
                 'nome' => 'GAS Cornate',
                 'comune' => 'Cornate D\'Adda',
                 'ragione_sociale' => '',
                 'indirizzo' => '',
                 'created_at' => '2017-03-15 11:42:18',
-                'updated_at' => NULL,
-            ),
-        ));
-        
-        
+                'updated_at' => null,
+            ],
+        ]);
+
     }
 }

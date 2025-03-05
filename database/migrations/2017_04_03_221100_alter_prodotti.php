@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AlterProdotti extends Migration
 {
@@ -13,9 +13,9 @@ class AlterProdotti extends Migration
      */
     public function up()
     {
-    	Schema::table('prodotti', function (Blueprint $table) {
-    		$table->string('descrizione_breve1',5);
-    	});
+        Schema::table('prodotti', function (Blueprint $table) {
+            $table->string('descrizione_breve1', 5);
+        });
     }
 
     /**

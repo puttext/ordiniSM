@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AlterAttoriAnticipo extends Migration
 {
@@ -13,9 +13,9 @@ class AlterAttoriAnticipo extends Migration
      */
     public function up()
     {
-    	Schema::table('attori', function (Blueprint $table) {
-    		$table->integer('anticipo_chiusura')->default(2);
-    	});
+        Schema::table('attori', function (Blueprint $table) {
+            $table->integer('anticipo_chiusura')->default(2);
+        });
     }
 
     /**

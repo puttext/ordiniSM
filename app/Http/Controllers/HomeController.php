@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Model\Ordine;
 
 class HomeController extends Controller
 {
-
     /**
      * Show the application dashboard.
      *
@@ -15,17 +13,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-    	$oggi=\Carbon\Carbon::today();
-    	if (\Auth::user()->gas_id){
-    		$fornai=\Auth::user()->gas->fornai;
-    		$check=Ordine::where("apertura","<=",$oggi)
-    			->where("chiusura",">=",$oggi)
-    			->whereIn("fornitore_id",$fornai->pluck("id")->all())
-    			->count();
-    		if ($check>0)
-    			$this->dati["compila"]=true;
-    	}
-    		 
-    	return view('home')->with($this->dati);
+        $oggi = \Carbon\Carbon::today();
+        if (\Auth::user()->gas_id) {
+            $fornai = \Auth::user()->gas->fornai;
+            $check = Ordine::where('apertura', '<=', $oggi)
+                ->where('chiusura', '>=', $oggi)
+                ->whereIn('fornitore_id', $fornai->pluck('id')->all())
+                ->count();
+            if ($check > 0) {
+                $this->dati['compila'] = true;
+            }
+        }
+
+        return view('home')->with($this->dati);
     }
 }

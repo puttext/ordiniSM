@@ -1,11 +1,11 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -13,13 +13,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
         \DB::table('users')->delete();
-        
-        \DB::table('users')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('users')->insert([
+            0 => [
                 'id' => 7,
                 'name' => 'Nicola ',
                 'email' => 'favuzzi.nicola@alice.it',
@@ -28,11 +26,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 11,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            1 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            1 => [
                 'id' => 8,
                 'name' => 'Metella ',
                 'email' => 'metella@email.it',
@@ -41,11 +38,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 12,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            2 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            2 => [
                 'id' => 6,
                 'name' => 'Monica ',
                 'email' => 'm.bonalumi@tiscali.it',
@@ -54,11 +50,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 10,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            3 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            3 => [
                 'id' => 5,
                 'name' => 'Angelo ',
                 'email' => 'angelo.mornata@hotmail.it',
@@ -67,11 +62,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 9,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            4 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            4 => [
                 'id' => 3,
                 'name' => 'Emanuele Bertipaglia',
                 'email' => 'lele.bertipaglia@gmail.com',
@@ -80,11 +74,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 7,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            5 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            5 => [
                 'id' => 4,
                 'name' => 'Stefania Pirovano',
                 'email' => 'glicine@livecom.it',
@@ -93,11 +86,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 8,
                 'remember_token' => 'I0UWnvwiqQgfKLguoXrwTKZfRol2cCtw7WVdOFGkbEE1AQ6GhuQ5hvkKqGun',
-                'created_at' => new DateTime(),
+                'created_at' => new DateTime,
                 'updated_at' => '2017-02-25 01:59:32',
-            ),
-            6 => 
-            array (
+            ],
+            6 => [
                 'id' => 29,
                 'name' => 'Rosella ',
                 'email' => 'marco.vismara@fastwebnet.it',
@@ -106,11 +98,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 6,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            7 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            7 => [
                 'id' => 2,
                 'name' => 'Giovanna ',
                 'email' => 'vgiuseppe@libero.it',
@@ -119,11 +110,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 6,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            8 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            8 => [
                 'id' => 9,
                 'name' => 'Rosanna Busa',
                 'email' => 'rossanabusa@gmail.com',
@@ -132,11 +122,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 13,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            9 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            9 => [
                 'id' => 10,
                 'name' => 'Sandra Gabriele',
                 'email' => 'giuliano88@gmail.com',
@@ -145,11 +134,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 13,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            10 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            10 => [
                 'id' => 11,
                 'name' => 'Rossella Chiarella',
                 'email' => 'rossella.chiarella@gmail.com',
@@ -158,11 +146,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 13,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            11 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            11 => [
                 'id' => 12,
                 'name' => 'Giulia  Canavero',
                 'email' => 'g.canavero@inwind.it',
@@ -171,11 +158,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 13,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            12 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            12 => [
                 'id' => 13,
                 'name' => 'Maria Elena Scalzi',
                 'email' => 'mariaelenascalzi@yahoo.it',
@@ -184,11 +170,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 14,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            13 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            13 => [
                 'id' => 14,
                 'name' => 'Stefano Radaelli',
                 'email' => 'stradael@livecom.it',
@@ -197,11 +182,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 1,
                 'gas_id' => 15,
                 'remember_token' => 'mEgzNHAacfO5y1xDREUki0uyIiH13rp35BElmITM0RwiPtoGWHAmemcd9S0B',
-                'created_at' => new DateTime(),
+                'created_at' => new DateTime,
                 'updated_at' => '2017-03-15 17:52:00',
-            ),
-            14 => 
-            array (
+            ],
+            14 => [
                 'id' => 15,
                 'name' => 'Maurizio Martin',
                 'email' => 'mapaella@gmail.com',
@@ -210,11 +194,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 16,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            15 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            15 => [
                 'id' => 16,
                 'name' => 'Valter Salmaso',
                 'email' => 'valter.salmaso@fastwebnet.it',
@@ -223,11 +206,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 17,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            16 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            16 => [
                 'id' => 17,
                 'name' => 'Mario Cerbone',
                 'email' => 'cerbo.m@libero.it',
@@ -236,11 +218,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 17,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            17 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            17 => [
                 'id' => 18,
                 'name' => 'Enza Abramonte',
                 'email' => 'enza.abramonte@gmail.com',
@@ -249,11 +230,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 18,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            18 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            18 => [
                 'id' => 19,
                 'name' => 'paolo corno',
                 'email' => 'paoloementa@hotmail.com',
@@ -262,11 +242,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 18,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            19 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            19 => [
                 'id' => 20,
                 'name' => 'Paolo Zucchi',
                 'email' => 'paolo.zucchi999@gmail.com',
@@ -275,11 +254,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 4,
                 'gas_id' => 18,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            20 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            20 => [
                 'id' => 21,
                 'name' => 'Antonia De Giuli',
                 'email' => 'angelo_casiraghi@libero.it',
@@ -288,11 +266,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 19,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            21 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            21 => [
                 'id' => 22,
                 'name' => 'Roberto ',
                 'email' => 'rmontrasio60@gmail.com',
@@ -301,11 +278,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 20,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            22 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            22 => [
                 'id' => 23,
                 'name' => 'Paolo Formenti',
                 'email' => 'paoloformenti3@gmail.com',
@@ -314,11 +290,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 21,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            23 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            23 => [
                 'id' => 24,
                 'name' => 'Chiara ',
                 'email' => 'chimontiara@gmail.com',
@@ -327,11 +302,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 22,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            24 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            24 => [
                 'id' => 25,
                 'name' => 'Laura ',
                 'email' => 'laurabrambilla@alice.it',
@@ -340,11 +314,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 22,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            25 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            25 => [
                 'id' => 26,
                 'name' => 'GAS ',
                 'email' => 'gasvedano@gmail.com',
@@ -353,11 +326,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 22,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            26 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            26 => [
                 'id' => 27,
                 'name' => 'Lucia ',
                 'email' => 'sgarbi@fastwebnet.it',
@@ -366,11 +338,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 0,
                 'gas_id' => 23,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            27 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            27 => [
                 'id' => 28,
                 'name' => 'Pippo Drago',
                 'email' => 'pippodrago53@yahoo.it',
@@ -379,24 +350,22 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 2,
                 'gas_id' => 24,
                 'remember_token' => '',
-                'created_at' => new DateTime(),
-                'updated_at' => NULL,
-            ),
-            28 => 
-            array (
+                'created_at' => new DateTime,
+                'updated_at' => null,
+            ],
+            28 => [
                 'id' => 1,
                 'name' => 'Admin',
                 'email' => 'admin@ordinism.ddns.net',
                 'password' => '$2y$10$pdOVYVjnEY/xQs4wqCQhCuDWLh.SJt6EIwmF7QPMKkQFRCx/HJyNG',
                 'ruolo' => 'admin',
                 'attore_id' => 0,
-                'gas_id' => NULL,
+                'gas_id' => null,
                 'remember_token' => 'R4I2PF4s3SNLmqTKx6ti8zBMOLKL94zsI3T33OgP2DtvSqCKtELpCUV6U0gt',
-                'created_at' => NULL,
+                'created_at' => null,
                 'updated_at' => '2017-03-15 18:18:31',
-            ),
-            29 => 
-            array (
+            ],
+            29 => [
                 'id' => 30,
                 'name' => 'Margherita Motta',
                 'email' => 'segreteria@desbri.org',
@@ -405,11 +374,10 @@ class UsersTableSeeder extends Seeder
                 'attore_id' => 3,
                 'gas_id' => 0,
                 'remember_token' => 'c9WxpM5AC5CHWlwKYFt0S7xRAeqSdFTykFbtiiXYny1rc5GEIghfVssaW6eL',
-                'created_at' => NULL,
+                'created_at' => null,
                 'updated_at' => '2017-03-15 18:20:04',
-            ),
-        ));
-        
-        
+            ],
+        ]);
+
     }
 }

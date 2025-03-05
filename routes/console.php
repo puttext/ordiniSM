@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Inspiring;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-use Monolog\Handler\RotatingFileHandler;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +16,3 @@ use Monolog\Handler\RotatingFileHandler;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
-

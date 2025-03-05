@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Model\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -30,7 +30,6 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,30 +56,30 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-    	$this->dati["gas"]=\App\Model\Gas::all()->pluck("full_name","id");
-    	$this->dati["fornai"]=\App\Model\Fornaio::all()->pluck("full_name","id");
-    	$this->dati["ruoli"]=\App\Model\BaseModel::getEnumValues("users","ruolo");
-    	$this->dati["user"]=User::find($id);
-    	$this->dati["disable"]=(\Auth::user()->livello<User::GESTORE)?"disabled":null;
-    	$this->dati["disable_coord"]=(\Auth::user()->livello<User::COORDINATORE)?"disabled":null;
-    	 
-    	//dd(\Auth::user()->livello,$this->dati);
-    	return view("user.edit")->with($this->dati);
+        $this->dati['gas'] = \App\Model\Gas::all()->pluck('full_name', 'id');
+        $this->dati['fornai'] = \App\Model\Fornaio::all()->pluck('full_name', 'id');
+        $this->dati['ruoli'] = \App\Model\BaseModel::getEnumValues('users', 'ruolo');
+        $this->dati['user'] = User::find($id);
+        $this->dati['disable'] = (\Auth::user()->livello < User::GESTORE) ? 'disabled' : null;
+        $this->dati['disable_coord'] = (\Auth::user()->livello < User::COORDINATORE) ? 'disabled' : null;
+
+        // dd(\Auth::user()->livello,$this->dati);
+        return view('user.edit')->with($this->dati);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $user=User::find($id);
+        $user = User::find($id);
         $user->fill($request->input());
         $user->save();
-        return redirect(route("user.edit",$id));
+
+        return redirect(route('user.edit', $id));
     }
 
     /**
