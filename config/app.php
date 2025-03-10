@@ -162,18 +162,16 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-    	Laravel\Tinker\TinkerServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
 
-    		/*
+        /*
          * Package Service Providers...
          */
-    	// GENERATORS
-   		/*Way\Generators\GeneratorsServiceProvider::class,
-   		Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,*/
+        // GENERATORS
+        /*Way\Generators\GeneratorsServiceProvider::class,
+        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,*/
 
-    	Collective\Html\HtmlServiceProvider::class,
-    	
-
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -232,10 +230,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-    	'Form' => Collective\Html\FormFacade::class,
-    	'Html' => Collective\Html\HtmlFacade::class,
-    	//'Input' => Illuminate\Support\Facades\Input::class,
-    		
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        // 'Input' => Illuminate\Support\Facades\Input::class,
+
     ],
 
 ];
