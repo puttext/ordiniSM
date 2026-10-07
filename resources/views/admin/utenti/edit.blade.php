@@ -45,6 +45,21 @@
 						{!! Form::label('gas_id', 'GAS', ['class' => 'col-md-3 control-label']) !!}
 						<div class="col-md-6">
 							{!! Form::select('gas_id', ['' => '-- nessuno --'] + $gas->all(), old('gas_id', $user->gas_id), ['class' => 'form-control']) !!}
+							@if ($gas_associato)
+								<div class="well well-sm" style="margin:8px 0 0">
+									<a href="{{ url('admin/gas/'.$gas_associato->id.'/edit') }}" class="pull-right">Scheda GAS</a>
+									<strong>{{ $gas_associato->full_name }}</strong>
+									{{ $gas_associato->tipo == 'rivendita' ? '· Rivendita' : '' }}
+									@if ($gas_associato->ragione_sociale)<br>{{ $gas_associato->ragione_sociale }}@endif
+									@if ($gas_associato->indirizzo)<br>{{ $gas_associato->indirizzo }}@endif
+									<br><em>Fornai {{ config('parametri.stagione') }}:</em>
+									@forelse ($consegne_gas as $a)
+										<div>{{ config('parametri.giorni_txt')[$a->giorno] ?? $a->giorno }}: {{ $a->fornaio ? $a->fornaio->ragione_sociale : 'Fornaio #'.$a->fornaio_id }} <small class="text-muted">({{ $a->valido_dal ? \Carbon\Carbon::parse($a->valido_dal)->format('d/m/Y') : '…' }} – {{ $a->valido_al ? \Carbon\Carbon::parse($a->valido_al)->format('d/m/Y') : '…' }})</small></div>
+									@empty
+										nessuno
+									@endforelse
+								</div>
+							@endif
 						</div>
 					</div>
 					<div class="form-group">
@@ -52,6 +67,20 @@
 						<div class="col-md-6">
 							{!! Form::select('attore_id', ['' => '-- nessuno --'] + $fornai->all(), old('attore_id', $user->attore_id), ['class' => 'form-control']) !!}
 							<span class="help-block">Obbligatorio per i coordinatori: è il fornaio di cui gestiscono gli ordini.</span>
+							@if ($fornaio_associato)
+								<div class="well well-sm" style="margin:0">
+									<a href="{{ url('admin/fornai/'.$fornaio_associato->id.'/edit') }}" class="pull-right">Scheda fornaio</a>
+									<strong>{{ $fornaio_associato->ragione_sociale }}</strong> ({{ $fornaio_associato->nome }})
+									<br>{{ $fornaio_associato->indirizzo ? $fornaio_associato->indirizzo.', ' : '' }}{{ $fornaio_associato->comune }}
+									<br>Chiusura ordini {{ $fornaio_associato->anticipo_chiusura }} giorni prima
+									<br><em>GAS {{ config('parametri.stagione') }}:</em>
+									@forelse ($consegne_fornaio as $a)
+										<div>{{ config('parametri.giorni_txt')[$a->giorno] ?? $a->giorno }}: {{ $a->gas ? $a->gas->full_name : 'GAS #'.$a->gas_id }} <small class="text-muted">({{ $a->valido_dal ? \Carbon\Carbon::parse($a->valido_dal)->format('d/m/Y') : '…' }} – {{ $a->valido_al ? \Carbon\Carbon::parse($a->valido_al)->format('d/m/Y') : '…' }})</small></div>
+									@empty
+										nessuno
+									@endforelse
+								</div>
+							@endif
 						</div>
 					</div>
 					<div class="form-group">

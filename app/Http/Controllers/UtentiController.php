@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\AssociazioneFornai;
 use App\Model\Fornaio;
 use App\Model\Gas;
 use App\Model\User;
@@ -111,6 +112,16 @@ class UtentiController extends Controller
         $this->dati['gas'] = Gas::orderBy('nome')->get()->pluck('full_name', 'id');
         $this->dati['fornai'] = Fornaio::orderBy('ragione_sociale')->get()->pluck('full_name', 'id');
         $this->dati['se_stesso'] = $user->exists && $user->id == \Auth::id();
+
+        // GAS e fornaio già associati, con le consegne della stagione corrente
+        $this->dati['gas_associato'] = $user->gas_id ? Gas::find($user->gas_id) : null;
+        $this->dati['fornaio_associato'] = $user->attore_id ? Fornaio::find($user->attore_id) : null;
+        $this->dati['consegne_gas'] = $this->dati['gas_associato']
+            ? AssociazioneFornai::with('fornaio')->whereGasId($user->gas_id)->orderBy('giorno')->get()
+            : collect();
+        $this->dati['consegne_fornaio'] = $this->dati['fornaio_associato']
+            ? AssociazioneFornai::with('gas')->whereFornaioId($user->attore_id)->orderBy('giorno')->get()
+            : collect();
 
         return view('admin.utenti.edit')->with($this->dati);
     }

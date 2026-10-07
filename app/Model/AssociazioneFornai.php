@@ -24,4 +24,9 @@ class AssociazioneFornai extends Model
     {
         return $this->belongsTo(\App\Model\Fornaio::class, 'fornaio_id', 'id');
     }
+
+    public function gas()
+    {
+        return $this->belongsTo(\App\Model\Gas::class, 'gas_id', 'id');
+    }
 }
