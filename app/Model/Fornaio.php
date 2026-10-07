@@ -33,7 +33,6 @@ class Fornaio extends Attore
     {
         return [
             'Referenti' => \App\Model\User::where('attore_id', $this->id)->orderBy('name')->pluck('name')->map('trim')->implode(', ') ?: 'nessuno',
-            'Prodotti a listino' => $this->pane()->pluck('descrizione')->implode(', ') ?: 'nessuno',
         ];
     }
 
