@@ -92,6 +92,7 @@ class AssociazioniController extends Controller
         $this->dati['gas'] = Gas::orderBy('nome')->get()->pluck('full_name', 'id');
         $this->dati['giorni'] = config('parametri.giorni_txt');
         $this->dati['dettagli'] = $this->dettagli();
+        $this->dati['esistenti'] = $associazione->id ? [] : $this->esistenti();
 
         return view('admin.associazioni.edit')->with($this->dati);
     }
@@ -137,6 +138,23 @@ class AssociazioniController extends Controller
                 ]];
             }),
         ];
+    }
+
+    /**
+     * Associazioni già presenti, per stagione e GAS, come testo "Fornaio - Giorno":
+     * in creazione si avvisa se il GAS scelto è già associato nella stagione.
+     */
+    private function esistenti()
+    {
+        $fornai = Fornaio::pluck('ragione_sociale', 'id');
+        $giorni = config('parametri.giorni_txt');
+        $esistenti = [];
+        foreach (\DB::table('associazione_fornai')->orderBy('giorno')->get() as $riga) {
+            $esistenti[$riga->stagione][$riga->gas_id][] =
+                ($fornai[$riga->fornaio_id] ?? 'Fornaio #'.$riga->fornaio_id).' - '.($giorni[$riga->giorno] ?? $riga->giorno);
+        }
+
+        return $esistenti;
     }
 
     private function valida(Request $request, $id = null)

@@ -43,6 +43,7 @@
 							{!! Form::label('gas_id', 'GAS', ['class' => 'col-md-3 control-label']) !!}
 							<div class="col-md-6">
 								{!! Form::select('gas_id', $gas, old('gas_id', $associazione->gas_id), ['class' => 'form-control', 'placeholder' => '-- Seleziona --']) !!}
+								<div class="alert alert-warning" id="gas_esistente" style="display:none; margin:10px 0 0"></div>
 							</div>
 						</div>
 					@endif
@@ -129,6 +130,28 @@
 				}
 			});
 		}
+
+		// in creazione: avvisa se il GAS ha già associazioni nella stagione scelta
+		var esistenti = @json($esistenti);
+		function controllaEsistenti() {
+			var $avviso = $('#gas_esistente');
+			var stagione = $('select[name=stagione]').val();
+			var gas = $('select[name=gas_id]').val();
+			var righe = (esistenti[stagione] || {})[gas];
+			if (! $avviso.length || ! righe) {
+				$avviso.hide();
+				return;
+			}
+			$avviso.empty()
+				.append($('<strong></strong>').text('Questo GAS è già associato nella stagione ' + stagione + ':'));
+			var $lista = $('<ul style="margin-bottom:0"></ul>').appendTo($avviso);
+			$.each(righe, function (i, riga) {
+				$('<li></li>').text(riga).appendTo($lista);
+			});
+			$avviso.show();
+		}
+		$('select[name=stagione], select[name=gas_id]').on('change', controllaEsistenti);
+		controllaEsistenti();
 
 		$('select[name=fornaio_id]').on('change', function () {
 			mostra(dettagli.fornai[$(this).val()], $('#dettaglio_fornaio'));
