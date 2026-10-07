@@ -11,14 +11,14 @@
 					<a href="{{ url('admin/stagioni/create') }}" class="btn btn-success btn-sm pull-right">Crea nuova stagione</a>
 					<div class="clearfix"></div>
 				</div>
-				<table class="table table-striped datatable">
+				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th>Stagione</th>
 							<th>Dal</th>
 							<th>Al</th>
 							<th class="text-right">Associazioni fornai-GAS</th>
-							<th class="no-sort"></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -30,11 +30,13 @@
 									<span class="label label-success">corrente</span>
 								@endif
 							</td>
-							<td data-order="{{ $stagione->dal->toDateString() }}">{{ $stagione->dal->format('d/m/Y') }}</td>
-							<td data-order="{{ $stagione->al->toDateString() }}">{{ $stagione->al->format('d/m/Y') }}</td>
+							<td>{{ $stagione->dal->format('d/m/Y') }}</td>
+							<td>{{ $stagione->al->format('d/m/Y') }}</td>
 							<td class="text-right">{{ $associazioni[$stagione->nome] ?? 0 }}</td>
 							<td class="text-right">
-								<a href="{{ url('admin/associazioni?stagione='.$stagione->nome) }}" class="btn btn-info btn-xs">GAS/Fornai</a>
+								@if ($stagione->corrente)
+									<a href="{{ url('admin/associazioni?stagione='.$stagione->nome) }}" class="btn btn-info btn-xs">GAS/Fornai</a>
+								@endif
 								<a href="{{ url('admin/stagioni/'.$stagione->id.'/edit') }}" class="btn btn-default btn-xs">Modifica</a>
 								@if (! $stagione->corrente)
 									{!! Form::open(['url' => 'admin/stagioni/'.$stagione->id.'/corrente', 'method' => 'POST', 'style' => 'display:inline']) !!}
@@ -50,8 +52,4 @@
 		</div>
 	</div>
 </div>
-@endsection
-
-@section('page-scripts')
-@include('admin._datatable')
 @endsection
