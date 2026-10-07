@@ -22,25 +22,25 @@
 				@if ($associazioni->isEmpty())
 					<div class="panel-body">Nessuna associazione per questa stagione.</div>
 				@else
-				<table class="table table-condensed table-striped">
+				<table class="table table-condensed table-striped datatable">
 					<thead>
 						<tr>
-							<th>Fornaio</th>
-							<th>Giorno</th>
-							<th>GAS</th>
+							<th class="filtro">Fornaio</th>
+							<th class="filtro">Giorno</th>
+							<th class="filtro">GAS</th>
 							<th>Dal</th>
 							<th>Al</th>
-							<th></th>
+							<th class="no-sort"></th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach ($associazioni as $a)
 						<tr>
 							<td>{{ $a->fornaio }}</td>
-							<td>{{ $a->giorno_txt }}</td>
+							<td data-order="{{ ($a->giorno + 6) % 7 }}">{{ $a->giorno_txt }}</td>
 							<td>{{ $a->gas }}</td>
-							<td>{{ $a->valido_dal ? \Carbon\Carbon::parse($a->valido_dal)->format('d/m/Y') : '' }}</td>
-							<td>{{ $a->valido_al ? \Carbon\Carbon::parse($a->valido_al)->format('d/m/Y') : '' }}</td>
+							<td data-order="{{ $a->valido_dal }}">{{ $a->valido_dal ? \Carbon\Carbon::parse($a->valido_dal)->format('d/m/Y') : '' }}</td>
+							<td data-order="{{ $a->valido_al }}">{{ $a->valido_al ? \Carbon\Carbon::parse($a->valido_al)->format('d/m/Y') : '' }}</td>
 							<td class="text-right">
 								<a href="{{ url('admin/associazioni/'.$a->id.'/edit') }}" class="btn btn-default btn-xs">Modifica</a>
 								{!! Form::open(['url' => 'admin/associazioni/'.$a->id, 'method' => 'DELETE', 'style' => 'display:inline', 'class' => 'elimina']) !!}
@@ -51,7 +51,6 @@
 						@endforeach
 					</tbody>
 				</table>
-				<div class="panel-footer">{{ $associazioni->count() }} associazioni</div>
 				@endif
 			</div>
 		</div>
@@ -60,6 +59,7 @@
 @endsection
 
 @section('page-scripts')
+@include('admin._datatable')
 <script>
 	$(document).ready(function(){
 		$('#sel_stagione').on('change', function () {

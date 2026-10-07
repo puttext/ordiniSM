@@ -53,10 +53,10 @@
 				@if ($associazioni->isEmpty())
 					<div class="panel-body">Nessuna associazione da copiare.</div>
 				@else
-				<table class="table table-condensed table-striped">
+				<table class="table table-condensed table-striped datatable solo-ordinamento">
 					<thead>
 						<tr>
-							<th><input type="checkbox" id="tutte" checked title="Seleziona tutte"></th>
+							<th class="no-sort"><input type="checkbox" id="tutte" checked title="Seleziona tutte"></th>
 							<th>Fornaio</th>
 							<th>Giorno</th>
 							<th>GAS</th>
@@ -67,7 +67,7 @@
 						<tr>
 							<td>{!! Form::checkbox('associazioni[]', $a->id, true, ['class' => 'associazione']) !!}</td>
 							<td>{{ $a->fornaio }}</td>
-							<td>{{ $a->giorno_txt }}</td>
+							<td data-order="{{ ($a->giorno + 6) % 7 }}">{{ $a->giorno_txt }}</td>
 							<td>{{ $a->gas }}</td>
 						</tr>
 						@endforeach
@@ -86,6 +86,7 @@
 @endsection
 
 @section('page-scripts')
+@include('admin._datatable')
 <script>
 	$(document).ready(function(){
 		$('#sel_origine').on('change', function () {

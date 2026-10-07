@@ -47,12 +47,12 @@
 					<a href="{{ url('admin/associazioni?stagione='.$stagione->nome) }}" class="btn btn-default btn-sm pull-right">Gestisci associazioni</a>
 					<div class="clearfix"></div>
 				</div>
-				<table class="table table-condensed table-striped">
+				<table class="table table-condensed table-striped datatable">
 					<thead>
 						<tr>
-							<th>Fornaio</th>
-							<th>Giorno</th>
-							<th>GAS</th>
+							<th class="filtro">Fornaio</th>
+							<th class="filtro">Giorno</th>
+							<th class="filtro">GAS</th>
 							<th>Dal</th>
 							<th>Al</th>
 						</tr>
@@ -61,10 +61,10 @@
 						@foreach ($associazioni as $a)
 						<tr>
 							<td>{{ $a->fornaio }}</td>
-							<td>{{ $a->giorno_txt }}</td>
+							<td data-order="{{ ($a->giorno + 6) % 7 }}">{{ $a->giorno_txt }}</td>
 							<td>{{ $a->gas }}</td>
-							<td>{{ $a->valido_dal ? \Carbon\Carbon::parse($a->valido_dal)->format('d/m/Y') : '' }}</td>
-							<td>{{ $a->valido_al ? \Carbon\Carbon::parse($a->valido_al)->format('d/m/Y') : '' }}</td>
+							<td data-order="{{ $a->valido_dal }}">{{ $a->valido_dal ? \Carbon\Carbon::parse($a->valido_dal)->format('d/m/Y') : '' }}</td>
+							<td data-order="{{ $a->valido_al }}">{{ $a->valido_al ? \Carbon\Carbon::parse($a->valido_al)->format('d/m/Y') : '' }}</td>
 						</tr>
 						@endforeach
 					</tbody>
@@ -73,4 +73,8 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('page-scripts')
+@include('admin._datatable')
 @endsection
