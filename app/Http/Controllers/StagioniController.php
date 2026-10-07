@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Fornaio;
-use App\Model\Gas;
 use App\Model\Stagione;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -57,7 +55,7 @@ class StagioniController extends Controller
         $this->dati['nuova'] = $nuova;
         $this->dati['origine'] = $origine;
         $this->dati['stagioni'] = $stagioni->pluck('nome', 'nome');
-        $this->dati['associazioni'] = $origine ? $this->associazioniLeggibili($origine) : collect();
+        $this->dati['associazioni'] = $origine ? $origine->associazioniLeggibili() : collect();
 
         return view('admin.stagioni.create')->with($this->dati);
     }
@@ -118,7 +116,7 @@ class StagioniController extends Controller
     public function edit(Stagione $stagione)
     {
         $this->dati['stagione'] = $stagione;
-        $this->dati['associazioni'] = $this->associazioniLeggibili($stagione);
+        $this->dati['associazioni'] = $stagione->associazioniLeggibili();
 
         return view('admin.stagioni.edit')->with($this->dati);
     }
@@ -158,27 +156,5 @@ class StagioniController extends Controller
         $stagione->rendiCorrente();
 
         return redirect('admin/stagioni')->with('message', 'La stagione corrente ora è '.$stagione->nome);
-    }
-
-    /**
-     * Associazioni della stagione con i nomi di fornaio e GAS, ordinate per fornaio e giorno.
-     */
-    private function associazioniLeggibili(Stagione $stagione)
-    {
-        $fornai = Fornaio::pluck('ragione_sociale', 'id');
-        $gas = Gas::get()->keyBy('id');
-        $giorni = config('parametri.giorni_txt');
-
-        return $stagione->associazioni()->get()
-            ->map(function ($riga) use ($fornai, $gas, $giorni) {
-                $riga->fornaio = $fornai[$riga->fornaio_id] ?? 'Fornaio #'.$riga->fornaio_id;
-                $riga->gas = isset($gas[$riga->gas_id]) ? $gas[$riga->gas_id]->full_name : 'GAS #'.$riga->gas_id;
-                $riga->giorno_txt = $giorni[$riga->giorno] ?? $riga->giorno;
-
-                return $riga;
-            })
-            ->sortBy(function ($riga) {
-                return $riga->fornaio.'|'.$riga->giorno.'|'.$riga->gas;
-            });
     }
 }

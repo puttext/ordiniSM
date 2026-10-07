@@ -4,6 +4,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
+			@include('admin._menu')
 			@include('admin._errori')
 			{!! Form::open(['url' => 'admin/stagioni', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
 			<div class="panel panel-default">
@@ -74,7 +75,7 @@
 				</table>
 				<div class="panel-footer">
 					Le associazioni selezionate vengono copiate nella nuova stagione con le date indicate sopra.
-					Togli la spunta ai GAS che non partecipano più; per aggiungerne di nuovi usa la gestione delle associazioni.
+					Togli la spunta ai GAS che non partecipano più; per aggiungerne di nuovi usa la <a href="{{ url('admin/associazioni') }}">gestione delle associazioni</a> dopo aver creato la stagione.
 				</div>
 				@endif
 			</div>

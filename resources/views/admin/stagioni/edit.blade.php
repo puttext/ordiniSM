@@ -4,6 +4,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
+			@include('admin._menu')
 			@include('admin._errori')
 			{!! Form::model($stagione, ['url' => 'admin/stagioni/'.$stagione->id, 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 			<div class="panel panel-default">
@@ -41,7 +42,11 @@
 			{!! Form::close() !!}
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Associazioni fornai-GAS ({{ $associazioni->count() }})</div>
+				<div class="panel-heading">
+					<h3 class="panel-title pull-left">Associazioni fornai-GAS ({{ $associazioni->count() }})</h3>
+					<a href="{{ url('admin/associazioni?stagione='.$stagione->nome) }}" class="btn btn-default btn-sm pull-right">Gestisci associazioni</a>
+					<div class="clearfix"></div>
+				</div>
 				<table class="table table-condensed table-striped">
 					<thead>
 						<tr>

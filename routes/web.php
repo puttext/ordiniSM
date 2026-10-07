@@ -29,4 +29,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'gestore']], functio
     Route::get('stagioni/{stagione}/edit', 'StagioniController@edit');
     Route::put('stagioni/{stagione}', 'StagioniController@update');
     Route::post('stagioni/{stagione}/corrente', 'StagioniController@corrente');
+    Route::get('associazioni', 'AssociazioniController@index');
+    Route::get('associazioni/create', 'AssociazioniController@create');
+    Route::post('associazioni', 'AssociazioniController@store');
+    Route::get('associazioni/{id}/edit', 'AssociazioniController@edit');
+    Route::put('associazioni/{id}', 'AssociazioniController@update');
+    Route::delete('associazioni/{id}', 'AssociazioniController@destroy');
 });

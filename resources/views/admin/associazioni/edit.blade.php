@@ -1,0 +1,66 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			@include('admin._menu')
+			@include('admin._errori')
+			@if ($associazione->id)
+				{!! Form::open(['url' => 'admin/associazioni/'.$associazione->id, 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+			@else
+				{!! Form::open(['url' => 'admin/associazioni', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
+			@endif
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title pull-left">{{ $associazione->id ? 'Modifica associazione' : 'Nuova associazione' }}</h3>
+					{!! Form::submit('Salva', ['class' => 'btn btn-success btn-sm pull-right']) !!}
+					<a href="{{ url('admin/associazioni?stagione='.$associazione->stagione) }}" class="btn btn-default btn-sm pull-right" style="margin-right:5px">&larr; Torna alle associazioni</a>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						{!! Form::label('stagione', 'Stagione', ['class' => 'col-md-3 control-label']) !!}
+						<div class="col-md-3">
+							{!! Form::select('stagione', $stagioni, old('stagione', $associazione->stagione), ['class' => 'form-control']) !!}
+						</div>
+					</div>
+					<div class="form-group">
+						{!! Form::label('fornaio_id', 'Fornaio', ['class' => 'col-md-3 control-label']) !!}
+						<div class="col-md-6">
+							{!! Form::select('fornaio_id', $fornai, old('fornaio_id', $associazione->fornaio_id), ['class' => 'form-control', 'placeholder' => '-- Seleziona --']) !!}
+						</div>
+					</div>
+					<div class="form-group">
+						{!! Form::label('gas_id', 'GAS', ['class' => 'col-md-3 control-label']) !!}
+						<div class="col-md-6">
+							{!! Form::select('gas_id', $gas, old('gas_id', $associazione->gas_id), ['class' => 'form-control', 'placeholder' => '-- Seleziona --']) !!}
+						</div>
+					</div>
+					<div class="form-group">
+						{!! Form::label('giorno', 'Giorno di consegna', ['class' => 'col-md-3 control-label']) !!}
+						<div class="col-md-3">
+							{!! Form::select('giorno', $giorni, old('giorno', $associazione->giorno), ['class' => 'form-control', 'placeholder' => '-- Seleziona --']) !!}
+						</div>
+					</div>
+					<div class="form-group">
+						{!! Form::label('valido_dal', 'Valida dal', ['class' => 'col-md-3 control-label']) !!}
+						<div class="col-md-3">
+							{!! Form::date('valido_dal', old('valido_dal', $associazione->valido_dal), ['class' => 'form-control']) !!}
+						</div>
+						{!! Form::label('valido_al', 'al', ['class' => 'col-md-1 control-label']) !!}
+						<div class="col-md-3">
+							{!! Form::date('valido_al', old('valido_al', $associazione->valido_al), ['class' => 'form-control']) !!}
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer">
+					Il GAS vede il fornaio e riceve il pane nel giorno indicato solo nel periodo di validità.
+					Se cambi stagione, ricorda di adeguare anche le date.
+				</div>
+			</div>
+			{!! Form::close() !!}
+		</div>
+	</div>
+</div>
+@endsection

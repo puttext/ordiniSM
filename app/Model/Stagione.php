@@ -49,4 +49,26 @@ class Stagione extends Model
 
         return ($anno1 + 1).'-'.($anno2 + 1);
     }
+
+    /**
+     * Associazioni della stagione con i nomi di fornaio e GAS, ordinate per fornaio e giorno.
+     */
+    public function associazioniLeggibili()
+    {
+        $fornai = Fornaio::pluck('ragione_sociale', 'id');
+        $gas = Gas::get()->keyBy('id');
+        $giorni = config('parametri.giorni_txt');
+
+        return $this->associazioni()->get()
+            ->map(function ($riga) use ($fornai, $gas, $giorni) {
+                $riga->fornaio = $fornai[$riga->fornaio_id] ?? 'Fornaio #'.$riga->fornaio_id;
+                $riga->gas = isset($gas[$riga->gas_id]) ? $gas[$riga->gas_id]->full_name : 'GAS #'.$riga->gas_id;
+                $riga->giorno_txt = $giorni[$riga->giorno] ?? $riga->giorno;
+
+                return $riga;
+            })
+            ->sortBy(function ($riga) {
+                return $riga->fornaio.'|'.$riga->giorno.'|'.$riga->gas;
+            });
+    }
 }
