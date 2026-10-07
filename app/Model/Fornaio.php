@@ -27,15 +27,13 @@ class Fornaio extends Attore
     }
 
     /**
-     * Dati riassuntivi mostrati nella scheda del fornaio, come etichetta => testo.
+     * Dati aggiuntivi mostrati nella scheda del fornaio, come etichetta => testo.
      */
-    public function statistiche()
+    public function dettagli()
     {
         return [
             'Referenti' => \App\Model\User::where('attore_id', $this->id)->orderBy('name')->pluck('name')->map('trim')->implode(', ') ?: 'nessuno',
             'Prodotti a listino' => $this->pane()->pluck('descrizione')->implode(', ') ?: 'nessuno',
-            'Ordini' => static::riassuntoOrdini(\DB::table('ordini')->where('fornitore_id', $this->id)),
-            'In anagrafica dal' => $this->created_at ? $this->created_at->format('d/m/Y') : '?',
         ];
     }
 

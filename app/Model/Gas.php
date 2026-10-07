@@ -47,23 +47,12 @@ class Gas extends Attore
     }
 
     /**
-     * Dati riassuntivi mostrati nella scheda del GAS, come etichetta => testo.
+     * Dati aggiuntivi mostrati nella scheda del GAS, come etichetta => testo.
      */
-    public function statistiche()
+    public function dettagli()
     {
-        $stagione = config('parametri.stagione');
-        $ordini = \DB::table('ordini')
-            ->join('prodotti', 'prodotti.ordine_id', '=', 'ordini.id')
-            ->join('ordini_dettagli', 'ordini_dettagli.prodotto_id', '=', 'prodotti.id')
-            ->where('ordini_dettagli.gas_id', $this->id)
-            ->where('ordini_dettagli.quantita', '>', 0);
-        $versato = \DB::table('versamenti')->where('gas_id', $this->id)->where('stagione', $stagione)->sum('importo');
-
         return [
             'Referenti' => $this->referenti()->orderBy('name')->pluck('name')->map('trim')->implode(', ') ?: 'nessuno',
-            'Ordini' => static::riassuntoOrdini($ordini),
-            'Versamenti '.$stagione => '€ '.number_format($versato, 2, ',', '.'),
-            'In anagrafica dal' => $this->created_at ? $this->created_at->format('d/m/Y') : '?',
         ];
     }
 
