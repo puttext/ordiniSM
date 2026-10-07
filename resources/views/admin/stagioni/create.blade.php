@@ -10,6 +10,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title pull-left">Nuova stagione</h3>
 					{!! Form::submit('Crea stagione', ['class' => 'btn btn-success btn-sm pull-right']) !!}
+					<a href="{{ url('admin/stagioni') }}" class="btn btn-default btn-sm pull-right" style="margin-right:5px">&larr; Torna alle stagioni</a>
 					<div class="clearfix"></div>
 				</div>
 				<div class="panel-body">

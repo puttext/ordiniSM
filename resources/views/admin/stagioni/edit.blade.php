@@ -15,6 +15,7 @@
 						@endif
 					</h3>
 					{!! Form::submit('Salva', ['class' => 'btn btn-success btn-sm pull-right']) !!}
+					<a href="{{ url('admin/stagioni') }}" class="btn btn-default btn-sm pull-right" style="margin-right:5px">&larr; Torna alle stagioni</a>
 					<div class="clearfix"></div>
 				</div>
 				<div class="panel-body">
@@ -64,7 +65,6 @@
 					</tbody>
 				</table>
 			</div>
-			<a href="{{ url('admin/stagioni') }}">&larr; Torna alle stagioni</a>
 		</div>
 	</div>
 </div>
