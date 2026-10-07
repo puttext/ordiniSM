@@ -32,13 +32,13 @@
 					@if ($user->gas)
 					<div class="form-group">
 						<label class="col-md-4 control-label">GAS</label>
-						<div class="col-md-6"><p class="form-control-static">{{ $user->gas->full_name }}</p></div>
+						<div class="col-md-6">@include('admin._scheda_gas', ['scheda' => $user->gas])</div>
 					</div>
 					@endif
-					@if ($user->referenza)
+					@if ($user->fornaio)
 					<div class="form-group">
 						<label class="col-md-4 control-label">Fornaio</label>
-						<div class="col-md-6"><p class="form-control-static">{{ $user->referenza->ragione_sociale }}</p></div>
+						<div class="col-md-6">@include('admin._scheda_fornaio', ['scheda' => $user->fornaio])</div>
 					</div>
 					@endif
 					<div class="form-group">

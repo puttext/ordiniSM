@@ -38,6 +38,14 @@ class User extends Authenticatable
         return $this->belongsTo(\App\Model\Attore::class, 'attore_id');
     }
 
+    /**
+     * Il fornaio collegato tramite attore_id (null se l'attore non è un fornaio).
+     */
+    public function fornaio()
+    {
+        return $this->belongsTo(\App\Model\Fornaio::class, 'attore_id');
+    }
+
     public function gas()
     {
         return $this->belongsTo(\App\Model\Gas::class);

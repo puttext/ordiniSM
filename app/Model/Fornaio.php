@@ -26,6 +26,14 @@ class Fornaio extends Attore
         return $this->hasMany(\App\Model\AssociazioneFornai::class, 'fornaio_id');
     }
 
+    /**
+     * GAS e giorni di consegna della stagione corrente.
+     */
+    public function consegne()
+    {
+        return $this->hasMany(\App\Model\AssociazioneFornai::class, 'fornaio_id')->with('gas')->orderBy('giorno');
+    }
+
     public function gas()
     {
         return $this->belongsToMany(\App\Model\Gas::class, 'associazione_fornai', 'fornaio_id', 'gas_id')

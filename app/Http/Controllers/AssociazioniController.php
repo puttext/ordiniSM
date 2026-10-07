@@ -98,7 +98,8 @@ class AssociazioniController extends Controller
     }
 
     /**
-     * Schede descrittive di fornai e GAS, mostrate nel modulo accanto alla selezione.
+     * Schede descrittive di fornai e GAS, mostrate nel modulo sotto la selezione
+     * con lo stesso aspetto dei partial admin._scheda_gas e admin._scheda_fornaio.
      * I referenti di un fornaio sono gli utenti collegati con attore_id, quelli di
      * un GAS gli utenti collegati con gas_id.
      */
@@ -110,30 +111,26 @@ class AssociazioniController extends Controller
                 return ['nome' => trim($u->name), 'email' => $u->email, 'ruolo' => $u->ruolo];
             })->values();
         };
-        $indirizzo = function ($attore) {
-            return trim(implode(', ', array_filter([$attore->indirizzo, $attore->comune])));
-        };
 
         return [
-            'fornai' => Fornaio::get()->mapWithKeys(function ($f) use ($referenti, $indirizzo) {
+            'fornai' => Fornaio::get()->mapWithKeys(function ($f) use ($referenti) {
                 return [$f->id => [
-                    'campi' => [
-                        'Ragione sociale' => $f->ragione_sociale,
-                        'Nome' => $f->nome,
-                        'Indirizzo' => $indirizzo($f),
-                        'Chiusura ordini' => $f->anticipo_chiusura.' giorni prima della consegna',
-                    ],
+                    'titolo' => $f->ragione_sociale.' ('.$f->nome.')',
+                    'righe' => array_values(array_filter([
+                        trim(implode(', ', array_filter([$f->indirizzo, $f->comune]))),
+                        'Chiusura ordini '.$f->anticipo_chiusura.' giorni prima',
+                    ])),
+                    'link' => url('admin/fornai/'.$f->id.'/edit'),
+                    'testo_link' => 'Scheda fornaio',
                     'referenti' => $referenti('attore_id', $f->id),
                 ]];
             }),
-            'gas' => Gas::get()->mapWithKeys(function ($g) use ($referenti, $indirizzo) {
+            'gas' => Gas::get()->mapWithKeys(function ($g) use ($referenti) {
                 return [$g->id => [
-                    'campi' => [
-                        'Nome' => $g->nome,
-                        'Tipo' => $g->tipo == 'rivendita' ? 'Rivendita' : 'GAS',
-                        'Ragione sociale' => $g->ragione_sociale,
-                        'Indirizzo' => $indirizzo($g),
-                    ],
+                    'titolo' => $g->full_name.($g->tipo == 'rivendita' ? ' · Rivendita' : ''),
+                    'righe' => array_values(array_filter([$g->ragione_sociale, $g->indirizzo])),
+                    'link' => url('admin/gas/'.$g->id.'/edit'),
+                    'testo_link' => 'Scheda GAS',
                     'referenti' => $referenti('gas_id', $g->id),
                 ]];
             }),

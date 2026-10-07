@@ -30,6 +30,7 @@
 							<div class="col-md-6">
 								<p class="form-control-static">{{ $gas[$associazione->gas_id] ?? 'GAS #'.$associazione->gas_id }}</p>
 								{!! Form::hidden('gas_id', $associazione->gas_id) !!}
+								<div id="dettaglio_gas"></div>
 							</div>
 						</div>
 					@else
@@ -44,6 +45,7 @@
 							<div class="col-md-6">
 								{!! Form::select('gas_id', $gas, old('gas_id', $associazione->gas_id), ['class' => 'form-control', 'placeholder' => '-- Seleziona --']) !!}
 								<div class="alert alert-warning" id="gas_esistente" style="display:none; margin:10px 0 0"></div>
+								<div id="dettaglio_gas"></div>
 							</div>
 						</div>
 					@endif
@@ -51,6 +53,7 @@
 						{!! Form::label('fornaio_id', 'Fornaio', ['class' => 'col-md-3 control-label']) !!}
 						<div class="col-md-6">
 							{!! Form::select('fornaio_id', $fornai, old('fornaio_id', $associazione->fornaio_id), ['class' => 'form-control', 'placeholder' => '-- Seleziona --']) !!}
+							<div id="dettaglio_fornaio"></div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -78,21 +81,6 @@
 				</div>
 			</div>
 			{!! Form::close() !!}
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">Fornaio</div>
-						<div class="panel-body" id="dettaglio_fornaio"></div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">GAS</div>
-						<div class="panel-body" id="dettaglio_gas"></div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>
@@ -103,27 +91,24 @@
 	$(document).ready(function () {
 		var dettagli = @json($dettagli);
 
+		// stesso riquadro dei partial admin._scheda_gas e admin._scheda_fornaio
 		function mostra(scheda, $box) {
 			$box.empty();
 			if (! scheda) {
-				$box.append($('<p class="text-muted"></p>').text('Nessuna selezione'));
 				return;
 			}
-			var $dl = $('<dl class="dl-horizontal" style="margin-bottom:0"></dl>').appendTo($box);
-			$.each(scheda.campi, function (etichetta, valore) {
-				if (valore === null || valore === '') {
-					return;
-				}
-				$('<dt></dt>').text(etichetta).appendTo($dl);
-				$('<dd></dd>').text(valore).appendTo($dl);
+			var $well = $('<div class="well well-sm" style="margin:8px 0 0"></div>').appendTo($box);
+			$('<a class="pull-right"></a>').attr('href', scheda.link).text(scheda.testo_link).appendTo($well);
+			$('<strong></strong>').text(scheda.titolo).appendTo($well);
+			$.each(scheda.righe, function (i, riga) {
+				$well.append('<br>').append(document.createTextNode(riga));
 			});
-			$('<dt></dt>').text('Referenti').appendTo($dl);
-			var $dd = $('<dd></dd>').appendTo($dl);
+			$well.append('<br>').append($('<em></em>').text('Referenti:'));
 			if (! scheda.referenti.length) {
-				$dd.append($('<span class="text-muted"></span>').text('nessuno'));
+				$well.append(' nessuno');
 			}
 			$.each(scheda.referenti, function (i, r) {
-				var $riga = $('<div></div>').text(r.nome + ' ').appendTo($dd);
+				var $riga = $('<div></div>').text(r.nome + ' ').appendTo($well);
 				$('<a></a>').attr('href', 'mailto:' + r.email).text(r.email).appendTo($riga);
 				if (r.ruolo !== 'referente') {
 					$riga.append(' ').append($('<span class="label label-default"></span>').text(r.ruolo));
