@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Fornaio;
 use App\Model\Gas;
 use App\Model\Stagione;
+use App\Model\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -88,8 +89,52 @@ class AssociazioniController extends Controller
         $this->dati['fornai'] = Fornaio::orderBy('ragione_sociale')->pluck('ragione_sociale', 'id');
         $this->dati['gas'] = Gas::orderBy('nome')->get()->pluck('full_name', 'id');
         $this->dati['giorni'] = config('parametri.giorni_txt');
+        $this->dati['dettagli'] = $this->dettagli();
 
         return view('admin.associazioni.edit')->with($this->dati);
+    }
+
+    /**
+     * Schede descrittive di fornai e GAS, mostrate nel modulo accanto alla selezione.
+     * I referenti di un fornaio sono gli utenti collegati con attore_id, quelli di
+     * un GAS gli utenti collegati con gas_id.
+     */
+    private function dettagli()
+    {
+        $utenti = User::orderBy('name')->get(['name', 'email', 'ruolo', 'attore_id', 'gas_id']);
+        $referenti = function ($campo, $id) use ($utenti) {
+            return $utenti->where($campo, $id)->map(function ($u) {
+                return ['nome' => trim($u->name), 'email' => $u->email, 'ruolo' => $u->ruolo];
+            })->values();
+        };
+        $indirizzo = function ($attore) {
+            return trim(implode(', ', array_filter([$attore->indirizzo, $attore->comune])));
+        };
+
+        return [
+            'fornai' => Fornaio::get()->mapWithKeys(function ($f) use ($referenti, $indirizzo) {
+                return [$f->id => [
+                    'campi' => [
+                        'Ragione sociale' => $f->ragione_sociale,
+                        'Nome' => $f->nome,
+                        'Indirizzo' => $indirizzo($f),
+                        'Chiusura ordini' => $f->anticipo_chiusura.' giorni prima della consegna',
+                    ],
+                    'referenti' => $referenti('attore_id', $f->id),
+                ]];
+            }),
+            'gas' => Gas::get()->mapWithKeys(function ($g) use ($referenti, $indirizzo) {
+                return [$g->id => [
+                    'campi' => [
+                        'Nome' => $g->nome,
+                        'Tipo' => $g->tipo == 'rivendita' ? 'Rivendita' : 'GAS',
+                        'Ragione sociale' => $g->ragione_sociale,
+                        'Indirizzo' => $indirizzo($g),
+                    ],
+                    'referenti' => $referenti('gas_id', $g->id),
+                ]];
+            }),
+        ];
     }
 
     private function valida(Request $request, $id = null)

@@ -60,7 +60,65 @@
 				</div>
 			</div>
 			{!! Form::close() !!}
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Fornaio</div>
+						<div class="panel-body" id="dettaglio_fornaio"></div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">GAS</div>
+						<div class="panel-body" id="dettaglio_gas"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('page-scripts')
+<script>
+	$(document).ready(function () {
+		var dettagli = @json($dettagli);
+
+		function mostra(scheda, $box) {
+			$box.empty();
+			if (! scheda) {
+				$box.append($('<p class="text-muted"></p>').text('Nessuna selezione'));
+				return;
+			}
+			var $dl = $('<dl class="dl-horizontal" style="margin-bottom:0"></dl>').appendTo($box);
+			$.each(scheda.campi, function (etichetta, valore) {
+				if (valore === null || valore === '') {
+					return;
+				}
+				$('<dt></dt>').text(etichetta).appendTo($dl);
+				$('<dd></dd>').text(valore).appendTo($dl);
+			});
+			$('<dt></dt>').text('Referenti').appendTo($dl);
+			var $dd = $('<dd></dd>').appendTo($dl);
+			if (! scheda.referenti.length) {
+				$dd.append($('<span class="text-muted"></span>').text('nessuno'));
+			}
+			$.each(scheda.referenti, function (i, r) {
+				var $riga = $('<div></div>').text(r.nome + ' ').appendTo($dd);
+				$('<a></a>').attr('href', 'mailto:' + r.email).text(r.email).appendTo($riga);
+				if (r.ruolo !== 'referente') {
+					$riga.append(' ').append($('<span class="label label-default"></span>').text(r.ruolo));
+				}
+			});
+		}
+
+		$('select[name=fornaio_id]').on('change', function () {
+			mostra(dettagli.fornai[$(this).val()], $('#dettaglio_fornaio'));
+		}).trigger('change');
+		$('select[name=gas_id]').on('change', function () {
+			mostra(dettagli.gas[$(this).val()], $('#dettaglio_gas'));
+		}).trigger('change');
+	});
+</script>
 @endsection
