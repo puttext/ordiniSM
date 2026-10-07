@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Model\Stagione;
+use Illuminate\Database\QueryException;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -40,6 +42,16 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Paginator::useBootstrap();
+
+        // la stagione corrente si imposta dalla tabella stagioni; se la tabella
+        // non c'è ancora (migrazione non eseguita) resta il valore di STAGIONE nel .env
+        try {
+            $stagione = Stagione::corrente();
+            if ($stagione) {
+                config(['parametri.stagione' => $stagione->nome]);
+            }
+        } catch (QueryException $e) {
+        }
 
         // \Carbon\Carbon::setLocale("it.utf8");
         setlocale(LC_TIME, 'it_IT.utf8');

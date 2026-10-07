@@ -60,6 +60,9 @@
 						@if (Auth::user() && (Auth::user()->ruolo!='fornitore' || \Auth::user()->gas_id))
 							<li><a href="{{ url('/contributi') }}">Verifica Contributi</a></li>
 						@endif
+						@if (Auth::user() && Auth::user()->livello >= \App\Model\User::GESTORE)
+							<li><a href="{{ url('/admin') }}">Amministrazione</a></li>
+						@endif
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
