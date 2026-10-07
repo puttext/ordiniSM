@@ -141,7 +141,7 @@ class AssociazioniController extends Controller
     }
 
     /**
-     * Associazioni già presenti, per stagione e GAS, come testo "Fornaio - Giorno":
+     * Associazioni già presenti, per stagione e GAS, come testo "Fornaio - Giorno (dal - al)":
      * in creazione si avvisa se il GAS scelto è già associato nella stagione.
      */
     private function esistenti()
@@ -149,9 +149,13 @@ class AssociazioniController extends Controller
         $fornai = Fornaio::pluck('ragione_sociale', 'id');
         $giorni = config('parametri.giorni_txt');
         $esistenti = [];
-        foreach (\DB::table('associazione_fornai')->orderBy('giorno')->get() as $riga) {
+        $data = function ($valore) {
+            return $valore ? Carbon::parse($valore)->format('d/m/Y') : '?';
+        };
+        foreach (\DB::table('associazione_fornai')->orderBy('valido_dal')->orderBy('giorno')->get() as $riga) {
             $esistenti[$riga->stagione][$riga->gas_id][] =
-                ($fornai[$riga->fornaio_id] ?? 'Fornaio #'.$riga->fornaio_id).' - '.($giorni[$riga->giorno] ?? $riga->giorno);
+                ($fornai[$riga->fornaio_id] ?? 'Fornaio #'.$riga->fornaio_id).' - '.($giorni[$riga->giorno] ?? $riga->giorno)
+                .' (dal '.$data($riga->valido_dal).' al '.$data($riga->valido_al).')';
         }
 
         return $esistenti;
