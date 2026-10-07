@@ -67,7 +67,9 @@ class AssociazioniController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->trova($id);
+        // stagione e GAS non si cambiano: valgono quelli già salvati
+        $associazione = $this->trova($id);
+        $request->merge(['stagione' => $associazione->stagione, 'gas_id' => $associazione->gas_id]);
         $dati = $this->valida($request, $id);
         \DB::table('associazione_fornai')->where('id', $id)->update($dati + ['updated_at' => Carbon::now()]);
 

@@ -19,22 +19,37 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="panel-body">
-					<div class="form-group">
-						{!! Form::label('stagione', 'Stagione', ['class' => 'col-md-3 control-label']) !!}
-						<div class="col-md-3">
-							{!! Form::select('stagione', $stagioni, old('stagione', $associazione->stagione), ['class' => 'form-control']) !!}
+					@if ($associazione->id)
+						{{-- in modifica stagione e GAS non si cambiano --}}
+						<div class="form-group">
+							<label class="col-md-3 control-label">Stagione</label>
+							<div class="col-md-6"><p class="form-control-static">{{ $associazione->stagione }}</p></div>
 						</div>
-					</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">GAS</label>
+							<div class="col-md-6">
+								<p class="form-control-static">{{ $gas[$associazione->gas_id] ?? 'GAS #'.$associazione->gas_id }}</p>
+								{!! Form::hidden('gas_id', $associazione->gas_id) !!}
+							</div>
+						</div>
+					@else
+						<div class="form-group">
+							{!! Form::label('stagione', 'Stagione', ['class' => 'col-md-3 control-label']) !!}
+							<div class="col-md-3">
+								{!! Form::select('stagione', $stagioni, old('stagione', $associazione->stagione), ['class' => 'form-control']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+							{!! Form::label('gas_id', 'GAS', ['class' => 'col-md-3 control-label']) !!}
+							<div class="col-md-6">
+								{!! Form::select('gas_id', $gas, old('gas_id', $associazione->gas_id), ['class' => 'form-control', 'placeholder' => '-- Seleziona --']) !!}
+							</div>
+						</div>
+					@endif
 					<div class="form-group">
 						{!! Form::label('fornaio_id', 'Fornaio', ['class' => 'col-md-3 control-label']) !!}
 						<div class="col-md-6">
 							{!! Form::select('fornaio_id', $fornai, old('fornaio_id', $associazione->fornaio_id), ['class' => 'form-control', 'placeholder' => '-- Seleziona --']) !!}
-						</div>
-					</div>
-					<div class="form-group">
-						{!! Form::label('gas_id', 'GAS', ['class' => 'col-md-3 control-label']) !!}
-						<div class="col-md-6">
-							{!! Form::select('gas_id', $gas, old('gas_id', $associazione->gas_id), ['class' => 'form-control', 'placeholder' => '-- Seleziona --']) !!}
 						</div>
 					</div>
 					<div class="form-group">
@@ -56,7 +71,9 @@
 				</div>
 				<div class="panel-footer">
 					Il GAS vede il fornaio e riceve il pane nel giorno indicato solo nel periodo di validità.
-					Se cambi stagione, ricorda di adeguare anche le date.
+					@if (! $associazione->id)
+						Se cambi stagione, ricorda di adeguare anche le date.
+					@endif
 				</div>
 			</div>
 			{!! Form::close() !!}
@@ -116,7 +133,7 @@
 		$('select[name=fornaio_id]').on('change', function () {
 			mostra(dettagli.fornai[$(this).val()], $('#dettaglio_fornaio'));
 		}).trigger('change');
-		$('select[name=gas_id]').on('change', function () {
+		$('[name=gas_id]').on('change', function () {
 			mostra(dettagli.gas[$(this).val()], $('#dettaglio_gas'));
 		}).trigger('change');
 	});
