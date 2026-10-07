@@ -46,6 +46,20 @@ class Attore extends Model
         return ! empty(static::utilizzi($this->id));
     }
 
+    /**
+     * Ordini come "N nella stagione corrente, M in totale", dalla query data.
+     */
+    protected static function riassuntoOrdini($query)
+    {
+        $stagione = config('parametri.stagione');
+        $righe = $query->selectRaw('ordini.stagione, count(distinct ordini.id) as n, max(ordini.consegna) as ultima')
+            ->groupBy('ordini.stagione')->get();
+        $ultima = $righe->max('ultima');
+
+        return $righe->where('stagione', $stagione)->sum('n').' nella stagione '.$stagione.', '.$righe->sum('n').' in totale'
+            .($ultima ? ' (ultima consegna '.\Carbon\Carbon::parse($ultima)->format('d/m/Y').')' : '');
+    }
+
     public function scopeFornai($query)
     {
         return $query
