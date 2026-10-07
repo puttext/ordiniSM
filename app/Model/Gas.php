@@ -8,6 +8,13 @@ class Gas extends Attore
         'tipo' => 'gas',
     ];
 
+    protected static $riferimenti = [
+        'associazione_fornai' => 'gas_id',
+        'ordini_dettagli' => 'gas_id',
+        'versamenti' => 'gas_id',
+        'users' => 'gas_id',
+    ];
+
     public function fornai()
     {
         return $this->belongsToMany(\App\Model\Fornaio::class, 'associazione_fornai', 'gas_id', 'fornaio_id')

@@ -35,4 +35,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'gestore']], functio
     Route::get('associazioni/{id}/edit', 'AssociazioniController@edit');
     Route::put('associazioni/{id}', 'AssociazioniController@update');
     Route::delete('associazioni/{id}', 'AssociazioniController@destroy');
+    Route::get('gas', 'GasController@index');
+    Route::get('gas/create', 'GasController@create');
+    Route::post('gas', 'GasController@store');
+    Route::get('gas/{id}/edit', 'GasController@edit');
+    Route::put('gas/{id}', 'GasController@update');
+    Route::delete('gas/{id}', 'GasController@destroy');
+    Route::get('fornai', 'FornaiController@index');
+    Route::get('fornai/create', 'FornaiController@create');
+    Route::post('fornai', 'FornaiController@store');
+    Route::get('fornai/{id}/edit', 'FornaiController@edit');
+    Route::put('fornai/{id}', 'FornaiController@update');
+    Route::delete('fornai/{id}', 'FornaiController@destroy');
 });

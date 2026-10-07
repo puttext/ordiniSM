@@ -8,6 +8,13 @@ class Fornaio extends Attore
         'tipo' => 'fornaio',
     ];
 
+    protected static $riferimenti = [
+        'associazione_fornai' => 'fornaio_id',
+        'ordini' => 'fornitore_id',
+        'prodotti' => 'fornitore_id',
+        'users' => 'attore_id',
+    ];
+
     public function newQuery($excludeDeleted = true)
     {
         return parent::newQuery($excludeDeleted = true)
